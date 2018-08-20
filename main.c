@@ -105,6 +105,7 @@ int main(int argc,char **argv)
     write_line("Hello world!",0);
     recolour_last_line(2);
     
+    if (0)
     while(1) {
         poll_modem();
         if (kbhit()) { 

@@ -1,5 +1,7 @@
 #include <conio.h>
 #include "include.h"
+#include "screen.h"
+#include "memory.h"
 
 /**
  *  @brief          draw a full rectangle which erase all char under its position
@@ -9,58 +11,51 @@
  *  @param  height  size of the rectangle, from y to y+height; height > 1
  *  @param  color   color of the border
  */
-unsigned char rectangle(unsigned char x, unsigned char y, unsigned char width, unsigned char height, unsigned char color)
+void rectangle(const unsigned char x, const unsigned char y, 
+               const unsigned char width, const unsigned char height, 
+               const unsigned char color)
 {
     // Loop
-    int i, j;
+    unsigned char i, j;
+
+    unsigned int offset, scr_addr;
+    unsigned long col_addr;
+
+    // Dont allow x position or width > 127, so that arithmetic below cant overflow
+    if ((x|width)&0x80) return;
+    if ((y|height)&0x80) return;
+    // Do simple bounds checks
+    if (width>=SCREEN_COLS) return;
+    if (height>=SCREEN_ROWS) return;
+    if ((x+width)>=SCREEN_COLS) return;
+    if ((y+height)>=SCREEN_ROWS) return;
 
     // Initial position
-    gotoxy(x,y);
+    offset=(y<<6);  // because screen lines take 64 bytes each
+    offset+=x;
 
-    // Color
-    textcolor(color);
+    scr_addr=SCREEN_ADDRESS+offset;
+    col_addr=COLOUR_RAM_ADDRESS+offset;
 
     // Draw
-    for(i=0; i<height; i++)
+        lfill(scr_addr,HORIZONTAL,width);
+        POKE(scr_addr,CORNER_TOP_LEFT);
+        POKE(scr_addr+width-1,CORNER_TOP_RIGHT);
+        scr_addr+=64;
+
+    for(i=2; i<height; i++)
     {
-        for(j=0; j<width; j++)
-        {
-            // Corners
-            if(i==0 && j==0)
-            {
-                cputc(CORNER_TOP_LEFT);
-            }
-            else if(i==height-1 && j==0)
-            {
-                cputc(CORNER_BOTTOM_LEFT);
-            }
-            else if(i==0 && j==width-1)
-            {
-                cputc(CORNER_TOP_RIGHT);
-            }
-            else if(i==height-1 && j==width-1)
-            {
-                cputc(CORNER_BOTTOM_RIGHT);
-            }
-            else if((i==0 || i==height-1) && j!=0 && j!=width-1)
-            {
-                // Top and bottom lines
-                cputc(HORIZONTAL);
-            }
-            else if((j==0 || j==width-1) && i!=0 && i!=height-1)
-            {
-                // Left and right lines
-                cputc(VERTICAL);
-            }
-            else
-            {
-                cputc(' ');
-            }
-        }
-        gotoxy(x,y+i+1);
+        lfill(scr_addr,0x20,width);
+        POKE(scr_addr,VERTICAL);
+        POKE(scr_addr+width-1,VERTICAL);
+        scr_addr+=64;
     }
 
-    return 0;
+        lfill(scr_addr,HORIZONTAL,width);
+        POKE(scr_addr,CORNER_BOTTOM_LEFT);
+        POKE(scr_addr+width-1,CORNER_BOTTOM_RIGHT);
+     
+    return;
 }
 
 /**

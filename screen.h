@@ -1,5 +1,5 @@
 
-#define SCREEN_COLS 50
+#define SCREEN_COLS 64
 #define SCREEN_ROWS 30
 #define CHARSET_ADDRESS (0x8800U)
 #define SCREEN_ADDRESS (0xF400U)
