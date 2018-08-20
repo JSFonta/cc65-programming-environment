@@ -109,15 +109,9 @@ void lfill(long destination_address, unsigned char value,
   dmalist.sub_cmd=0;
   dmalist.count=count;
   dmalist.source_addr=value;
-<<<<<<< HEAD
-  dmalist.dest_addr=destination_address&0xffffU;
-  dmalist.dest_bank=(destination_address>>16L)&0x0f;
-  if (destination_address>=0xd000U && destination_address<0xe000U)
-=======
   dmalist.dest_addr=destination_address&0xffff;
   dmalist.dest_bank=(destination_address>>16)&0x0f;
   if (destination_address>=0xd000 && destination_address<0xe000)
->>>>>>> upstream/master
     dmalist.dest_bank|=0x80;
 
   do_dma();
