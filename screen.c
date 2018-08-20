@@ -8,9 +8,9 @@ long screen_line_address=SCREEN_ADDRESS;
 char screen_column=0;
 
 unsigned char *footer_messages[FOOTER_MAX+1]={
-  "MEGA65 EXAMPLE C PROGRAM : (C) COPYRIGHT 2017-2018 PAUL GARDNER-STEPHEN ETC.  ",
-  "                                                                                ",
-  "A FATAL ERROR HAS OCCURRED, SORRY.                                              "
+  "MEGA65 EXAMPLE C PROGRAM : (C) COPYRIGHT 2017-2018 PAUL GARDNER-STEPHEN ETC.                      ",
+  "                                                                                                  ",
+  "A FATAL ERROR HAS OCCURRED, SORRY.                                                                "
 };
 
 unsigned char screen_hex_buffer[6];
@@ -81,20 +81,20 @@ void write_line(char *s,char col)
   char len=0;
   while(s[len]) len++;
   lcopy((long)&s[0],screen_line_address+col,len);
-  screen_line_address+=80;
-  if ((screen_line_address-SCREEN_ADDRESS)>=(24*80)) {
-    screen_line_address-=80;
-    lcopy(SCREEN_ADDRESS+80,SCREEN_ADDRESS,23*80);
-    lcopy(COLOUR_RAM_ADDRESS+80,COLOUR_RAM_ADDRESS,23*80);
-    lfill(SCREEN_ADDRESS+23*80,' ',80);
-    lfill(COLOUR_RAM_ADDRESS+23*80,1,80);
+  screen_line_address+=SCREEN_COLS;
+  if ((screen_line_address-SCREEN_ADDRESS)>=((SCREEN_ROWS-1)*SCREEN_COLS)) {
+    screen_line_address-=SCREEN_COLS;
+    lcopy(SCREEN_ADDRESS+SCREEN_COLS,SCREEN_ADDRESS,(SCREEN_ROWS-2)*SCREEN_COLS);
+    lcopy(COLOUR_RAM_ADDRESS+SCREEN_COLS,COLOUR_RAM_ADDRESS,(SCREEN_ROWS-2)*SCREEN_COLS);
+    lfill(SCREEN_ADDRESS+(SCREEN_ROWS-2)*SCREEN_COLS,' ',SCREEN_COLS);
+    lfill(COLOUR_RAM_ADDRESS+(SCREEN_ROWS-2)*SCREEN_COLS,1,SCREEN_COLS);
   }
 }
 
 void recolour_last_line(char colour)
 {
-  long colour_address=COLOUR_RAM_ADDRESS+(screen_line_address-SCREEN_ADDRESS)-80;
-  lfill(colour_address,colour,80);
+  long colour_address=COLOUR_RAM_ADDRESS+(screen_line_address-SCREEN_ADDRESS)-SCREEN_COLS;
+  lfill(colour_address,colour,SCREEN_COLS);
   return;
 }
 
@@ -158,8 +158,8 @@ long addr;
 void display_footer(unsigned char index)
 {  
   addr=(long)footer_messages[index];  
-  lcopy(addr,FOOTER_ADDRESS,80);
-  set_screen_attributes(FOOTER_ADDRESS,80,ATTRIB_REVERSE);
+  lcopy(addr,FOOTER_ADDRESS,SCREEN_COLS);
+  set_screen_attributes(FOOTER_ADDRESS,SCREEN_COLS,ATTRIB_REVERSE);
 }
 
 void setup_screen(void)
@@ -168,8 +168,16 @@ void setup_screen(void)
 
   m65_io_enable();
   
+   // Remove side borders before touching VIC-II hot registers
+   // so that it takes effect automatically
+   POKE(0xd05c,0);
+   POKE(0xd05d,0);
+
   // 80-column mode, fast CPU, extended attributes enable
-  *((unsigned char*)0xD031)=0xe0;
+  if (SCREEN_COLS>79)
+    *((unsigned char*)0xD031)=0xe0;
+  else
+   *((unsigned char*)0xD031)=0x60;
 
   // Put screen memory somewhere (2KB required)
   // We are using $8000-$87FF for screen
@@ -178,21 +186,33 @@ void setup_screen(void)
     (((CHARSET_ADDRESS-0x8000U)>>11)<<1)
     +(((SCREEN_ADDRESS-0x8000U)>>10)<<4);
 
-  // VIC RAM Bank to $8000-$BFFF
+  // Set VIC RAM Bank to bank 2 for charset location
   v=*(unsigned char *)0xDD00U;
   v&=0xfc;
   v|=0x01;
   *(unsigned char *)0xDD00U=v;
+
+  // Adjust screen size to 100 x 30 for 800 x 480 LCD panel
+  POKE(0xd058,SCREEN_COLS);
+  // and vertical border sizes
+  POKE(0xd048,0x48);
+  POKE(0xd04a,0x28);
+  // and first scanline of text display
+  POKE(0xd04e,0x4a);
+
+  // Force screen location
+  POKE(0xd060,SCREEN_ADDRESS & 0xff);
+  POKE(0xd061,SCREEN_ADDRESS>>8);
 
   // Screen colours
   POKE(0xD020U,0);
   POKE(0xD021U,6);
 
   // Clear screen RAM
-  lfill(SCREEN_ADDRESS,0x20,2000);
+  lfill(SCREEN_ADDRESS,0x20,SCREEN_ROWS*SCREEN_COLS);
 
   // Clear colour RAM: white text
-  lfill(0x1f800,0x01,2000);
+  lfill(COLOUR_RAM_ADDRESS,0x01,SCREEN_ROWS*SCREEN_COLS);
 
   // Copy ASCII charset into place
   lcopy((int)&charset[0],CHARSET_ADDRESS,0x800);
@@ -208,7 +228,7 @@ void screen_colour_line(unsigned char line,unsigned char colour)
 {
   // Set colour RAM for this screen line to this colour
   // (use bit-shifting as fast alternative to multiply)
-  lfill(0x1f800+(line<<6)+(line<<4),colour,80);
+  lfill(COLOUR_RAM_ADDRESS+line*SCREEN_COLS,colour,SCREEN_COLS);
 }
 
 unsigned char i;

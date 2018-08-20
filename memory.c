@@ -7,27 +7,6 @@
 
 #include "memory.h"
 
-
-struct dmagic_dmalist {
-  // Enhanced DMA options
-  unsigned char option_0b;
-  unsigned char option_80;
-  unsigned char source_mb;
-  unsigned char option_81;
-  unsigned char dest_mb;
-  unsigned char end_of_options;
-
-  // F018B format DMA request
-  unsigned char command;
-  unsigned int count;
-  unsigned int source_addr;
-  unsigned char source_bank;
-  unsigned int dest_addr;
-  unsigned char dest_bank;
-  unsigned char sub_cmd;  // F018B subcmd
-  unsigned int modulo;
-};
-
 struct dmagic_dmalist dmalist;
 unsigned char dma_byte;
 
@@ -59,7 +38,7 @@ unsigned char lpeek(long address)
   dmalist.command=0x00; // copy
   dmalist.count=1;
   dmalist.source_addr=address&0xffff;
-  dmalist.source_bank=(address>>16)&0x7f;
+  dmalist.source_bank=(address>>16)&0x0f;
   dmalist.dest_addr=(unsigned int)&dma_byte;
   dmalist.dest_bank=0;
 
@@ -84,7 +63,7 @@ void lpoke(long address, unsigned char value)
   dmalist.source_addr=(unsigned int)&dma_byte;
   dmalist.source_bank=0;
   dmalist.dest_addr=address&0xffff;
-  dmalist.dest_bank=(address>>16)&0x7f;
+  dmalist.dest_bank=(address>>16)&0x0f;
 
   do_dma(); 
   return;
@@ -109,7 +88,7 @@ void lcopy(long source_address, long destination_address,
     dmalist.source_bank|=0x80;  
   dmalist.dest_addr=destination_address&0xffff;
   dmalist.dest_bank=(destination_address>>16)&0x0f;
-  if (destination_address>=0xd000 && destination_address<0xe000)
+  if (destination_address>=0xd000U && destination_address<0xe000U)
     dmalist.dest_bank|=0x80;
 
   do_dma();
@@ -123,16 +102,16 @@ void lfill(long destination_address, unsigned char value,
   dmalist.option_80=0x80;
   dmalist.source_mb=0x00;
   dmalist.option_81=0x81;
-  dmalist.dest_mb=destination_address>>20;
+  dmalist.dest_mb=destination_address>>20L;
   dmalist.end_of_options=0x00;
 
   dmalist.command=0x03; // fill
   dmalist.sub_cmd=0;
   dmalist.count=count;
   dmalist.source_addr=value;
-  dmalist.dest_addr=destination_address&0xffff;
-  dmalist.dest_bank=(destination_address>>16)&0x7f;
-  if (destination_address>=0xd000 && destination_address<0xe000)
+  dmalist.dest_addr=destination_address&0xffffU;
+  dmalist.dest_bank=(destination_address>>16L)&0x0f;
+  if (destination_address>=0xd000U && destination_address<0xe000U)
     dmalist.dest_bank|=0x80;
 
   do_dma();
