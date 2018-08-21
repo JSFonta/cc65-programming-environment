@@ -290,13 +290,11 @@ _i:
 	lda     #$00
 	jsr     _lcopy
 	ldx     #$F4
-	lda     #$00
 	stz     _screen_line_address
 	stx     _screen_line_address+1
 	stz     _screen_line_address+2
 	stz     _screen_line_address+3
 	stz     _screen_column
-	jsr     _display_footer
 	jmp     incsp1
 
 .endproc
@@ -315,10 +313,10 @@ _i:
 	ldx     #$00
 	lda     (sp)
 	asl     a
-	bcc     L03B0
+	bcc     L03AE
 	inx
 	clc
-L03B0:	adc     #<(_footer_messages)
+L03AE:	adc     #<(_footer_messages)
 	sta     ptr1
 	txa
 	adc     #>(_footer_messages)
@@ -620,25 +618,25 @@ L012A:	jsr     pushax
 	lda     (sp)
 	sta     _value
 	stz     _ii
-L03B5:	lda     _ii
+L03B3:	lda     _ii
 	cmp     #$05
-	bcs     L03B6
+	bcs     L03B4
 	ldy     _ii
 	lda     #$00
 	sta     _screen_hex_buffer,y
 	inc     _ii
-	bra     L03B5
-L03B6:	stz     _ii
-L03B7:	lda     _ii
+	bra     L03B3
+L03B4:	stz     _ii
+L03B5:	lda     _ii
 	cmp     #$10
-	bcs     L03BA
+	bcs     L03B8
 	lda     _value
 	and     #$01
 	beq     L0238
 	stz     _carry
 	lda     #$04
 	sta     _j
-L03B8:	lda     _j
+L03B6:	lda     _j
 	cmp     #$80
 	bcs     L0238
 	ldy     _j
@@ -660,18 +658,18 @@ L03B8:	lda     _j
 	sta     _temp
 	cmp     #$0A
 	lda     #$00
-	bcc     L03B4
+	bcc     L03B2
 	lda     _temp
 	sec
 	sbc     #$0A
 	sta     _temp
 	lda     #$01
-L03B4:	sta     _carry
+L03B2:	sta     _carry
 	ldy     _j
 	lda     _temp
 	sta     _screen_hex_buffer,y
 	dec     _j
-	bra     L03B8
+	bra     L03B6
 L0238:	lda     _value+1
 	lsr     a
 	sta     _value+1
@@ -679,11 +677,11 @@ L0238:	lda     _value+1
 	ror     a
 	sta     _value
 	inc     _ii
-	bra     L03B7
-L03BA:	stz     _j
-L03BB:	lda     _j
+	bra     L03B5
+L03B8:	stz     _j
+L03B9:	lda     _j
 	cmp     #$05
-	bcs     L03BC
+	bcs     L03BA
 	lda     #<(_screen_hex_buffer)
 	ldx     #>(_screen_hex_buffer)
 	clc
@@ -697,14 +695,14 @@ L025E:	sta     ptr1
 	ora     #$30
 	sta     (ptr1)
 	inc     _j
-	bra     L03BB
-L03BC:	stz     _j
-L03BD:	lda     _j
+	bra     L03B9
+L03BA:	stz     _j
+L03BB:	lda     _j
 	cmp     #$04
-	bcs     L03BE
+	bcs     L03BC
 	lda     _screen_hex_buffer
 	cmp     #$30
-	bne     L03BE
+	bne     L03BC
 	lda     _screen_hex_buffer+1
 	sta     _screen_hex_buffer
 	lda     _screen_hex_buffer+2
@@ -716,9 +714,9 @@ L03BD:	lda     _j
 	lda     #$20
 	sta     _screen_hex_buffer+4
 	inc     _j
-	bra     L03BD
-L03BE:	stz     _j
-L03BF:	lda     _j
+	bra     L03BB
+L03BC:	stz     _j
+L03BD:	lda     _j
 	cmp     #$05
 	bcs     L0281
 	ldy     #$03
@@ -728,15 +726,15 @@ L03BF:	lda     _j
 	lda     (sp),y
 	clc
 	adc     _j
-	bcc     L03B3
+	bcc     L03B1
 	inx
-L03B3:	sta     ptr1
+L03B1:	sta     ptr1
 	stx     ptr1+1
 	ldy     _j
 	lda     _screen_hex_buffer,y
 	sta     (ptr1)
 	inc     _j
-	bra     L03BF
+	bra     L03BD
 L0281:	jmp     incsp4
 
 .endproc
@@ -764,10 +762,10 @@ L0281:	jmp     incsp4
 	jsr     tosaddeax
 	jsr     pusheax
 	stz     _i
-L03C0:	lda     _i
+L03BE:	lda     _i
 	ldy     #$05
 	cmp     (sp),y
-	bcs     L034C
+	bcs     L034A
 	jsr     ldeax0sp
 	jsr     pusheax
 	ldy     #$07
@@ -785,8 +783,8 @@ L03C0:	lda     _i
 	jsr     steax0sp
 	jsr     resteax
 	inc     _i
-	bra     L03C0
-L034C:	ldy     #$0A
+	bra     L03BE
+L034A:	ldy     #$0A
 	jmp     addysp
 
 .endproc
@@ -866,9 +864,9 @@ L01E6:	ldy     #$03
 	sbc     #$00
 	lda     sreg+1
 	sbc     #$00
-	bcs     L03C1
+	bcs     L03BF
 	jmp     incsp4
-L03C1:	ldy     #<(_screen_line_address)
+L03BF:	ldy     #<(_screen_line_address)
 	sty     ptr1
 	ldy     #>(_screen_line_address)
 	lda     #$40
@@ -1023,8 +1021,8 @@ L03C1:	ldy     #<(_screen_line_address)
 	jsr     decsp1
 	lda     #$90
 	jsr     pusha
-	jmp     L039E
-L03C3:	lda     $D610
+	jmp     L039C
+L03C1:	lda     $D610
 	ldy     #$01
 	sta     (sp),y
 	iny
@@ -1083,12 +1081,12 @@ L03C3:	lda     $D610
 	jsr     _lpoke
 	ldy     #$01
 	lda     (sp),y
-	jeq     L039E
+	jeq     L039C
 	cmp     #$14
-	jne     L03C5
+	jne     L03C3
 	iny
 	lda     (sp),y
-	jeq     L039F
+	jeq     L039D
 	lda     (sp),y
 	jsr     pusha0
 	lda     _screen_line_address+3
@@ -1221,10 +1219,10 @@ L03C3:	lda     $D610
 	sta     sreg+1
 	lda     #$00
 	sta     (sreg)
-	jmp     L039F
-L03C5:	lda     (sp),y
+	jmp     L039D
+L03C3:	lda     (sp),y
 	cmp     #$0D
-	bne     L0388
+	bne     L0386
 	iny
 	lda     (sp),y
 	clc
@@ -1239,8 +1237,8 @@ L03C5:	lda     (sp),y
 	sta     (ptr1)
 	ldy     #$02
 	tax
-	jmp     L03C2
-L0388:	lda     _screen_line_address+3
+	jmp     L03C0
+L0386:	lda     _screen_line_address+3
 	sta     sreg+1
 	lda     _screen_line_address+2
 	sta     sreg
@@ -1319,21 +1317,21 @@ L0388:	lda     _screen_line_address+3
 	ldy     #$01
 	lda     (sp),y
 	sta     (sreg)
-	bra     L039F
-L039D:	jsr     decsp2
+	bra     L039D
+L039B:	jsr     decsp2
 	lda     #$01
 	sta     $D610
 	dea
 	sta     (sp)
 	ldy     #$01
 	sta     (sp),y
-L03A3:	ldy     #$01
+L03A1:	ldy     #$01
 	lda     (sp),y
 	cmp     #$61
-	bne     L03AA
+	bne     L03A8
 	lda     (sp)
 	cmp     #$A8
-L03AA:	bcs     L03A4
+L03A8:	bcs     L03A2
 	ldy     #$01
 	lda     (sp),y
 	tax
@@ -1341,21 +1339,21 @@ L03AA:	bcs     L03A4
 	sta     regsave
 	stx     regsave+1
 	ina
-	bne     L03AC
+	bne     L03AA
 	inx
-L03AC:	jsr     stax0sp
-	bra     L03A3
-L03A4:	jsr     incsp2
-L039F:	lda     $D610
-	bne     L039D
-L039E:	ldy     #$02
+L03AA:	jsr     stax0sp
+	bra     L03A1
+L03A2:	jsr     incsp2
+L039D:	lda     $D610
+	bne     L039B
+L039C:	ldy     #$02
 	ldx     #$00
 	lda     (sp),y
 	iny
 	cmp     (sp),y
-	jcc     L03C3
+	jcc     L03C1
 	dey
-L03C2:	lda     (sp),y
+L03C0:	lda     (sp),y
 	jmp     incsp6
 
 .endproc
@@ -1385,7 +1383,7 @@ L03C2:	lda     (sp),y
 	ldy     #$06
 	sta     (sp),y
 	tax
-L03C7:	lda     (sp),y
+L03C5:	lda     (sp),y
 	iny
 	cmp     (sp),y
 	bcs     L0295
@@ -1421,7 +1419,7 @@ L02A1:	sta     ptr1
 	lda     (sp),y
 	ina
 	sta     (sp),y
-	bra     L03C7
+	bra     L03C5
 L0295:	ldy     #$0C
 	jmp     addysp
 
@@ -1451,12 +1449,12 @@ L0295:	ldy     #$0C
 	ldy     #$0B
 	sbc     (sp),y
 	ldy     #$09
-	bra     L03CF
-L03C8:	lda     #$00
+	bra     L03CD
+L03C6:	lda     #$00
 	iny
-L03D0:	sta     (sp),y
+L03CE:	sta     (sp),y
 	cmp     #$07
-	bcs     L03CB
+	bcs     L03C9
 	lda     sp
 	ldx     sp+1
 	clc
@@ -1486,20 +1484,20 @@ L017D:	adc     sp
 	ldy     #$0A
 	lda     (sp),y
 	ina
-	bra     L03D0
-L03CB:	lda     #$20
+	bra     L03CE
+L03C9:	lda     #$20
 	ldy     #$07
 	sta     (sp),y
 	ldy     #$09
 	lda     (sp),y
 	dea
-L03CF:	sta     (sp),y
+L03CD:	sta     (sp),y
 	lda     (sp),y
-	bne     L03C8
+	bne     L03C6
 	iny
 	sta     (sp),y
 	tax
-L03CE:	lda     (sp),y
+L03CC:	lda     (sp),y
 	iny
 	cmp     (sp),y
 	bcs     L0183
@@ -1535,7 +1533,7 @@ L018F:	sta     ptr1
 	lda     (sp),y
 	ina
 	sta     (sp),y
-	bra     L03CE
+	bra     L03CC
 L0183:	ldy     #$12
 	jmp     addysp
 
@@ -1555,7 +1553,7 @@ L0183:	ldy     #$12
 	lda     #$02
 	jsr     _display_footer
 	stz     _i
-L031B:	ldy     #$03
+L0319:	ldy     #$03
 	lda     (sp),y
 	tax
 	dey
@@ -1564,7 +1562,7 @@ L031B:	ldy     #$03
 	sta     ptr1
 	stx     ptr1+1
 	lda     (ptr1),y
-	beq     L03D5
+	beq     L03D3
 	lda     _i
 	clc
 	adc     #$6C
@@ -1586,8 +1584,8 @@ L031B:	ldy     #$03
 	ldy     #$00
 	jsr     staspidx
 	inc     _i
-	bra     L031B
-L03D5:	lda     _i
+	bra     L0319
+L03D3:	lda     _i
 	clc
 	adc     #$6C
 	sta     ptr1
@@ -1630,7 +1628,7 @@ L03D5:	lda     _i
 	ldx     #$00
 	lda     #$50
 	jsr     _lfill
-L0345:	bra     L0345
+L0343:	bra     L0343
 
 .endproc
 

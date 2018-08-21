@@ -90,6 +90,9 @@ int main(int argc,char **argv)
     #ifdef __CC65__
       mega65_fast();
       setup_screen();
+
+      // Background black
+      POKE(0xd021, COLOR_BLACK);
     #endif 
 
     // CPU high speed 
@@ -102,10 +105,9 @@ int main(int argc,char **argv)
     // Configure serial
     setupSerial();
 
-    write_line("Hello world!",0);
-    recolour_last_line(2);
+    write_line("Hello world!", 0);
     
-    if (0)
+    /*
     while(1) {
         poll_modem();
         if (kbhit()) { 
@@ -114,6 +116,28 @@ int main(int argc,char **argv)
         }
         POKE(53280,(PEEK(53280)+1)&15);
     }
+    */
+
+    /*while(1)
+    {
+        int i;
+        int offset=4;
+        int addr = SCREEN_ADDRESS+64*3;
+        for(i=128;i<136;i++)
+        {
+            POKE(addr, i);
+            if(i==49||i==99||i==149)
+            {
+                addr=SCREEN_ADDRESS+64*offset;
+                offset++;
+            }
+            else
+            {
+                addr++;
+            }
+        }
+        sleep(10);
+    }*/
 
     // Clear all the screen
     clrscr();
@@ -123,10 +147,9 @@ int main(int argc,char **argv)
     while(1)
     {
         // Header
-        textcolor(COLOR_WHITE);
 
         // Display data
-        gotoxy(0, 0);
+        /*gotoxy(0, 0);
         for(i = 0; i < MAX_NUMBER_PARAM_HEADER; i++)
         {
             for(j = 0; j < MAX_LENGTH_PARAM_HEADER; j++)
@@ -207,11 +230,12 @@ int main(int argc,char **argv)
             }
             
         }
-
+        
         // Display what was typed
         gotoxy(1, 3);
         textcolor(COLOR_WHITE);
         printf("%s", inputBuffer);
+        */
 
     }
     return;

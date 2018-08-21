@@ -15,14 +15,7 @@
 	.import		_mega65_fast
 	.import		_setup_screen
 	.import		_write_line
-	.import		_recolour_last_line
 	.import		_clrscr
-	.import		_kbhit
-	.import		_gotoxy
-	.import		_cputc
-	.import		_cgetc
-	.import		_textcolor
-	.import		_clearNumero
 	.import		_layout
 	.export		_setupSerial
 	.export		_write_modem
@@ -39,12 +32,10 @@ _modem_line_len:
 
 .segment	"RODATA"
 
-L0166:
+L016A:
 	.byte	$48,$65,$6C,$6C,$6F,$20,$77,$6F,$72,$6C,$64,$21,$00
 L0127:
 	.byte	$25,$73,$0A,$00
-L01EB:
-	.byte	$25,$73,$00
 
 .segment	"BSS"
 
@@ -84,7 +75,7 @@ _modem_line:
 	jsr     pusha
 	jsr     decsp1
 	lda     #$00
-L01F3:	sta     (sp)
+L0178:	sta     (sp)
 	ldy     #$01
 	cmp     (sp),y
 	jeq     incsp4
@@ -100,7 +91,7 @@ L01F3:	sta     (sp)
 	sta     $D0E0
 	lda     (sp)
 	ina
-	bra     L01F3
+	bra     L0178
 
 .endproc
 
@@ -140,16 +131,16 @@ L01F3:	sta     (sp)
 	lda     (sp)
 	beq     L013B
 	cmp     #$0D
-	beq     L01F4
+	beq     L0179
 	cmp     #$0A
-	bne     L01F5
-L01F4:	ldy     _modem_line_len
+	bne     L017A
+L0179:	ldy     _modem_line_len
 	lda     #$00
 	sta     _modem_line,y
 	jsr     _process_modem_line
 	stz     _modem_line_len
 	jmp     incsp1
-L01F5:	lda     _modem_line_len
+L017A:	lda     _modem_line_len
 	cmp     #$FE
 	bcs     L013B
 	inc     _modem_line_len
@@ -219,6 +210,7 @@ L0155:	lda     L0150,y
 	bpl     L0155
 	jsr     _mega65_fast
 	jsr     _setup_screen
+	stz     $D021
 	lda     #$41
 	sta     $0000
 	lda     #$47
@@ -226,248 +218,15 @@ L0155:	lda     L0150,y
 	lda     #$53
 	sta     $D02F
 	jsr     _setupSerial
-	lda     #<(L0166)
-	ldx     #>(L0166)
+	lda     #<(L016A)
+	ldx     #>(L016A)
 	jsr     pushax
 	lda     #$00
 	jsr     _write_line
-	lda     #$02
-	jsr     _recolour_last_line
-	bra     L016E
-L016D:	jsr     _poll_modem
-	jsr     _kbhit
-	tax
-	beq     L01F7
-	jsr     _cgetc
-	jsr     pusha
-	lda     (sp)
-	beq     L0175
-	lda     sp
-	ldx     sp+1
-	jsr     pushax
-	lda     #$01
-	jsr     _write_modem
-L0175:	jsr     incsp1
-L01F7:	lda     $D020
-	ina
-	and     #$0F
-	sta     $D020
-	bra     L016D
-L016E:	jsr     _clrscr
-	lda     #$01
-	jsr     _layout
-L0185:	lda     #$01
-	jsr     _textcolor
-	lda     #$00
-	jsr     pusha
-	jsr     _gotoxy
-	lda     #$00
-	ldy     #$EA
-L020A:	sta     (sp),y
-	cmp     #$04
-	jcs     L01D7
-	lda     #$00
-	dey
-L0209:	sta     (sp),y
-	cmp     #$0A
-	bcs     L01FD
-	iny
-	ldx     #$00
-	lda     (sp),y
-	jsr     mulax10
-	clc
-	adc     #$5A
-	bcc     L01A1
-	inx
-	clc
-L01A1:	adc     sp
-	sta     ptr1
-	txa
-	adc     sp+1
-	sta     ptr1+1
-	dey
-	lda     (sp),y
-	tay
-	lda     (ptr1),y
-	bne     L019E
-	ina
-	ldy     #$82
-	sta     (sp),y
-L019E:	ldy     #$82
-	lda     (sp),y
-	cmp     #$01
-	bne     L01A5
-	lda     #$20
-	bra     L01F6
-L01A5:	ldy     #$EA
-	ldx     #$00
-	lda     (sp),y
-	jsr     mulax10
-	clc
-	adc     #$5A
-	bcc     L01AD
-	inx
-	clc
-L01AD:	adc     sp
-	sta     ptr1
-	txa
-	adc     sp+1
-	sta     ptr1+1
-	dey
-	lda     (sp),y
-	tay
-	lda     (ptr1),y
-L01F6:	jsr     _cputc
-	ldy     #$E9
-	lda     (sp),y
-	ina
-	bra     L0209
-L01FD:	lda     #$00
-	ldy     #$82
-	sta     (sp),y
-	ldy     #$EA
-	lda     (sp),y
-	ina
-	bra     L020A
-L01B1:	jsr     _cgetc
-	ldy     #$83
-	sta     (sp),y
-	cmp     #$65
-	beq     L01FE
-	lda     (sp),y
-	cmp     #$45
-	bne     L0201
-L01FE:	lda     #$00
-	iny
-	sta     (sp),y
-	lda     sp
-	ldx     sp+1
-	clc
-	adc     #$85
-	bcc     L01FF
-	inx
-L01FF:	sta     ptr1
-	stx     ptr1+1
-	lda     (sp),y
-	tay
-	lda     #$00
-	sta     (ptr1),y
-	jsr     _clearNumero
-	jmp     L01D7
-L0201:	lda     (sp),y
-	cmp     #$63
-	beq     L0202
-	cmp     #$43
-	bne     L0204
-L0202:	lda     #$02
-	jsr     _layout
-	jmp     L01D7
-L0204:	lda     (sp),y
-	cmp     #$61
-	beq     L0205
-	cmp     #$41
-	bne     L0207
-L0205:	lda     #$03
-	jsr     _layout
-	jmp     L01D7
-L0207:	lda     (sp),y
-	cmp     #$03
-	bne     L01CF
 	jsr     _clrscr
 	lda     #$01
 	jsr     _layout
-	bra     L01D7
-L01CF:	iny
-	lda     (sp),y
-	cmp     #$0E
-	bcs     L01D7
-	dey
-	lda     (sp),y
-	cmp     #$30
-	beq     L0208
-	cmp     #$31
-	beq     L0208
-	cmp     #$32
-	beq     L0208
-	cmp     #$33
-	beq     L0208
-	cmp     #$34
-	beq     L0208
-	cmp     #$35
-	beq     L0208
-	cmp     #$36
-	beq     L0208
-	cmp     #$37
-	beq     L0208
-	cmp     #$38
-	beq     L0208
-	cmp     #$39
-	beq     L0208
-	cmp     #$23
-	beq     L0208
-	cmp     #$2A
-	beq     L0208
-	cmp     #$2B
-	bne     L01D7
-L0208:	lda     sp
-	ldx     sp+1
-	clc
-	adc     #$85
-	bcc     L01DC
-	inx
-L01DC:	sta     ptr1
-	stx     ptr1+1
-	lda     (sp),y
-	pha
-	iny
-	lda     (sp),y
-	tay
-	pla
-	sta     (ptr1),y
-	ldy     #$84
-	ldx     #$00
-	lda     (sp),y
-	ina
-	bne     L01E1
-	inx
-L01E1:	clc
-	adc     #$85
-	bcc     L01E2
-	inx
-	clc
-L01E2:	adc     sp
-	sta     ptr1
-	txa
-	adc     sp+1
-	sta     ptr1+1
-	lda     #$00
-	sta     (ptr1)
-	ldy     #$84
-	lda     (sp),y
-	ina
-	sta     (sp),y
-L01D7:	jsr     _kbhit
-	cmp     #$00
-	jne     L01B1
-	ina
-	jsr     pusha
-	lda     #$03
-	jsr     _gotoxy
-	lda     #$01
-	jsr     _textcolor
-	lda     #<(L01EB)
-	ldx     #>(L01EB)
-	jsr     pushax
-	lda     sp
-	ldx     sp+1
-	clc
-	adc     #$87
-	bcc     L01EE
-	inx
-L01EE:	jsr     pushax
-	ldy     #$04
-	jsr     _printf
-	jmp     L0185
+L017B:	bra     L017B
 
 .endproc
 

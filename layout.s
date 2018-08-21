@@ -13,58 +13,41 @@
 	.import		_gotoxy
 	.import		_cgetc
 	.import		_textcolor
-	.import		_bgcolor
-	.import		_bordercolor
 	.import		_printf
 	.import		_rectangle
 	.import		_panel
+	.import		_lfill
 	.export		_clearNumero
 	.export		_layout
 
 .segment	"RODATA"
 
-L00D5:
+L0076:
 	.byte	$D3,$CD,$D3,$3A,$20,$C3,$4F,$4E,$54,$41,$43,$54,$20,$4E,$41,$4D
 	.byte	$45,$00
-L00E6:
+L0087:
 	.byte	$C1,$44,$44,$2F,$C5,$44,$49,$54,$20,$43,$4F,$4E,$54,$41,$43,$54
 	.byte	$00
-L000C:
+L000D:
 	.byte	$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$00
-L00BD:
+L005E:
 	.byte	$C9,$4E,$43,$4F,$4D,$49,$4E,$47,$20,$43,$41,$4C,$4C,$00
-L001E:
+L001B:
 	.byte	$C3,$4F,$4E,$54,$41,$43,$54,$53,$00
-L010D:
+L00AE:
 	.byte	$C3,$4F,$4E,$46,$49,$52,$4D,$00
-L00F5:
+L0096:
 	.byte	$CE,$55,$4D,$42,$45,$52,$00
-L011E:
+L00BF:
 	.byte	$C4,$45,$4C,$45,$54,$45,$00
-L00EF:
-	.byte	$CE,$41,$4D,$45,$00
-L00FB:
+L009C:
 	.byte	$CD,$41,$49,$4C,$00
-L00CC:
+L0090:
+	.byte	$CE,$41,$4D,$45,$00
+L006D:
 	.byte	$C5,$4E,$44,$00
-L008A:
-	.byte	$C3,$41,$4C,$00
-L00B4:
-	.byte	$C1,$44,$44,$00
-L0050:
-	.byte	$25,$55,$00
-L00DC:
+L007D:
 	.byte	$25,$44,$00
-L007C:
-	.byte	$30,$00
-L0098:
-	.byte	$2B,$00
-L006E:
-	.byte	$2A,$00
-L00A6:
-	.byte	$C5,$00
-L0060:
-	.byte	$23,$00
 
 ; ---------------------------------------------------------------
 ; unsigned char __near__ clearNumero (void)
@@ -80,8 +63,8 @@ L0060:
 	jsr     pusha
 	lda     #$03
 	jsr     _gotoxy
-	lda     #<(L000C)
-	ldx     #>(L000C)
+	lda     #<(L000D)
+	ldx     #>(L000D)
 	jsr     pushax
 	ldy     #$02
 	jsr     _printf
@@ -102,40 +85,36 @@ L0060:
 .segment	"CODE"
 
 	jsr     pusha
-	jsr     decsp4
-	lda     #$00
-	jsr     _bgcolor
-	lda     #$00
-	jsr     _bordercolor
-	ldy     #$04
+	jsr     decsp3
+	ldy     #$03
 	ldx     #$00
 	lda     (sp),y
 	cmp     #$01
-	beq     L0018
+	beq     L0015
 	cmp     #$02
-	jeq     L00B7
+	jeq     L0058
 	cmp     #$03
-	jeq     L00CF
+	jeq     L0070
 	cmp     #$04
-	jeq     L00E0
-	jmp     L0123
-L0018:	jsr     decsp6
-	lda     #$15
-	iny
+	jeq     L0081
+	jmp     L00C6
+L0015:	jsr     decsp6
+	lda     #$1A
+	ldy     #$05
 	sta     (sp),y
 	lda     #$02
 	dey
 	sta     (sp),y
-	lda     #$13
+	lda     #$18
 	dey
 	sta     (sp),y
-	lda     #$17
+	dea
 	dey
 	sta     (sp),y
-	lda     #<(L001E)
+	lda     #<(L001B)
 	sta     (sp)
 	dey
-	lda     #>(L001E)
+	lda     #>(L001B)
 	sta     (sp),y
 	lda     #$0F
 	jsr     _panel
@@ -146,56 +125,47 @@ L0018:	jsr     decsp6
 	lda     #$02
 	dey
 	sta     (sp),y
-	lda     #$14
+	lda     #$19
 	dey
 	sta     (sp),y
 	lda     #$03
 	sta     (sp)
 	lda     #$06
 	jsr     _rectangle
-	ldy     #$02
 	lda     #$00
+	ldy     #$02
 	sta     (sp),y
-	iny
-	sta     (sp),y
-L0027:	ldy     #$03
-	lda     (sp),y
 	tax
-	dey
-	lda     (sp),y
+L00C5:	lda     (sp),y
 	cmp     #$09
-	txa
-	sbc     #$00
-	bvc     L002E
-	eor     #$80
-L002E:	jpl     L0028
-	ldy     #$05
-	jsr     pushwysp
+	jcs     L00C6
+	jsr     pusha0
 	lda     #$03
-	jsr     tosdiva0
+	jsr     tosudiva0
 	cpx     #$00
-	bne     L0031
+	bne     L002C
 	cmp     #$00
-	bne     L0031
+	bne     L002C
 	lda     #$05
-	bra     L0124
-L0031:	ldy     #$05
-	jsr     pushwysp
+	bra     L00C7
+L002C:	ldy     #$02
+	lda     (sp),y
+	jsr     pusha0
 	lda     #$03
-	jsr     tosdiva0
+	jsr     tosudiva0
 	cpx     #$00
-	bne     L0037
+	bne     L0032
 	cmp     #$01
-	bne     L0037
+	bne     L0032
 	lda     #$0A
-	bra     L0124
-L0037:	lda     #$0F
-L0124:	sta     (sp)
-	ldy     #$05
-	jsr     pushwysp
-	ldx     #$00
+	bra     L00C7
+L0032:	lda     #$0F
+L00C7:	sta     (sp)
+	ldy     #$02
+	lda     (sp),y
+	jsr     pusha0
 	lda     #$03
-	jsr     tosmoda0
+	jsr     tosumoda0
 	jsr     mulax5
 	ldy     #$01
 	sta     (sp),y
@@ -215,219 +185,93 @@ L0124:	sta     (sp)
 	ina
 	jsr     _rectangle
 	ldy     #$01
+	ldx     #$00
 	lda     (sp),y
 	clc
 	adc     #$02
-	jsr     pusha
-	ldy     #$01
-	lda     (sp),y
-	clc
-	adc     #$02
-	jsr     _gotoxy
-	lda     #$01
-	jsr     _textcolor
-	lda     #<(L0050)
-	ldx     #>(L0050)
-	jsr     pushax
-	ldy     #$05
-	lda     (sp),y
-	tax
-	dey
-	lda     (sp),y
-	ina
-	bne     L0053
+	bcc     L0048
 	inx
-L0053:	jsr     pushax
-	ldy     #$04
-	jsr     _printf
-	ldy     #$03
-	lda     (sp),y
-	tax
-	dey
-	lda     (sp),y
-	ina
-	bne     L0030
-	inx
-L0030:	jsr     staxysp
-	jmp     L0027
-L0028:	jsr     decsp4
-	lda     #$0F
-	iny
-	sta     (sp),y
-	lda     #$05
-	dey
-	sta     (sp),y
-	dey
-	sta     (sp),y
-	sta     (sp)
-	ina
-	jsr     _rectangle
-	lda     #$11
-	jsr     pusha
-	lda     #$07
-	jsr     _gotoxy
-	lda     #$01
-	jsr     _textcolor
-	lda     #<(L0060)
-	ldx     #>(L0060)
-	jsr     pushax
-	ldy     #$02
-	jsr     _printf
-	jsr     decsp4
-	lda     #$0F
-	ldy     #$03
-	sta     (sp),y
-	lda     #$0A
-	dey
-	sta     (sp),y
-	lda     #$05
-	dey
-	sta     (sp),y
-	sta     (sp)
-	ina
-	jsr     _rectangle
-	lda     #$11
-	jsr     pusha
-	lda     #$0C
-	jsr     _gotoxy
-	lda     #$01
-	jsr     _textcolor
-	lda     #<(L006E)
-	ldx     #>(L006E)
-	jsr     pushax
-	ldy     #$02
-	jsr     _printf
-	jsr     decsp4
-	lda     #$0F
-	ldy     #$03
-	sta     (sp),y
-	dey
-	sta     (sp),y
-	lda     #$05
-	dey
-	sta     (sp),y
-	sta     (sp)
-	ina
-	jsr     _rectangle
-	lda     #$11
-	jsr     pusha
-	jsr     _gotoxy
-	lda     #$01
-	jsr     _textcolor
-	lda     #<(L007C)
-	ldx     #>(L007C)
-	jsr     pushax
-	ldy     #$02
-	jsr     _printf
-	jsr     decsp4
-	lda     #$00
-	ldy     #$03
-	sta     (sp),y
-	lda     #$14
-	dey
-	sta     (sp),y
-	lda     #$05
-	dey
-	sta     (sp),y
-	sta     (sp)
-	jsr     _rectangle
-	lda     #$01
-	jsr     pusha
-	lda     #$16
-	jsr     _gotoxy
-	lda     #$01
-	jsr     _textcolor
-	lda     #<(L008A)
-	ldx     #>(L008A)
-	jsr     pushax
-	ldy     #$02
-	jsr     _printf
-	jsr     decsp4
-	lda     #$05
-	ldy     #$03
-	sta     (sp),y
-	lda     #$14
-	dey
-	sta     (sp),y
-	lda     #$05
-	dey
-	sta     (sp),y
-	sta     (sp)
-	ina
-	jsr     _rectangle
-	lda     #$07
-	jsr     pusha
-	lda     #$16
-	jsr     _gotoxy
-	lda     #$01
-	jsr     _textcolor
-	lda     #<(L0098)
-	ldx     #>(L0098)
-	jsr     pushax
-	ldy     #$02
-	jsr     _printf
-	jsr     decsp4
-	lda     #$0A
-	ldy     #$03
-	sta     (sp),y
-	lda     #$14
-	dey
-	sta     (sp),y
-	lda     #$05
-	dey
-	sta     (sp),y
-	sta     (sp)
-	ina
-	jsr     _rectangle
-	lda     #$0C
-	jsr     pusha
-	lda     #$16
-	jsr     _gotoxy
-	lda     #$01
-	jsr     _textcolor
-	lda     #<(L00A6)
-	ldx     #>(L00A6)
-	jsr     pushax
-	ldy     #$02
-	jsr     _printf
-	jsr     decsp4
-	lda     #$0F
-	ldy     #$03
-	sta     (sp),y
-	lda     #$14
-	dey
-	sta     (sp),y
-	lda     #$05
-	dey
-	sta     (sp),y
-	sta     (sp)
-	jsr     _rectangle
-	lda     #$10
-	jsr     pusha
-	lda     #$16
-	jsr     _gotoxy
-	lda     #$01
-	jsr     _textcolor
-	lda     #<(L00B4)
-	ldx     #>(L00B4)
-	jmp     L0127
-L00B7:	jsr     decsp6
+L0048:	sta     ptr1
 	txa
+	clc
+	adc     #$F4
+	sta     ptr1+1
+	ldx     #$00
+	lda     (sp)
+	clc
+	adc     #$02
+	bcc     L004A
+	inx
+L004A:	jsr     shlax4
+	jsr     shlax2
+	clc
+	adc     ptr1
+	sta     ptr1
+	txa
+	adc     ptr1+1
+	sta     ptr1+1
 	iny
+	lda     (sp),y
+	ina
+	clc
+	adc     #$30
+	sta     (ptr1)
+	jsr     decsp5
+	ldy     #$06
+	ldx     #$00
+	lda     (sp),y
+	clc
+	adc     #$02
+	bcc     L0052
+	inx
+L0052:	jsr     push0ax
+	ldx     #$00
+	lda     #$F8
+	sta     sreg
+	lda     #$0F
+	sta     sreg+1
+	txa
+	jsr     tosaddeax
+	jsr     pusheax
+	ldy     #$09
+	ldx     #$00
+	lda     (sp),y
+	clc
+	adc     #$02
+	bcc     L0054
+	inx
+L0054:	jsr     shlax4
+	jsr     shlax2
+	jsr     tosadd0ax
+	ldy     #$01
+	jsr     steaxysp
+	lda     #$01
+	sta     (sp)
+	ldx     #$00
+	jsr     _lfill
+	ldy     #$02
+	ldx     #$00
+	lda     (sp),y
+	ina
+	sta     (sp),y
+	jmp     L00C5
+L0058:	jsr     decsp6
+	txa
+	ldy     #$05
 	sta     (sp),y
 	lda     #$02
 	dey
 	sta     (sp),y
-	lda     #$28
+	lda     #$32
 	dey
 	sta     (sp),y
 	lda     #$17
 	dey
 	sta     (sp),y
-	lda     #<(L00BD)
+	lda     #<(L005E)
 	sta     (sp)
 	dey
-	lda     #>(L00BD)
+	lda     #>(L005E)
 	sta     (sp),y
 	lda     #$0F
 	jsr     _panel
@@ -438,7 +282,7 @@ L00B7:	jsr     decsp6
 	lda     #$13
 	dey
 	sta     (sp),y
-	ina
+	lda     #$1E
 	dey
 	sta     (sp),y
 	lda     #$05
@@ -451,56 +295,56 @@ L00B7:	jsr     decsp6
 	jsr     _gotoxy
 	lda     #$02
 	jsr     _textcolor
-	lda     #<(L00CC)
-	ldx     #>(L00CC)
-	jmp     L0127
-L00CF:	jsr     decsp6
+	lda     #<(L006D)
+	ldx     #>(L006D)
+	jmp     L00CA
+L0070:	jsr     decsp6
 	txa
-	iny
+	ldy     #$05
 	sta     (sp),y
 	lda     #$02
 	dey
 	sta     (sp),y
-	lda     #$28
+	lda     #$32
 	dey
 	sta     (sp),y
 	lda     #$17
 	dey
 	sta     (sp),y
-	lda     #<(L00D5)
+	lda     #<(L0076)
 	sta     (sp)
 	dey
-	lda     #>(L00D5)
+	lda     #>(L0076)
 	sta     (sp),y
 	lda     #$0F
 	jsr     _panel
 	lda     #$0A
 	jsr     pusha
 	jsr     _gotoxy
-	lda     #<(L00DC)
-	ldx     #>(L00DC)
+	lda     #<(L007D)
+	ldx     #>(L007D)
 	jsr     pushax
 	jsr     _cgetc
 	jsr     pushax
 	ldy     #$04
-	jmp     L0125
-L00E0:	jsr     decsp6
+	jmp     L00C8
+L0081:	jsr     decsp6
 	txa
-	iny
+	ldy     #$05
 	sta     (sp),y
 	lda     #$02
 	dey
 	sta     (sp),y
-	lda     #$28
+	lda     #$32
 	dey
 	sta     (sp),y
 	lda     #$17
 	dey
 	sta     (sp),y
-	lda     #<(L00E6)
+	lda     #<(L0087)
 	sta     (sp)
 	dey
-	lda     #>(L00E6)
+	lda     #>(L0087)
 	sta     (sp),y
 	lda     #$0F
 	jsr     _panel
@@ -510,8 +354,8 @@ L00E0:	jsr     decsp6
 	jsr     pusha
 	lda     #$06
 	jsr     _gotoxy
-	lda     #<(L00EF)
-	ldx     #>(L00EF)
+	lda     #<(L0090)
+	ldx     #>(L0090)
 	jsr     pushax
 	ldy     #$02
 	jsr     _printf
@@ -519,8 +363,8 @@ L00E0:	jsr     decsp6
 	jsr     pusha
 	lda     #$0A
 	jsr     _gotoxy
-	lda     #<(L00F5)
-	ldx     #>(L00F5)
+	lda     #<(L0096)
+	ldx     #>(L0096)
 	jsr     pushax
 	ldy     #$02
 	jsr     _printf
@@ -528,8 +372,8 @@ L00E0:	jsr     decsp6
 	jsr     pusha
 	lda     #$0E
 	jsr     _gotoxy
-	lda     #<(L00FB)
-	ldx     #>(L00FB)
+	lda     #<(L009C)
+	ldx     #>(L009C)
 	jsr     pushax
 	ldy     #$02
 	jsr     _printf
@@ -540,49 +384,51 @@ L00E0:	jsr     decsp6
 	lda     #$13
 	dey
 	sta     (sp),y
+	lda     #$18
 	dey
 	sta     (sp),y
 	lda     #$05
 	sta     (sp)
 	jsr     _rectangle
-	lda     #$07
+	lda     #$0A
 	jsr     pusha
 	lda     #$15
 	jsr     _gotoxy
 	lda     #$05
 	jsr     _textcolor
-	lda     #<(L010D)
-	ldx     #>(L010D)
+	lda     #<(L00AE)
+	ldx     #>(L00AE)
 	jsr     pushax
 	ldy     #$02
 	jsr     _printf
 	jsr     decsp4
-	lda     #$14
+	lda     #$19
 	ldy     #$03
 	sta     (sp),y
-	dea
+	lda     #$13
 	dey
 	sta     (sp),y
+	lda     #$18
 	dey
 	sta     (sp),y
 	lda     #$05
 	sta     (sp)
 	lda     #$02
 	jsr     _rectangle
-	lda     #$1A
+	lda     #$22
 	jsr     pusha
 	lda     #$15
 	jsr     _gotoxy
 	lda     #$02
 	jsr     _textcolor
-	lda     #<(L011E)
-	ldx     #>(L011E)
-L0127:	jsr     pushax
+	lda     #<(L00BF)
+	ldx     #>(L00BF)
+L00CA:	jsr     pushax
 	ldy     #$02
-L0125:	jsr     _printf
+L00C8:	jsr     _printf
 	ldx     #$00
-L0123:	txa
-	jmp     incsp5
+L00C6:	txa
+	jmp     incsp4
 
 .endproc
 

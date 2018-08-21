@@ -1,5 +1,7 @@
 #include <conio.h>
 #include "draw.h"
+#include "screen.h"
+#include "memory.h"
 
 unsigned char clearNumero(void)
 {
@@ -25,14 +27,10 @@ unsigned char layout(unsigned char screen)
 {
 
     // Loop var
-    int i;
+    unsigned char i;
 
     // Coordinate var
     unsigned char numberx, numbery;
-
-    // Set the border and the background as black;
-    bgcolor(COLOR_BLACK);
-    bordercolor(COLOR_BLACK);
 
     switch(screen)
     {
@@ -63,12 +61,10 @@ unsigned char layout(unsigned char screen)
                 numberx = (i%3)*5;
 
                 rectangle(numberx, numbery, 5, 5, COLOR_BLUE);
-                gotoxy(numberx+2,numbery+2);
-                textcolor(COLOR_WHITE);
-
-                printf("%u", i+1);
+                POKE(SCREEN_ADDRESS+(numberx+2)+64*(numbery+2), i+1+48);
+                lfill(COLOUR_RAM_ADDRESS+(numberx+2)+64*(numbery+2), COLOR_WHITE, 1);
             }
-
+            /*
             // Display 0, #, *
             rectangle(15, 5, 5, 5, COLOR_BLUE);
             gotoxy(17,7);
@@ -105,7 +101,7 @@ unsigned char layout(unsigned char screen)
             gotoxy(16,22);
             textcolor(COLOR_WHITE);
             printf("Add");
-
+            */
             break;
 
         case 2: // Call

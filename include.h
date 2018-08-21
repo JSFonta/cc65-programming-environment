@@ -29,22 +29,20 @@
 #define COLOR_LIGHTBLUE         0x0E
 #define COLOR_GRAY3             0x0F
 
-#define CORNER_TOP_LEFT         176
-#define CORNER_TOP_RIGHT        174
-#define CORNER_BOTTOM_LEFT      173
-#define CORNER_BOTTOM_RIGHT     189
-#define SEPARATOR_LEFT          171
-#define SEPARATOR_RIGHT         179
-#define SEPARATOR_TOP           178
-#define SEPARATOR_BOTTOM        177
-#define VERTICAL                157
-#define HORIZONTAL              128
+#define CORNER_TOP_LEFT         131
+#define CORNER_TOP_RIGHT        132
+#define CORNER_BOTTOM_LEFT      129
+#define CORNER_BOTTOM_RIGHT     130
+#define SEPARATOR_LEFT          134
+#define SEPARATOR_RIGHT         135
+#define VERTICAL                128
+#define HORIZONTAL              133
 
 /* Input keyboard */
 
 #define SCREEN_HEIGHT           25
-#define SCREEN_WIDTH            40
+#define SCREEN_WIDTH            50
 
 #define HEADER_HEIGHT           2
-#define LEFT_COLUMN_WIDTH       20
-#define RIGHT_COLUMN_WIDTH      19
+#define LEFT_COLUMN_WIDTH       25
+#define RIGHT_COLUMN_WIDTH      24

@@ -221,7 +221,7 @@ void setup_screen(void)
   screen_line_address=SCREEN_ADDRESS;
   screen_column=0;
 
-  display_footer(FOOTER_COPYRIGHT);    
+  //display_footer(FOOTER_COPYRIGHT);    
 }
 
 void screen_colour_line(unsigned char line,unsigned char colour)

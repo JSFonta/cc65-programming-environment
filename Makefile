@@ -46,11 +46,13 @@ ascii8x8.bin: ascii00-7f.png tools/pngprepare tools/raw2bin
 	# Convert PNG font to bin format
 	tools/pngprepare charrom ascii00-7f.png temp.bin
 	# Get the first 128 chars from our PNG derived character set
-	dd if=temp.bin bs=1024 count=1 of=00-7f.bin
+	#dd if=temp.bin bs=1024 count=1 of=00-7f.bin
+	# Get the first 128+8 chars from our PNG derived character set
+	dd if=temp.bin bs=1088 count=1 of=00-7f.bin
 	# Convert the codepage 437 from raw to bin format
-	tools/raw2bin 8x8.raw 8x8.bin
+	#tools/raw2bin 8x8.raw 8x8.bin
 	# get the 2nd half of the chars from the codepage 437 file
-	dd if=8x8.bin of=80-ff.bin bs=1024 skip=1
+	#dd if=8x8.bin of=80-ff.bin bs=1024 skip=1
 	# Glue the first 128 chars from our PNG to the last 128 chars from the codepage 437 font
 	cat 00-7f.bin 80-ff.bin > ascii8x8.bin
 

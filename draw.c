@@ -38,22 +38,38 @@ void rectangle(const unsigned char x, const unsigned char y,
     col_addr=COLOUR_RAM_ADDRESS+offset;
 
     // Draw
-        lfill(scr_addr,HORIZONTAL,width);
-        POKE(scr_addr,CORNER_TOP_LEFT);
-        POKE(scr_addr+width-1,CORNER_TOP_RIGHT);
-        scr_addr+=64;
+    lfill(scr_addr,HORIZONTAL,width);
+    POKE(scr_addr,CORNER_TOP_LEFT);
+    POKE(scr_addr+width-1,CORNER_TOP_RIGHT);
+
+    // Set color
+    lfill(col_addr, color, width);
+
+    // Goto next line
+    scr_addr+=64;
+    col_addr+=64;
 
     for(i=2; i<height; i++)
     {
         lfill(scr_addr,0x20,width);
         POKE(scr_addr,VERTICAL);
         POKE(scr_addr+width-1,VERTICAL);
+
+        // Set color
+        lfill(col_addr, color, 1);
+        lfill(col_addr+width-1, color, 1);
+
+        // Goto next line
         scr_addr+=64;
+        col_addr+=64;
     }
 
         lfill(scr_addr,HORIZONTAL,width);
         POKE(scr_addr,CORNER_BOTTOM_LEFT);
         POKE(scr_addr+width-1,CORNER_BOTTOM_RIGHT);
+
+        // Set color
+        lfill(col_addr, color, width);
      
     return;
 }
@@ -66,10 +82,20 @@ void rectangle(const unsigned char x, const unsigned char y,
  *  @param  height  size of the rectangle, from y to y+height; height > 1
  *  @param  title   title at the top center, too long title will be cut
  */
-unsigned char panel(unsigned char x, unsigned char y, unsigned char width, unsigned char height, char title[MAX_LENGTH_TITLE], unsigned char color)
+void panel(unsigned char x, unsigned char y, unsigned char width, unsigned char height, char title[MAX_LENGTH_TITLE], unsigned char color)
 {
     unsigned char titleLenght = 0;
     unsigned char i;
+    unsigned char firstCharPosition;
+
+    // Dont allow x position or width > 127, so that arithmetic below cant overflow
+    if ((x|width)&0x80) return;
+    if ((y|height)&0x80) return;
+    // Do simple bounds checks
+    if (width>=SCREEN_COLS) return;
+    if (height>=SCREEN_ROWS) return;
+    if ((x+width)>=SCREEN_COLS) return;
+    if ((y+height)>=SCREEN_ROWS) return;
 
     // Draw a rectangle
     rectangle(x, y, width, height, color);
@@ -79,22 +105,18 @@ unsigned char panel(unsigned char x, unsigned char y, unsigned char width, unsig
     {
         titleLenght++;
     }
-    gotoxy(x+(width-titleLenght+2)/2, y+1);
+    firstCharPosition = x+(width-titleLenght+2)/2;
     i=0;
+
+    // Set text colour
+    lfill(COLOUR_RAM_ADDRESS+x+y*64, COLOR_WHITE, titleLenght);
+
     while(i<width-2 && i<titleLenght)
     {
-        cputc(title[i]);
+        POKE(SCREEN_ADDRESS+10+x+i+(y+1)*64, title[i]);
         i++;
     }
 
     // Draw a line under the title
-    gotoxy(x,y+2);
-    cputc(SEPARATOR_LEFT);
-    for(i=0; i<width-2; i++)
-    {
-        cputc(HORIZONTAL);
-    }
-    cputc(SEPARATOR_RIGHT);
 
-    return 0;
 }

@@ -1,226 +1,219 @@
 Modules list:
 -------------
 main.o:
-    CODE              Offs=000000  Size=0002B6  Align=00001  Fill=0000
-    RODATA            Offs=000000  Size=000096  Align=00001  Fill=0000
+    CODE              Offs=000000  Size=0000E9  Align=00001  Fill=0000
+    RODATA            Offs=000000  Size=000093  Align=00001  Fill=0000
     BSS               Offs=000000  Size=0000FF  Align=00001  Fill=0000
     DATA              Offs=000000  Size=000001  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 layout.o:
-    CODE              Offs=0002B6  Size=00041B  Align=00001  Fill=0000
-    RODATA            Offs=000096  Size=000085  Align=00001  Fill=0000
+    CODE              Offs=0000E9  Size=0002F0  Align=00001  Fill=0000
+    RODATA            Offs=000093  Size=000070  Align=00001  Fill=0000
     BSS               Offs=0000FF  Size=000000  Align=00001  Fill=0000
     DATA              Offs=000001  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 draw.o:
-    CODE              Offs=0006D1  Size=0002BB  Align=00001  Fill=0000
-    RODATA            Offs=00011B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=0003D9  Size=0003F0  Align=00001  Fill=0000
+    RODATA            Offs=000103  Size=000000  Align=00001  Fill=0000
     BSS               Offs=0000FF  Size=000000  Align=00001  Fill=0000
     DATA              Offs=000001  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 memory.o:
-    CODE              Offs=00098C  Size=00029A  Align=00001  Fill=0000
-    RODATA            Offs=00011B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=0007C9  Size=00029A  Align=00001  Fill=0000
+    RODATA            Offs=000103  Size=000000  Align=00001  Fill=0000
     BSS               Offs=0000FF  Size=000013  Align=00001  Fill=0000
     DATA              Offs=000001  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 screen.o:
-    CODE              Offs=000C26  Size=000AEA  Align=00001  Fill=0000
-    RODATA            Offs=00011B  Size=000129  Align=00001  Fill=0000
+    CODE              Offs=000A63  Size=000AE5  Align=00001  Fill=0000
+    RODATA            Offs=000103  Size=000129  Align=00001  Fill=0000
     BSS               Offs=000112  Size=000011  Align=00001  Fill=0000
     DATA              Offs=000001  Size=00006B  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 hal_mega65.o:
-    CODE              Offs=001710  Size=00003E  Align=00001  Fill=0000
-    RODATA            Offs=000244  Size=00002B  Align=00001  Fill=0000
+    CODE              Offs=001548  Size=00003E  Align=00001  Fill=0000
+    RODATA            Offs=00022C  Size=00002B  Align=00001  Fill=0000
     BSS               Offs=000123  Size=000000  Align=00001  Fill=0000
     DATA              Offs=00006C  Size=000003  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 charset.o:
-    CODE              Offs=00174E  Size=000802  Align=00001  Fill=0000
-    RODATA            Offs=00026F  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=001586  Size=000842  Align=00001  Fill=0000
+    RODATA            Offs=000257  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000123  Size=000000  Align=00001  Fill=0000
     DATA              Offs=00006F  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(_cursor.o):
-    CODE              Offs=001F50  Size=000000  Align=00001  Fill=0000
-    RODATA            Offs=00026F  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=001DC8  Size=000000  Align=00001  Fill=0000
+    RODATA            Offs=000257  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000123  Size=000001  Align=00001  Fill=0000
     DATA              Offs=00006F  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(_directerrno.o):
-    CODE              Offs=001F50  Size=00000A  Align=00001  Fill=0000
-    RODATA            Offs=00026F  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=001DC8  Size=00000A  Align=00001  Fill=0000
+    RODATA            Offs=000257  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000124  Size=000000  Align=00001  Fill=0000
     DATA              Offs=00006F  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(_file.o):
-    CODE              Offs=001F5A  Size=000000  Align=00001  Fill=0000
-    RODATA            Offs=00026F  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=001DD2  Size=000000  Align=00001  Fill=0000
+    RODATA            Offs=000257  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000124  Size=000000  Align=00001  Fill=0000
     DATA              Offs=00006F  Size=00001E  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(_hextab.o):
-    CODE              Offs=001F5A  Size=000000  Align=00001  Fill=0000
-    RODATA            Offs=00026F  Size=000010  Align=00001  Fill=0000
+    CODE              Offs=001DD2  Size=000000  Align=00001  Fill=0000
+    RODATA            Offs=000257  Size=000010  Align=00001  Fill=0000
     BSS               Offs=000124  Size=000000  Align=00001  Fill=0000
     DATA              Offs=00008D  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(_longminstr.o):
-    CODE              Offs=001F5A  Size=000000  Align=00001  Fill=0000
-    RODATA            Offs=00027F  Size=00000C  Align=00001  Fill=0000
+    CODE              Offs=001DD2  Size=000000  Align=00001  Fill=0000
+    RODATA            Offs=000267  Size=00000C  Align=00001  Fill=0000
     BSS               Offs=000124  Size=000000  Align=00001  Fill=0000
     DATA              Offs=00008D  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(_mappederrno.o):
-    CODE              Offs=001F5A  Size=000010  Align=00001  Fill=0000
-    RODATA            Offs=00028B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=001DD2  Size=000010  Align=00001  Fill=0000
+    RODATA            Offs=000273  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000124  Size=000000  Align=00001  Fill=0000
     DATA              Offs=00008D  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(_oserror.o):
-    CODE              Offs=001F6A  Size=000000  Align=00001  Fill=0000
-    RODATA            Offs=00028B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=001DE2  Size=000000  Align=00001  Fill=0000
+    RODATA            Offs=000273  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000124  Size=000001  Align=00001  Fill=0000
     DATA              Offs=00008D  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(_printf.o):
-    CODE              Offs=001F6A  Size=0003A5  Align=00001  Fill=0000
-    RODATA            Offs=00028B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=001DE2  Size=0003A5  Align=00001  Fill=0000
+    RODATA            Offs=000273  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000125  Size=00002B  Align=00001  Fill=0000
     DATA              Offs=00008D  Size=000003  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(_seterrno.o):
-    CODE              Offs=00230F  Size=000009  Align=00001  Fill=0000
-    RODATA            Offs=00028B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002187  Size=000009  Align=00001  Fill=0000
+    RODATA            Offs=000273  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000150  Size=000000  Align=00001  Fill=0000
     DATA              Offs=000090  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(add.o):
-    CODE              Offs=002318  Size=00001C  Align=00001  Fill=0000
-    RODATA            Offs=00028B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002190  Size=00001C  Align=00001  Fill=0000
+    RODATA            Offs=000273  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000150  Size=000000  Align=00001  Fill=0000
     DATA              Offs=000090  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(addeqsp.o):
-    CODE              Offs=002334  Size=000011  Align=00001  Fill=0000
-    RODATA            Offs=00028B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=0021AC  Size=000011  Align=00001  Fill=0000
+    RODATA            Offs=000273  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000150  Size=000000  Align=00001  Fill=0000
     DATA              Offs=000090  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(addysp.o):
-    CODE              Offs=002345  Size=00000E  Align=00001  Fill=0000
-    RODATA            Offs=00028B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=0021BD  Size=00000E  Align=00001  Fill=0000
+    RODATA            Offs=000273  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000150  Size=000000  Align=00001  Fill=0000
     DATA              Offs=000090  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(aslax2.o):
-    CODE              Offs=002353  Size=00000B  Align=00001  Fill=0000
-    RODATA            Offs=00028B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=0021CB  Size=00000B  Align=00001  Fill=0000
+    RODATA            Offs=000273  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000150  Size=000000  Align=00001  Fill=0000
     DATA              Offs=000090  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(aslax4.o):
-    CODE              Offs=00235E  Size=000011  Align=00001  Fill=0000
-    RODATA            Offs=00028B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=0021D6  Size=000011  Align=00001  Fill=0000
+    RODATA            Offs=000273  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000150  Size=000000  Align=00001  Fill=0000
     DATA              Offs=000090  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(asreax4.o):
-    CODE              Offs=00236F  Size=000015  Align=00001  Fill=0000
-    RODATA            Offs=00028B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=0021E7  Size=000015  Align=00001  Fill=0000
+    RODATA            Offs=000273  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000150  Size=000000  Align=00001  Fill=0000
     DATA              Offs=000090  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(axlong.o):
-    CODE              Offs=002384  Size=00000D  Align=00001  Fill=0000
-    RODATA            Offs=00028B  Size=000000  Align=00001  Fill=0000
-    BSS               Offs=000150  Size=000000  Align=00001  Fill=0000
-    DATA              Offs=000090  Size=000000  Align=00001  Fill=0000
-    ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
-    NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
-/media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(bordercolor.o):
-    CODE              Offs=002391  Size=000008  Align=00001  Fill=0000
-    RODATA            Offs=00028B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=0021FC  Size=00000D  Align=00001  Fill=0000
+    RODATA            Offs=000273  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000150  Size=000000  Align=00001  Fill=0000
     DATA              Offs=000090  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(callmain.o):
-    CODE              Offs=002399  Size=000017  Align=00001  Fill=0000
-    RODATA            Offs=00028B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002209  Size=000017  Align=00001  Fill=0000
+    RODATA            Offs=000273  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000150  Size=000000  Align=00001  Fill=0000
     DATA              Offs=000090  Size=000004  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(cgetc.o):
-    CODE              Offs=0023B0  Size=000047  Align=00001  Fill=0000
-    RODATA            Offs=00028B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002220  Size=000047  Align=00001  Fill=0000
+    RODATA            Offs=000273  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000150  Size=000000  Align=00001  Fill=0000
     DATA              Offs=000094  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(clrscr.o):
-    CODE              Offs=0023F7  Size=000000  Align=00001  Fill=0000
-    RODATA            Offs=00028B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002267  Size=000000  Align=00001  Fill=0000
+    RODATA            Offs=000273  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000150  Size=000000  Align=00001  Fill=0000
     DATA              Offs=000094  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(color.o):
-    CODE              Offs=0023F7  Size=000010  Align=00001  Fill=0000
-    RODATA            Offs=00028B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002267  Size=000010  Align=00001  Fill=0000
+    RODATA            Offs=000273  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000150  Size=000000  Align=00001  Fill=0000
     DATA              Offs=000094  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(condes.o):
-    CODE              Offs=002407  Size=00000C  Align=00001  Fill=0000
-    RODATA            Offs=00028B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002277  Size=00000C  Align=00001  Fill=0000
+    RODATA            Offs=000273  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000150  Size=000000  Align=00001  Fill=0000
     DATA              Offs=000094  Size=000025  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
     ONCE              Offs=000000  Size=00000C  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(conio.o):
-    CODE              Offs=002413  Size=000000  Align=00001  Fill=0000
-    RODATA            Offs=00028B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002283  Size=000000  Align=00001  Fill=0000
+    RODATA            Offs=000273  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000150  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000B9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(cputc.o):
-    CODE              Offs=002413  Size=00006F  Align=00001  Fill=0000
-    RODATA            Offs=00028B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002283  Size=00006F  Align=00001  Fill=0000
+    RODATA            Offs=000273  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000150  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000B9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(crt0.o):
-    CODE              Offs=002482  Size=000000  Align=00001  Fill=0000
-    RODATA            Offs=00028B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=0022F2  Size=000000  Align=00001  Fill=0000
+    RODATA            Offs=000273  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000150  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000B9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
@@ -229,487 +222,466 @@ charset.o:
     ONCE              Offs=00000C  Size=00001A  Align=00001  Fill=0000
     INIT              Offs=000000  Size=00001C  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(ctype.o):
-    CODE              Offs=002482  Size=000000  Align=00001  Fill=0000
-    RODATA            Offs=00028B  Size=000100  Align=00001  Fill=0000
+    CODE              Offs=0022F2  Size=000000  Align=00001  Fill=0000
+    RODATA            Offs=000273  Size=000100  Align=00001  Fill=0000
     BSS               Offs=000150  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000B9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(decsp1.o):
-    CODE              Offs=002482  Size=000009  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=0022F2  Size=000009  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000150  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000B9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(decsp2.o):
-    CODE              Offs=00248B  Size=00000D  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=0022FB  Size=00000D  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
+    BSS               Offs=000150  Size=000000  Align=00001  Fill=0000
+    DATA              Offs=0000B9  Size=000000  Align=00001  Fill=0000
+    ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
+    NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
+/media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(decsp3.o):
+    CODE              Offs=002308  Size=00000D  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000150  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000B9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(decsp4.o):
-    CODE              Offs=002498  Size=00000D  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002315  Size=00000D  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000150  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000B9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(decsp5.o):
-    CODE              Offs=0024A5  Size=00000D  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002322  Size=00000D  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000150  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000B9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(decsp6.o):
-    CODE              Offs=0024B2  Size=00000D  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=00232F  Size=00000D  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000150  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000B9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(decsp7.o):
-    CODE              Offs=0024BF  Size=00000D  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=00233C  Size=00000D  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000150  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000B9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(decsp8.o):
-    CODE              Offs=0024CC  Size=00000D  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
-    BSS               Offs=000150  Size=000000  Align=00001  Fill=0000
-    DATA              Offs=0000B9  Size=000000  Align=00001  Fill=0000
-    ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
-    NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
-/media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(div.o):
-    CODE              Offs=0024D9  Size=000015  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002349  Size=00000D  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000150  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000B9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(errno.o):
-    CODE              Offs=0024EE  Size=000000  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002356  Size=000000  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000150  Size=000002  Align=00001  Fill=0000
     DATA              Offs=0000B9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(exehdr.o):
-    CODE              Offs=0024EE  Size=000000  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002356  Size=000000  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000152  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000B9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
     EXEHDR            Offs=000000  Size=00000C  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(filedes.o):
-    CODE              Offs=0024EE  Size=00000E  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002356  Size=00000E  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000152  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000B9  Size=000010  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(fwrite.o):
-    CODE              Offs=0024FC  Size=00007B  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002364  Size=00007B  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000152  Size=000002  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(gotoxy.o):
-    CODE              Offs=002577  Size=00000D  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=0023DF  Size=00000D  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(icmp.o):
-    CODE              Offs=002584  Size=00002E  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=0023EC  Size=00002E  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(incsp1.o):
-    CODE              Offs=0025B2  Size=000007  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=00241A  Size=000007  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(incsp2.o):
-    CODE              Offs=0025B9  Size=000016  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002421  Size=000016  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(incsp4.o):
-    CODE              Offs=0025CF  Size=000005  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002437  Size=000005  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(incsp5.o):
-    CODE              Offs=0025D4  Size=000005  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=00243C  Size=000005  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(incsp6.o):
-    CODE              Offs=0025D9  Size=000005  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002441  Size=000005  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(incsp7.o):
-    CODE              Offs=0025DE  Size=000005  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
-    BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
-    DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
-    ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
-    NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
-/media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(kbhit.o):
-    CODE              Offs=0025E3  Size=000009  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002446  Size=000005  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(kernal.o):
-    CODE              Offs=0025EC  Size=000000  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=00244B  Size=000000  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(kplot.o):
-    CODE              Offs=0025EC  Size=00000B  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=00244B  Size=00000B  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(ladd.o):
-    CODE              Offs=0025F7  Size=000025  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002456  Size=000025  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(laddeq.o):
-    CODE              Offs=00261C  Size=00002D  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=00247B  Size=00002D  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
+    BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
+    DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
+    ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
+    NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
+/media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(laddeqsp.o):
+    CODE              Offs=0024A8  Size=000023  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(land.o):
-    CODE              Offs=002649  Size=000024  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=0024CB  Size=000024  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(ldaxsp.o):
-    CODE              Offs=00266D  Size=000009  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=0024EF  Size=000009  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(ldeaxysp.o):
-    CODE              Offs=002676  Size=000013  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=0024F8  Size=000013  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(ldec.o):
-    CODE              Offs=002689  Size=000015  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=00250B  Size=000015  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(linc.o):
-    CODE              Offs=00269E  Size=000011  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002520  Size=000011  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(lneg.o):
-    CODE              Offs=0026AF  Size=00001E  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002531  Size=00001E  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(loadaddr.o):
-    CODE              Offs=0026CD  Size=000000  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=00254F  Size=000000  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
     LOADADDR          Offs=000000  Size=000002  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(lpush.o):
-    CODE              Offs=0026CD  Size=000021  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=00254F  Size=000021  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(lsave.o):
-    CODE              Offs=0026EE  Size=00001A  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002570  Size=00001A  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(lsub.o):
-    CODE              Offs=002708  Size=000027  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=00258A  Size=000027  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(lsubeq.o):
-    CODE              Offs=00272F  Size=000031  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=0025B1  Size=000031  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(lsubeqsp.o):
-    CODE              Offs=002760  Size=000027  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=0025E2  Size=000027  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(ltoa.o):
-    CODE              Offs=002787  Size=000095  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
-    BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
-    DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
-    ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
-    NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
-/media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(mod.o):
-    CODE              Offs=00281C  Size=000011  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002609  Size=000095  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(mul.o):
-    CODE              Offs=00282D  Size=000045  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=00269E  Size=000045  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(mul8.o):
-    CODE              Offs=002872  Size=00003A  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
-    BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
-    DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
-    ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
-    NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
-/media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(mulax10.o):
-    CODE              Offs=0028AC  Size=000019  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=0026E3  Size=00003A  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(mulax5.o):
-    CODE              Offs=0028C5  Size=000014  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
-    BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
-    DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
-    ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
-    NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
-/media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(negabs.o):
-    CODE              Offs=0028D9  Size=000012  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=00271D  Size=000014  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(or.o):
-    CODE              Offs=0028EB  Size=000012  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002731  Size=000012  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(oserror.o):
-    CODE              Offs=0028FD  Size=000016  Align=00001  Fill=0000
-    RODATA            Offs=00038B  Size=00005A  Align=00001  Fill=0000
+    CODE              Offs=002743  Size=000016  Align=00001  Fill=0000
+    RODATA            Offs=000373  Size=00005A  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(popa.o):
-    CODE              Offs=002913  Size=00000C  Align=00001  Fill=0000
-    RODATA            Offs=0003E5  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002759  Size=00000C  Align=00001  Fill=0000
+    RODATA            Offs=0003CD  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(popptr1.o):
-    CODE              Offs=00291F  Size=00000E  Align=00001  Fill=0000
-    RODATA            Offs=0003E5  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002765  Size=00000E  Align=00001  Fill=0000
+    RODATA            Offs=0003CD  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(printf.o):
-    CODE              Offs=00292D  Size=000033  Align=00001  Fill=0000
-    RODATA            Offs=0003E5  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002773  Size=000033  Align=00001  Fill=0000
+    RODATA            Offs=0003CD  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000154  Size=000001  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(push1.o):
-    CODE              Offs=002960  Size=000005  Align=00001  Fill=0000
-    RODATA            Offs=0003E5  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=0027A6  Size=000005  Align=00001  Fill=0000
+    RODATA            Offs=0003CD  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000155  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(pusha.o):
-    CODE              Offs=002965  Size=000016  Align=00001  Fill=0000
-    RODATA            Offs=0003E5  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=0027AB  Size=000016  Align=00001  Fill=0000
+    RODATA            Offs=0003CD  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000155  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(pushax.o):
-    CODE              Offs=00297B  Size=00001A  Align=00001  Fill=0000
-    RODATA            Offs=0003E5  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=0027C1  Size=00001A  Align=00001  Fill=0000
+    RODATA            Offs=0003CD  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000155  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(pushwsp.o):
-    CODE              Offs=002995  Size=00001C  Align=00001  Fill=0000
-    RODATA            Offs=0003E5  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=0027DB  Size=00001C  Align=00001  Fill=0000
+    RODATA            Offs=0003CD  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000155  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(rwcommon.o):
-    CODE              Offs=0029B1  Size=00001C  Align=00001  Fill=0000
-    RODATA            Offs=0003E5  Size=000000  Align=00001  Fill=0000
-    BSS               Offs=000155  Size=000000  Align=00001  Fill=0000
-    DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
-    ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
-    NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
-/media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(shelp.o):
-    CODE              Offs=0029CD  Size=000020  Align=00001  Fill=0000
-    RODATA            Offs=0003E5  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=0027F7  Size=00001C  Align=00001  Fill=0000
+    RODATA            Offs=0003CD  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000155  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(staspidx.o):
-    CODE              Offs=0029ED  Size=000016  Align=00001  Fill=0000
-    RODATA            Offs=0003E5  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002813  Size=000016  Align=00001  Fill=0000
+    RODATA            Offs=0003CD  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000155  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(status.o):
-    CODE              Offs=002A03  Size=000000  Align=00001  Fill=0000
-    RODATA            Offs=0003E5  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002829  Size=000000  Align=00001  Fill=0000
+    RODATA            Offs=0003CD  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000155  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(staxsp.o):
-    CODE              Offs=002A03  Size=00000B  Align=00001  Fill=0000
-    RODATA            Offs=0003E5  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002829  Size=00000B  Align=00001  Fill=0000
+    RODATA            Offs=0003CD  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000155  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(steaxsp.o):
-    CODE              Offs=002A0E  Size=000015  Align=00001  Fill=0000
-    RODATA            Offs=0003E5  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002834  Size=000015  Align=00001  Fill=0000
+    RODATA            Offs=0003CD  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000155  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(strlen.o):
-    CODE              Offs=002A23  Size=000016  Align=00001  Fill=0000
-    RODATA            Offs=0003E5  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002849  Size=000016  Align=00001  Fill=0000
+    RODATA            Offs=0003CD  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000155  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(strlower.o):
-    CODE              Offs=002A39  Size=000028  Align=00001  Fill=0000
-    RODATA            Offs=0003E5  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=00285F  Size=000028  Align=00001  Fill=0000
+    RODATA            Offs=0003CD  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000155  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(subysp.o):
-    CODE              Offs=002A61  Size=00000D  Align=00001  Fill=0000
-    RODATA            Offs=0003E5  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002887  Size=00000D  Align=00001  Fill=0000
+    RODATA            Offs=0003CD  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000155  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(toslong.o):
-    CODE              Offs=002A6E  Size=000038  Align=00001  Fill=0000
-    RODATA            Offs=0003E5  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002894  Size=000038  Align=00001  Fill=0000
+    RODATA            Offs=0003CD  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000155  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(udiv.o):
-    CODE              Offs=002AA6  Size=00004F  Align=00001  Fill=0000
-    RODATA            Offs=0003E5  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=0028CC  Size=00004F  Align=00001  Fill=0000
+    RODATA            Offs=0003CD  Size=000000  Align=00001  Fill=0000
+    BSS               Offs=000155  Size=000000  Align=00001  Fill=0000
+    DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
+    ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
+    NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
+/media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(umod.o):
+    CODE              Offs=00291B  Size=000011  Align=00001  Fill=0000
+    RODATA            Offs=0003CD  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000155  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(vfprintf.o):
-    CODE              Offs=002AF5  Size=000061  Align=00001  Fill=0000
-    RODATA            Offs=0003E5  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=00292C  Size=000061  Align=00001  Fill=0000
+    RODATA            Offs=0003CD  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000155  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000C9  Size=000008  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(write.o):
-    CODE              Offs=002B56  Size=000054  Align=00001  Fill=0000
-    RODATA            Offs=0003E5  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=00298D  Size=000054  Align=00001  Fill=0000
+    RODATA            Offs=0003CD  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000155  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000D1  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
     ONCE              Offs=000026  Size=000011  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(zerobss.o):
-    CODE              Offs=002BAA  Size=000023  Align=00001  Fill=0000
-    RODATA            Offs=0003E5  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=0029E1  Size=000023  Align=00001  Fill=0000
+    RODATA            Offs=0003CD  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000155  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000D1  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000000  Align=00001  Fill=0000
     NULL              Offs=000000  Size=000000  Align=00001  Fill=0000
 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/lib/c64.lib(zeropage.o):
-    CODE              Offs=002BCD  Size=000000  Align=00001  Fill=0000
-    RODATA            Offs=0003E5  Size=000000  Align=00001  Fill=0000
+    CODE              Offs=002A04  Size=000000  Align=00001  Fill=0000
+    RODATA            Offs=0003CD  Size=000000  Align=00001  Fill=0000
     BSS               Offs=000155  Size=000000  Align=00001  Fill=0000
     DATA              Offs=0000D1  Size=000000  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=00001A  Align=00001  Fill=0000
@@ -725,12 +697,12 @@ ZEROPAGE              000002  00001B  00001A  00001
 LOADADDR              0007FF  000800  000002  00001
 EXEHDR                000801  00080C  00000C  00001
 STARTUP               00080D  00083F  000033  00001
-CODE                  000840  00340C  002BCD  00001
-RODATA                00340D  0037F1  0003E5  00001
-DATA                  0037F2  0038C2  0000D1  00001
-INIT                  0038C3  0038DE  00001C  00001
-BSS                   0038DF  003A33  000155  00001
-ONCE                  0038DF  003917  000039  00001
+CODE                  000840  003243  002A04  00001
+RODATA                003244  003610  0003CD  00001
+DATA                  003611  0036E1  0000D1  00001
+INIT                  0036E2  0036FD  00001C  00001
+BSS                   0036FE  003852  000155  00001
+ONCE                  0036FE  003736  000039  00001
 
 
 Exports list by name:
@@ -745,7 +717,7 @@ GETIN                     00FFE4  EA    IOBASE                    00FFF3  EA
 IOINIT                    00FF84  EA    LISTEN                    00FFB1  EA    
 LOAD                      00FFD5  EA    MEMBOT                    00FF9C  EA    
 MEMTOP                    00FF99  EA    OPEN                      00FFC0 REA    
-PLOT                      002E2C RLA    RAMTAS                    00FF87  EA    
+PLOT                      002C8B RLA    RAMTAS                    00FF87  EA    
 RDTIM                     00FFDE  EA    READST                    00FFB7 REA    
 RESTOR                    00FF8A  EA    SAVE                      00FFD8  EA    
 SCNKEY                    00FF9F  EA    SCREEN                    00FFED  EA    
@@ -756,124 +728,122 @@ ST                        000090 RLZ    STOP                      00FFE1  EA
 TALK                      00FFB4  EA    TKSA                      00FF96  EA    
 UDTIM                     00FFEA  EA    UNLSN                     00FFAE  EA    
 UNTLK                     00FFAB  EA    VECTOR                    00FF8D  EA    
-__BSS_LOAD__              0038DF  LA    __BSS_RUN__               0038DF RLA    
+__BSS_LOAD__              0036FE  LA    __BSS_RUN__               0036FE RLA    
 __BSS_SIZE__              000155 REA    __CONSTRUCTOR_COUNT__     000001 REA    
-__CONSTRUCTOR_TABLE__     003916 RLA    __DESTRUCTOR_COUNT__      000000 REA    
-__DESTRUCTOR_TABLE__      0037F2 RLA    __EXEHDR__                000001 REA    
+__CONSTRUCTOR_TABLE__     003735 RLA    __DESTRUCTOR_COUNT__      000000 REA    
+__DESTRUCTOR_TABLE__      003611 RLA    __EXEHDR__                000001 REA    
 __HEADER_FILEOFFS__       000002  EA    __HEADER_LAST__           00080D RLA    
 __HEADER_SIZE__           00000D  EA    __HEADER_START__          000801  LA    
 __HIMEM__                 00D000 REA    __LOADADDR__              000001 REA    
-__MAIN_FILEOFFS__         00000E  EA    __MAIN_LAST__             003918  LA    
+__MAIN_FILEOFFS__         00000E  EA    __MAIN_LAST__             003737  LA    
 __MAIN_SIZE__             00C7F3 REA    __MAIN_START__            00080D RLA    
-__ONCE_LOAD__             0038DF  LA    __ONCE_RUN__              0038DF RLA    
+__ONCE_LOAD__             0036FE  LA    __ONCE_RUN__              0036FE RLA    
 __ONCE_SIZE__             000039  EA    __STACKSIZE__             000800 REA    
 __STARTUP__               000001 REA    __ZP_FILEOFFS__           000000  EA    
 __ZP_LAST__               00001C  LA    __ZP_SIZE__               00001A  EA    
-__ZP_START__              000002  LA    __argc                    003882  LA    
-__argv                    003884  LA    __ctype                   003698 RLA    
-__directerrno             002790 RLA    __errno                   003A2F RLA    
-__filetab                 003861  LA    __hextab                  00367C RLA    
-__longminstr              00368C RLA    __mappederrno             00279A RLA    
-__oserror                 003A03 RLA    __osmaperrno              00313D RLA    
-__printf                  00289D RLA    __seterrno                002B4F RLA    
-_abs                      003119  LA    _addr                     0039FD  LA    
-_bgcolor                  002C3F RLA    _bordercolor              002BD1 RLA    
-_carry                    0039F9  LA    _cgetc                    002BF0 RLA    
-_charset                  001F8E RLA    _clearNumero              000AF6 RLA    
-_clrscr                   00E544 REA    _cputc                    002C58 RLA    
-_cputcxy                  002C53  LA    _display_footer           001534  LA    
-_dma_byte                 0039F0  LA    _dmalist                  0039DE  LA    
-_do_dma                   001452  LA    _exit                     000825  LA    
-_fatal_error              001E99  LA    _footer_messages          0037F8  LA    
-_format_decimal           001D7D  LA    _format_hex               001DE0  LA    
-_fwrite                   002D3C RLA    _gotoxy                   002DBA RLA    
-_i                        003A01  LA    _ii                       0039F7  LA    
-_j                        0039F8  LA    _kbhit                    002E23 RLA    
-_layout                   000B10 RLA    _lcopy                    0012BA RLA    
-_lfill                    0013B3 RLA    _lpeek                    0011DB RLA    
-_lpoke                    001248 RLA    _ltoa                     002FDF RLA    
-_m65_io_enable            0011CC RLA    _main                     0008CB RLA    
-_mega65_fast              001F50 RLA    _modem_line               0038DF  LA    
-_modem_line_len           0037F2  LA    _panel                    0010D7 RLA    
-_poll_modem               00088C  LA    _printf                   00316D RLA    
-_process_modem_line       000879  LA    _prop_m65u_name           00385F  LA    
-_read_line                001A5D  LA    _recolour_last_line       001A0A RLA    
-_rectangle                000F11 RLA    _screen_colour_line       0015AD  LA    
-_screen_column            0037F7  LA    _screen_decimal           00173F  LA    
-_screen_decimal_digits    00380E  LA    _screen_hex               0015E5  LA    
-_screen_hex_buffer        0039F1  LA    _screen_hex_byte          001709  LA    
-_screen_hex_digits        0037FE  LA    _screen_line_address      0037F3  LA    
-_sdhc_card                00385E  LA    _set_screen_attributes    00186A  LA    
-_setupSerial              000840  LA    _setup_screen             001466 RLA    
-_stderr                   00387D  LA    _stdin                    003879  LA    
-_stdout                   00387B RLA    _strlen                   003263 RLA    
-_strlower                 003279 RLA    _strlwr                   003279  LA    
-_temp                     0039FA  LA    _textcolor                002C37 RLA    
-_to_screen_hex            001F37  LA    _ultoa                    003020 RLA    
-_usleep                   001F55  LA    _value                    0039FB  LA    
-_vfprintf                 00336D RLA    _write                    003396 RLA    
-_write_line               0018C7 RLA    _write_modem              00084E  LA    
-addeq0sp                  002B74  LA    addeqysp                  002B76 RLA    
-addysp                    002B86 RLA    addysp1                   002B85 RLA    
-aslax2                    002B93 RLA    aslax4                    002B9E RLA    
-asreax4                   002BAF RLA    axlong                    002BC4 RLA    
-axulong                   002BCA RLA    callmain                  002BD9 RLA    
-condes                    003886  LA    cputdirect                002C77  LA    
-cursor                    003A02 RLA    deceaxy                   002EC9 RLA    
-decsp1                    002CC2 RLA    decsp2                    002CCB RLA    
-decsp4                    002CD8 RLA    decsp5                    002CE5 RLA    
-decsp6                    002CF2 RLA    decsp7                    002CFF RLA    
-decsp8                    002D0C RLA    donelib                   002C47 RLA    
-fdtab                     0038AB RLA    freefd                    002D2E  LA    
-gotoxy                    002DB7 RLA    inceaxy                   002EDE RLA    
-incsp1                    002DF2 RLA    incsp2                    002E01 RLA    
-incsp4                    002E0F RLA    incsp5                    002E14 RLA    
-incsp6                    002E19 RLA    incsp7                    002E1E RLA    
-initlib                   0038DF RLA    initstdout                003905  LAI   
-laddeq                    002E64  LA    laddeq1                   002E5C  LA    
-laddeqa                   002E5E RLA    ldax0sp                   002EAD  LA    
-ldaxysp                   002EAF RLA    ldeax0sp                  002EB6 RLA    
-ldeaxysp                  002EB8 RLA    lsubeq                    002F77  LA    
-lsubeq0sp                 002FA0  LA    lsubeq1                   002F6F  LA    
-lsubeqa                   002F71 RLA    lsubeqysp                 002FA2 RLA    
-mul8x16                   0030B4 RLA    mul8x16a                  0030BE RLA    
-mulax10                   0030EC RLA    mulax5                    003105 RLA    
-negax                     00311D RLA    negeax                    002EEF RLA    
-newline                   002C87  LA    plot                      002CAE RLA    
-popa                      003153 RLA    popax                     002DF9 RLA    
-popptr1                   00315F RLA    popsargsudiv16            00320D RLA    
-ptr1                      00000A RLZ    ptr2                      00000C RLZ    
-ptr3                      00000E RLZ    ptr4                      000010 RLZ    
-push0                     0031BB  LA    push0ax                   002F10 RLA    
-push1                     0031A0 RLA    pusha                     0031A9 RLA    
-pusha0                    0031BD RLA    pusha0sp                  0031A5  LA    
-pushax                    0031BF RLA    pushaysp                  0031A7  LA    
-pusheax                   002F16 RLA    pushl0                    002F0D  LA    
-pushw0sp                  0031D5  LA    pushwysp                  0031D7 RLA    
-putchar                   002CB6  LA    regbank                   000016 RLZ    
-regsave                   000006 RLZ    resteax                   002F3B RLA    
-rwcommon                  0031F1 RLA    saveeax                   002F2E RLA    
-shlax2                    002B93 RLA    shlax4                    002B9E RLA    
-sp                        000002 RLZ    sreg                      000004 RLZ    
-staspidx                  00322D RLA    stax0sp                   003243 RLA    
-staxysp                   003245 RLA    steax0sp                  00324E RLA    
-steaxysp                  003250 RLA    subysp                    0032A1 RLA    
-tmp1                      000012 RLZ    tmp2                      000013 RLZ    
-tmp3                      000014  LZ    tmp4                      000015  LZ    
-tosadd0ax                 002E37 RLA    tosadda0                  002B58 RLA    
-tosaddax                  002B5A  LA    tosaddeax                 002E3D RLA    
-tosand0ax                 002E89 RLA    tosandeax                 002E8F  LA    
-tosdiva0                  002D19 RLA    tosdivax                  002D1B  LA    
-tosicmp                   002DC6 RLA    tosicmp0                  002DC4  LA    
-toslong                   0032CC  LA    tosmoda0                  00305C RLA    
-tosmodax                  00305E  LA    tosmula0                  0030B2  LA    
-tosmulax                  00306D  LA    tosora0                   00312B RLA    
-tosorax                   00312D  LA    tossub0ax                 002F48 RLA    
-tossubeax                 002F4E  LA    tosudiva0                 0032E6  LA    
-tosudivax                 0032E8 RLA    tosulong                  0032AE RLA    
-tosumula0                 0030B2  LA    tosumulax                 00306D RLA    
-udiv16                    0032F7 RLA    unittab                   0038B3  LA    
-zerobss                   0033EA RLA    
+__ZP_START__              000002  LA    __argc                    0036A1  LA    
+__argv                    0036A3  LA    __ctype                   0034B7 RLA    
+__directerrno             002608 RLA    __errno                   00384E RLA    
+__filetab                 003680  LA    __hextab                  00349B RLA    
+__longminstr              0034AB RLA    __mappederrno             002612 RLA    
+__oserror                 003822 RLA    __osmaperrno              002F83 RLA    
+__printf                  002715 RLA    __seterrno                0029C7 RLA    
+_addr                     00381C  LA    _bgcolor                  002AAF  LA    
+_carry                    003818  LA    _cgetc                    002A60 RLA    
+_charset                  001DC6 RLA    _clearNumero              000929  LA    
+_clrscr                   00E544 REA    _cputc                    002AC8  LA    
+_cputcxy                  002AC3  LA    _display_footer           00136C  LA    
+_dma_byte                 00380F  LA    _dmalist                  0037FD  LA    
+_do_dma                   00128F  LA    _exit                     000825  LA    
+_fatal_error              001CD1  LA    _footer_messages          003617  LA    
+_format_decimal           001BB5  LA    _format_hex               001C18  LA    
+_fwrite                   002BA4 RLA    _gotoxy                   002C22 RLA    
+_i                        003820  LA    _ii                       003816  LA    
+_j                        003817  LA    _layout                   000943 RLA    
+_lcopy                    0010F7 RLA    _lfill                    0011F0 RLA    
+_lpeek                    001018 RLA    _lpoke                    001085 RLA    
+_ltoa                     002E61 RLA    _m65_io_enable            001009 RLA    
+_main                     0008CB RLA    _mega65_fast              001D88 RLA    
+_modem_line               0036FE  LA    _modem_line_len           003611  LA    
+_panel                    000E76 RLA    _poll_modem               00088C  LA    
+_printf                   002FB3 RLA    _process_modem_line       000879  LA    
+_prop_m65u_name           00367E  LA    _read_line                001895  LA    
+_recolour_last_line       001842  LA    _rectangle                000C19 RLA    
+_screen_colour_line       0013E5  LA    _screen_column            003616  LA    
+_screen_decimal           001577  LA    _screen_decimal_digits    00362D  LA    
+_screen_hex               00141D  LA    _screen_hex_buffer        003810  LA    
+_screen_hex_byte          001541  LA    _screen_hex_digits        00361D  LA    
+_screen_line_address      003612  LA    _sdhc_card                00367D  LA    
+_set_screen_attributes    0016A2  LA    _setupSerial              000840  LA    
+_setup_screen             0012A3 RLA    _stderr                   00369C  LA    
+_stdin                    003698  LA    _stdout                   00369A RLA    
+_strlen                   003089 RLA    _strlower                 00309F RLA    
+_strlwr                   00309F  LA    _temp                     003819  LA    
+_textcolor                002AA7 RLA    _to_screen_hex            001D6F  LA    
+_ultoa                    002EA2 RLA    _usleep                   001D8D  LA    
+_value                    00381A  LA    _vfprintf                 0031A4 RLA    
+_write                    0031CD RLA    _write_line               0016FF RLA    
+_write_modem              00084E  LA    addeq0sp                  0029EC  LA    
+addeqysp                  0029EE RLA    addysp                    0029FE RLA    
+addysp1                   0029FD RLA    aslax2                    002A0B RLA    
+aslax4                    002A16 RLA    asreax4                   002A27 RLA    
+axlong                    002A3C RLA    axulong                   002A42 RLA    
+callmain                  002A49 RLA    condes                    0036A5  LA    
+cputdirect                002AE7  LA    cursor                    003821 RLA    
+deceaxy                   002D4B RLA    decsp1                    002B32 RLA    
+decsp2                    002B3B RLA    decsp3                    002B48 RLA    
+decsp4                    002B55 RLA    decsp5                    002B62 RLA    
+decsp6                    002B6F RLA    decsp7                    002B7C RLA    
+decsp8                    002B89 RLA    donelib                   002AB7 RLA    
+fdtab                     0036CA RLA    freefd                    002B96  LA    
+gotoxy                    002C1F RLA    inceaxy                   002D60 RLA    
+incsp1                    002C5A RLA    incsp2                    002C69 RLA    
+incsp4                    002C77 RLA    incsp5                    002C7C RLA    
+incsp6                    002C81 RLA    incsp7                    002C86 RLA    
+initlib                   0036FE RLA    initstdout                003724  LAI   
+laddeq                    002CC3  LA    laddeq0sp                 002CE8 RLA    
+laddeq1                   002CBB  LA    laddeqa                   002CBD RLA    
+laddeqysp                 002CEA  LA    ldax0sp                   002D2F  LA    
+ldaxysp                   002D31 RLA    ldeax0sp                  002D38 RLA    
+ldeaxysp                  002D3A RLA    lsubeq                    002DF9  LA    
+lsubeq0sp                 002E22  LA    lsubeq1                   002DF1  LA    
+lsubeqa                   002DF3 RLA    lsubeqysp                 002E24 RLA    
+mul8x16                   002F25 RLA    mul8x16a                  002F2F RLA    
+mulax5                    002F5D RLA    negeax                    002D71 RLA    
+newline                   002AF7  LA    plot                      002B1E RLA    
+popa                      002F99 RLA    popax                     002C61 RLA    
+popptr1                   002FA5 RLA    ptr1                      00000A RLZ    
+ptr2                      00000C RLZ    ptr3                      00000E RLZ    
+ptr4                      000010 RLZ    push0                     003001  LA    
+push0ax                   002D92 RLA    push1                     002FE6 RLA    
+pusha                     002FEF RLA    pusha0                    003003 RLA    
+pusha0sp                  002FEB  LA    pushax                    003005 RLA    
+pushaysp                  002FED  LA    pusheax                   002D98 RLA    
+pushl0                    002D8F  LA    pushw0sp                  00301B  LA    
+pushwysp                  00301D RLA    putchar                   002B26  LA    
+regbank                   000016 RLZ    regsave                   000006 RLZ    
+resteax                   002DBD RLA    rwcommon                  003037 RLA    
+saveeax                   002DB0 RLA    shlax2                    002A0B RLA    
+shlax4                    002A16 RLA    sp                        000002 RLZ    
+sreg                      000004 RLZ    staspidx                  003053 RLA    
+stax0sp                   003069 RLA    staxysp                   00306B RLA    
+steax0sp                  003074 RLA    steaxysp                  003076 RLA    
+subysp                    0030C7 RLA    tmp1                      000012 RLZ    
+tmp2                      000013 RLZ    tmp3                      000014  LZ    
+tmp4                      000015  LZ    tosadd0ax                 002C96 RLA    
+tosadda0                  0029D0 RLA    tosaddax                  0029D2  LA    
+tosaddeax                 002C9C RLA    tosand0ax                 002D0B RLA    
+tosandeax                 002D11  LA    tosicmp                   002C2E RLA    
+tosicmp0                  002C2C  LA    toslong                   0030F2  LA    
+tosmula0                  002F23  LA    tosmulax                  002EDE  LA    
+tosora0                   002F71 RLA    tosorax                   002F73  LA    
+tossub0ax                 002DCA RLA    tossubeax                 002DD0  LA    
+tosudiva0                 00310C RLA    tosudivax                 00310E RLA    
+tosulong                  0030D4 RLA    tosumoda0                 00315B RLA    
+tosumodax                 00315D  LA    tosumula0                 002F23  LA    
+tosumulax                 002EDE RLA    udiv16                    00311D RLA    
+unittab                   0036D2  LA    zerobss                   003221 RLA    
+
 
 
 Exports list by value:
@@ -897,126 +867,124 @@ __HEADER_START__          000801  LA    __HEADER_LAST__           00080D RLA
 __MAIN_START__            00080D RLA    _exit                     000825  LA    
 _setupSerial              000840  LA    _write_modem              00084E  LA    
 _process_modem_line       000879  LA    _poll_modem               00088C  LA    
-_main                     0008CB RLA    _clearNumero              000AF6 RLA    
-_layout                   000B10 RLA    _rectangle                000F11 RLA    
-_panel                    0010D7 RLA    _m65_io_enable            0011CC RLA    
-_lpeek                    0011DB RLA    _lpoke                    001248 RLA    
-_lcopy                    0012BA RLA    _lfill                    0013B3 RLA    
-_do_dma                   001452  LA    _setup_screen             001466 RLA    
-_display_footer           001534  LA    _screen_colour_line       0015AD  LA    
-_screen_hex               0015E5  LA    _screen_hex_byte          001709  LA    
-_screen_decimal           00173F  LA    _set_screen_attributes    00186A  LA    
-_write_line               0018C7 RLA    _recolour_last_line       001A0A RLA    
-_read_line                001A5D  LA    _format_decimal           001D7D  LA    
-_format_hex               001DE0  LA    _fatal_error              001E99  LA    
-_to_screen_hex            001F37  LA    _mega65_fast              001F50 RLA    
-_usleep                   001F55  LA    _charset                  001F8E RLA    
-__directerrno             002790 RLA    __mappederrno             00279A RLA    
-__printf                  00289D RLA    __seterrno                002B4F RLA    
-tosadda0                  002B58 RLA    tosaddax                  002B5A  LA    
-addeq0sp                  002B74  LA    addeqysp                  002B76 RLA    
-addysp1                   002B85 RLA    addysp                    002B86 RLA    
-aslax2                    002B93 RLA    shlax2                    002B93 RLA    
-aslax4                    002B9E RLA    shlax4                    002B9E RLA    
-asreax4                   002BAF RLA    axlong                    002BC4 RLA    
-axulong                   002BCA RLA    _bordercolor              002BD1 RLA    
-callmain                  002BD9 RLA    _cgetc                    002BF0 RLA    
-_textcolor                002C37 RLA    _bgcolor                  002C3F RLA    
-donelib                   002C47 RLA    _cputcxy                  002C53  LA    
-_cputc                    002C58 RLA    cputdirect                002C77  LA    
-newline                   002C87  LA    plot                      002CAE RLA    
-putchar                   002CB6  LA    decsp1                    002CC2 RLA    
-decsp2                    002CCB RLA    decsp4                    002CD8 RLA    
-decsp5                    002CE5 RLA    decsp6                    002CF2 RLA    
-decsp7                    002CFF RLA    decsp8                    002D0C RLA    
-tosdiva0                  002D19 RLA    tosdivax                  002D1B  LA    
-freefd                    002D2E  LA    _fwrite                   002D3C RLA    
-gotoxy                    002DB7 RLA    _gotoxy                   002DBA RLA    
-tosicmp0                  002DC4  LA    tosicmp                   002DC6 RLA    
-incsp1                    002DF2 RLA    popax                     002DF9 RLA    
-incsp2                    002E01 RLA    incsp4                    002E0F RLA    
-incsp5                    002E14 RLA    incsp6                    002E19 RLA    
-incsp7                    002E1E RLA    _kbhit                    002E23 RLA    
-PLOT                      002E2C RLA    tosadd0ax                 002E37 RLA    
-tosaddeax                 002E3D RLA    laddeq1                   002E5C  LA    
-laddeqa                   002E5E RLA    laddeq                    002E64  LA    
-tosand0ax                 002E89 RLA    tosandeax                 002E8F  LA    
-ldax0sp                   002EAD  LA    ldaxysp                   002EAF RLA    
-ldeax0sp                  002EB6 RLA    ldeaxysp                  002EB8 RLA    
-deceaxy                   002EC9 RLA    inceaxy                   002EDE RLA    
-negeax                    002EEF RLA    pushl0                    002F0D  LA    
-push0ax                   002F10 RLA    pusheax                   002F16 RLA    
-saveeax                   002F2E RLA    resteax                   002F3B RLA    
-tossub0ax                 002F48 RLA    tossubeax                 002F4E  LA    
-lsubeq1                   002F6F  LA    lsubeqa                   002F71 RLA    
-lsubeq                    002F77  LA    lsubeq0sp                 002FA0  LA    
-lsubeqysp                 002FA2 RLA    _ltoa                     002FDF RLA    
-_ultoa                    003020 RLA    tosmoda0                  00305C RLA    
-tosmodax                  00305E  LA    tosmulax                  00306D  LA    
-tosumulax                 00306D RLA    tosmula0                  0030B2  LA    
-tosumula0                 0030B2  LA    mul8x16                   0030B4 RLA    
-mul8x16a                  0030BE RLA    mulax10                   0030EC RLA    
-mulax5                    003105 RLA    _abs                      003119  LA    
-negax                     00311D RLA    tosora0                   00312B RLA    
-tosorax                   00312D  LA    __osmaperrno              00313D RLA    
-popa                      003153 RLA    popptr1                   00315F RLA    
-_printf                   00316D RLA    push1                     0031A0 RLA    
-pusha0sp                  0031A5  LA    pushaysp                  0031A7  LA    
-pusha                     0031A9 RLA    push0                     0031BB  LA    
-pusha0                    0031BD RLA    pushax                    0031BF RLA    
-pushw0sp                  0031D5  LA    pushwysp                  0031D7 RLA    
-rwcommon                  0031F1 RLA    popsargsudiv16            00320D RLA    
-staspidx                  00322D RLA    stax0sp                   003243 RLA    
-staxysp                   003245 RLA    steax0sp                  00324E RLA    
-steaxysp                  003250 RLA    _strlen                   003263 RLA    
-_strlower                 003279 RLA    _strlwr                   003279  LA    
-subysp                    0032A1 RLA    tosulong                  0032AE RLA    
-toslong                   0032CC  LA    tosudiva0                 0032E6  LA    
-tosudivax                 0032E8 RLA    udiv16                    0032F7 RLA    
-_vfprintf                 00336D RLA    _write                    003396 RLA    
-zerobss                   0033EA RLA    __hextab                  00367C RLA    
-__longminstr              00368C RLA    __ctype                   003698 RLA    
-__DESTRUCTOR_TABLE__      0037F2 RLA    _modem_line_len           0037F2  LA    
-_screen_line_address      0037F3  LA    _screen_column            0037F7  LA    
-_footer_messages          0037F8  LA    _screen_hex_digits        0037FE  LA    
-_screen_decimal_digits    00380E  LA    _sdhc_card                00385E  LA    
-_prop_m65u_name           00385F  LA    __filetab                 003861  LA    
-_stdin                    003879  LA    _stdout                   00387B RLA    
-_stderr                   00387D  LA    __argc                    003882  LA    
-__argv                    003884  LA    condes                    003886  LA    
-fdtab                     0038AB RLA    unittab                   0038B3  LA    
-__BSS_LOAD__              0038DF  LA    __BSS_RUN__               0038DF RLA    
-__ONCE_LOAD__             0038DF  LA    __ONCE_RUN__              0038DF RLA    
-_modem_line               0038DF  LA    initlib                   0038DF RLA    
-initstdout                003905  LAI   __CONSTRUCTOR_TABLE__     003916 RLA    
-__MAIN_LAST__             003918  LA    _dmalist                  0039DE  LA    
-_dma_byte                 0039F0  LA    _screen_hex_buffer        0039F1  LA    
-_ii                       0039F7  LA    _j                        0039F8  LA    
-_carry                    0039F9  LA    _temp                     0039FA  LA    
-_value                    0039FB  LA    _addr                     0039FD  LA    
-_i                        003A01  LA    cursor                    003A02 RLA    
-__oserror                 003A03 RLA    __errno                   003A2F RLA    
-__MAIN_SIZE__             00C7F3 REA    __HIMEM__                 00D000 REA    
-_clrscr                   00E544 REA    CINT                      00FF81  EA    
-IOINIT                    00FF84  EA    RAMTAS                    00FF87  EA    
-RESTOR                    00FF8A  EA    VECTOR                    00FF8D  EA    
-SETMSG                    00FF90  EA    SECOND                    00FF93  EA    
-TKSA                      00FF96  EA    MEMTOP                    00FF99  EA    
-MEMBOT                    00FF9C  EA    SCNKEY                    00FF9F  EA    
-SETTMO                    00FFA2  EA    ACPTR                     00FFA5  EA    
-CIOUT                     00FFA8  EA    UNTLK                     00FFAB  EA    
-UNLSN                     00FFAE  EA    LISTEN                    00FFB1  EA    
-TALK                      00FFB4  EA    READST                    00FFB7 REA    
-SETLFS                    00FFBA REA    SETNAM                    00FFBD  EA    
-OPEN                      00FFC0 REA    CLOSE                     00FFC3  EA    
-CHKIN                     00FFC6  EA    CKOUT                     00FFC9 REA    
-CLRCH                     00FFCC REA    BASIN                     00FFCF  EA    
-BSOUT                     00FFD2 REA    LOAD                      00FFD5  EA    
-SAVE                      00FFD8  EA    SETTIM                    00FFDB  EA    
-RDTIM                     00FFDE  EA    STOP                      00FFE1  EA    
-GETIN                     00FFE4  EA    CLALL                     00FFE7  EA    
-UDTIM                     00FFEA  EA    SCREEN                    00FFED  EA    
-IOBASE                    00FFF3  EA    
+_main                     0008CB RLA    _clearNumero              000929  LA    
+_layout                   000943 RLA    _rectangle                000C19 RLA    
+_panel                    000E76 RLA    _m65_io_enable            001009 RLA    
+_lpeek                    001018 RLA    _lpoke                    001085 RLA    
+_lcopy                    0010F7 RLA    _lfill                    0011F0 RLA    
+_do_dma                   00128F  LA    _setup_screen             0012A3 RLA    
+_display_footer           00136C  LA    _screen_colour_line       0013E5  LA    
+_screen_hex               00141D  LA    _screen_hex_byte          001541  LA    
+_screen_decimal           001577  LA    _set_screen_attributes    0016A2  LA    
+_write_line               0016FF RLA    _recolour_last_line       001842  LA    
+_read_line                001895  LA    _format_decimal           001BB5  LA    
+_format_hex               001C18  LA    _fatal_error              001CD1  LA    
+_to_screen_hex            001D6F  LA    _mega65_fast              001D88 RLA    
+_usleep                   001D8D  LA    _charset                  001DC6 RLA    
+__directerrno             002608 RLA    __mappederrno             002612 RLA    
+__printf                  002715 RLA    __seterrno                0029C7 RLA    
+tosadda0                  0029D0 RLA    tosaddax                  0029D2  LA    
+addeq0sp                  0029EC  LA    addeqysp                  0029EE RLA    
+addysp1                   0029FD RLA    addysp                    0029FE RLA    
+aslax2                    002A0B RLA    shlax2                    002A0B RLA    
+aslax4                    002A16 RLA    shlax4                    002A16 RLA    
+asreax4                   002A27 RLA    axlong                    002A3C RLA    
+axulong                   002A42 RLA    callmain                  002A49 RLA    
+_cgetc                    002A60 RLA    _textcolor                002AA7 RLA    
+_bgcolor                  002AAF  LA    donelib                   002AB7 RLA    
+_cputcxy                  002AC3  LA    _cputc                    002AC8  LA    
+cputdirect                002AE7  LA    newline                   002AF7  LA    
+plot                      002B1E RLA    putchar                   002B26  LA    
+decsp1                    002B32 RLA    decsp2                    002B3B RLA    
+decsp3                    002B48 RLA    decsp4                    002B55 RLA    
+decsp5                    002B62 RLA    decsp6                    002B6F RLA    
+decsp7                    002B7C RLA    decsp8                    002B89 RLA    
+freefd                    002B96  LA    _fwrite                   002BA4 RLA    
+gotoxy                    002C1F RLA    _gotoxy                   002C22 RLA    
+tosicmp0                  002C2C  LA    tosicmp                   002C2E RLA    
+incsp1                    002C5A RLA    popax                     002C61 RLA    
+incsp2                    002C69 RLA    incsp4                    002C77 RLA    
+incsp5                    002C7C RLA    incsp6                    002C81 RLA    
+incsp7                    002C86 RLA    PLOT                      002C8B RLA    
+tosadd0ax                 002C96 RLA    tosaddeax                 002C9C RLA    
+laddeq1                   002CBB  LA    laddeqa                   002CBD RLA    
+laddeq                    002CC3  LA    laddeq0sp                 002CE8 RLA    
+laddeqysp                 002CEA  LA    tosand0ax                 002D0B RLA    
+tosandeax                 002D11  LA    ldax0sp                   002D2F  LA    
+ldaxysp                   002D31 RLA    ldeax0sp                  002D38 RLA    
+ldeaxysp                  002D3A RLA    deceaxy                   002D4B RLA    
+inceaxy                   002D60 RLA    negeax                    002D71 RLA    
+pushl0                    002D8F  LA    push0ax                   002D92 RLA    
+pusheax                   002D98 RLA    saveeax                   002DB0 RLA    
+resteax                   002DBD RLA    tossub0ax                 002DCA RLA    
+tossubeax                 002DD0  LA    lsubeq1                   002DF1  LA    
+lsubeqa                   002DF3 RLA    lsubeq                    002DF9  LA    
+lsubeq0sp                 002E22  LA    lsubeqysp                 002E24 RLA    
+_ltoa                     002E61 RLA    _ultoa                    002EA2 RLA    
+tosmulax                  002EDE  LA    tosumulax                 002EDE RLA    
+tosmula0                  002F23  LA    tosumula0                 002F23  LA    
+mul8x16                   002F25 RLA    mul8x16a                  002F2F RLA    
+mulax5                    002F5D RLA    tosora0                   002F71 RLA    
+tosorax                   002F73  LA    __osmaperrno              002F83 RLA    
+popa                      002F99 RLA    popptr1                   002FA5 RLA    
+_printf                   002FB3 RLA    push1                     002FE6 RLA    
+pusha0sp                  002FEB  LA    pushaysp                  002FED  LA    
+pusha                     002FEF RLA    push0                     003001  LA    
+pusha0                    003003 RLA    pushax                    003005 RLA    
+pushw0sp                  00301B  LA    pushwysp                  00301D RLA    
+rwcommon                  003037 RLA    staspidx                  003053 RLA    
+stax0sp                   003069 RLA    staxysp                   00306B RLA    
+steax0sp                  003074 RLA    steaxysp                  003076 RLA    
+_strlen                   003089 RLA    _strlower                 00309F RLA    
+_strlwr                   00309F  LA    subysp                    0030C7 RLA    
+tosulong                  0030D4 RLA    toslong                   0030F2  LA    
+tosudiva0                 00310C RLA    tosudivax                 00310E RLA    
+udiv16                    00311D RLA    tosumoda0                 00315B RLA    
+tosumodax                 00315D  LA    _vfprintf                 0031A4 RLA    
+_write                    0031CD RLA    zerobss                   003221 RLA    
+__hextab                  00349B RLA    __longminstr              0034AB RLA    
+__ctype                   0034B7 RLA    __DESTRUCTOR_TABLE__      003611 RLA    
+_modem_line_len           003611  LA    _screen_line_address      003612  LA    
+_screen_column            003616  LA    _footer_messages          003617  LA    
+_screen_hex_digits        00361D  LA    _screen_decimal_digits    00362D  LA    
+_sdhc_card                00367D  LA    _prop_m65u_name           00367E  LA    
+__filetab                 003680  LA    _stdin                    003698  LA    
+_stdout                   00369A RLA    _stderr                   00369C  LA    
+__argc                    0036A1  LA    __argv                    0036A3  LA    
+condes                    0036A5  LA    fdtab                     0036CA RLA    
+unittab                   0036D2  LA    __BSS_LOAD__              0036FE  LA    
+__BSS_RUN__               0036FE RLA    __ONCE_LOAD__             0036FE  LA    
+__ONCE_RUN__              0036FE RLA    _modem_line               0036FE  LA    
+initlib                   0036FE RLA    initstdout                003724  LAI   
+__CONSTRUCTOR_TABLE__     003735 RLA    __MAIN_LAST__             003737  LA    
+_dmalist                  0037FD  LA    _dma_byte                 00380F  LA    
+_screen_hex_buffer        003810  LA    _ii                       003816  LA    
+_j                        003817  LA    _carry                    003818  LA    
+_temp                     003819  LA    _value                    00381A  LA    
+_addr                     00381C  LA    _i                        003820  LA    
+cursor                    003821 RLA    __oserror                 003822 RLA    
+__errno                   00384E RLA    __MAIN_SIZE__             00C7F3 REA    
+__HIMEM__                 00D000 REA    _clrscr                   00E544 REA    
+CINT                      00FF81  EA    IOINIT                    00FF84  EA    
+RAMTAS                    00FF87  EA    RESTOR                    00FF8A  EA    
+VECTOR                    00FF8D  EA    SETMSG                    00FF90  EA    
+SECOND                    00FF93  EA    TKSA                      00FF96  EA    
+MEMTOP                    00FF99  EA    MEMBOT                    00FF9C  EA    
+SCNKEY                    00FF9F  EA    SETTMO                    00FFA2  EA    
+ACPTR                     00FFA5  EA    CIOUT                     00FFA8  EA    
+UNTLK                     00FFAB  EA    UNLSN                     00FFAE  EA    
+LISTEN                    00FFB1  EA    TALK                      00FFB4  EA    
+READST                    00FFB7 REA    SETLFS                    00FFBA REA    
+SETNAM                    00FFBD  EA    OPEN                      00FFC0 REA    
+CLOSE                     00FFC3  EA    CHKIN                     00FFC6  EA    
+CKOUT                     00FFC9 REA    CLRCH                     00FFCC REA    
+BASIN                     00FFCF  EA    BSOUT                     00FFD2 REA    
+LOAD                      00FFD5  EA    SAVE                      00FFD8  EA    
+SETTIM                    00FFDB  EA    RDTIM                     00FFDE  EA    
+STOP                      00FFE1  EA    GETIN                     00FFE4  EA    
+CLALL                     00FFE7  EA    UDTIM                     00FFEA  EA    
+SCREEN                    00FFED  EA    IOBASE                    00FFF3  EA    
+
 
 
 Imports list:
@@ -1146,25 +1114,17 @@ __seterrno (_seterrno.o):
     _mappederrno.o            /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/asminc/errno.inc(9)
     _directerrno.o            /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/asminc/errno.inc(9)
     fwrite.o                  /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/asminc/errno.inc(9)
-_abs (negabs.o):
 _addr (screen.o):
 _bgcolor (color.o):
-    layout.o                  layout.s(16)
-_bordercolor (bordercolor.o):
-    layout.o                  layout.s(17)
 _carry (screen.o):
 _cgetc (cgetc.o):
     layout.o                  layout.s(14)
-    main.o                    main.s(23)
 _charset (charset.o):
     screen.o                  screen.s(32)
 _clearNumero (layout.o):
-    main.o                    main.s(25)
 _clrscr (clrscr.o):
-    main.o                    main.s(19)
+    main.o                    main.s(18)
 _cputc (cputc.o):
-    draw.o                    draw.s(14)
-    main.o                    main.s(22)
 _cputcxy (cputc.o):
 _display_footer (screen.o):
 _dma_byte (memory.o):
@@ -1178,21 +1138,18 @@ _format_hex (screen.o):
 _fwrite (fwrite.o):
     vfprintf.o                common/vfprintf.s(10)
 _gotoxy (gotoxy.o):
-    draw.o                    draw.s(13)
     layout.o                  layout.s(13)
-    main.o                    main.s(21)
 _i (screen.o):
 _ii (screen.o):
 _j (screen.o):
-_kbhit (kbhit.o):
-    main.o                    main.s(20)
 _layout (layout.o):
-    main.o                    main.s(26)
+    main.o                    main.s(19)
 _lcopy (memory.o):
     screen.o                  screen.s(30)
 _lfill (memory.o):
     screen.o                  screen.s(31)
-    draw.o                    draw.s(15)
+    draw.o                    draw.s(13)
+    layout.o                  layout.s(19)
 _lpeek (memory.o):
     screen.o                  screen.s(28)
 _lpoke (memory.o):
@@ -1208,18 +1165,17 @@ _mega65_fast (hal_mega65.o):
 _modem_line (main.o):
 _modem_line_len (main.o):
 _panel (draw.o):
-    layout.o                  layout.s(20)
+    layout.o                  layout.s(18)
 _poll_modem (main.o):
 _printf (printf.o):
-    layout.o                  layout.s(18)
+    layout.o                  layout.s(16)
     main.o                    main.s(14)
 _process_modem_line (main.o):
 _prop_m65u_name (hal_mega65.o):
 _read_line (screen.o):
 _recolour_last_line (screen.o):
-    main.o                    main.s(18)
 _rectangle (draw.o):
-    layout.o                  layout.s(19)
+    layout.o                  layout.s(17)
 _screen_colour_line (screen.o):
 _screen_column (screen.o):
 _screen_decimal (screen.o):
@@ -1246,7 +1202,6 @@ _strlwr (strlower.o):
 _temp (screen.o):
 _textcolor (color.o):
     layout.o                  layout.s(15)
-    main.o                    main.s(24)
 _to_screen_hex (screen.o):
 _ultoa (ltoa.o):
     _printf.o                 common/_printf.s(12)
@@ -1261,7 +1216,7 @@ _write_line (screen.o):
 _write_modem (main.o):
 addeq0sp (addeqsp.o):
 addeqysp (addeqsp.o):
-    draw.o                    draw.s(400)
+    draw.o                    draw.s(536)
 addysp (addysp.o):
     fwrite.o                  common/fwrite.s(11)
     printf.o                  common/printf.s(8)
@@ -1269,31 +1224,31 @@ addysp (addysp.o):
     incsp6.o                  runtime/incsp6.s(8)
     incsp5.o                  runtime/incsp5.s(8)
     incsp4.o                  runtime/incsp4.s(8)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
     memory.o                  memory.s(389)
-    draw.o                    draw.s(400)
-    draw.o                    draw.s(400)
+    draw.o                    draw.s(536)
+    draw.o                    draw.s(536)
 addysp1 (addysp.o):
     or.o                      runtime/or.s(9)
     lsub.o                    runtime/lsub.s(11)
     land.o                    runtime/land.s(9)
     ladd.o                    runtime/ladd.s(8)
 aslax2 (aslax2.o):
-    draw.o                    draw.s(400)
+    draw.o                    draw.s(536)
 aslax4 (aslax4.o):
-    draw.o                    draw.s(400)
+    draw.o                    draw.s(536)
 asreax4 (asreax4.o):
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
     memory.o                  memory.s(389)
     memory.o                  memory.s(389)
     memory.o                  memory.s(389)
     memory.o                  memory.s(389)
 axlong (axlong.o):
     _printf.o                 common/_printf.s(11)
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
 axulong (axlong.o):
     _printf.o                 common/_printf.s(11)
 callmain (callmain.o):
@@ -1303,36 +1258,42 @@ cputdirect (cputc.o):
 cursor (_cursor.o):
     cgetc.o                   c64/cgetc.s(8)
 deceaxy (ldec.o):
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
+    draw.o                    draw.s(536)
 decsp1 (decsp1.o):
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    main.o                    main.s(473)
-    main.o                    main.s(473)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    main.o                    main.s(232)
+    main.o                    main.s(232)
 decsp2 (decsp2.o):
     toslong.o                 runtime/toslong.s(8)
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
+    draw.o                    draw.s(536)
+decsp3 (decsp3.o):
+    layout.o                  layout.s(434)
 decsp4 (decsp4.o):
     lpush.o                   runtime/lpush.s(12)
-    layout.o                  layout.s(588)
+    draw.o                    draw.s(536)
+    layout.o                  layout.s(434)
 decsp5 (decsp5.o):
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    draw.o                    draw.s(400)
-    draw.o                    draw.s(400)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    draw.o                    draw.s(536)
+    draw.o                    draw.s(536)
+    layout.o                  layout.s(434)
 decsp6 (decsp6.o):
     _printf.o                 common/_printf.s(11)
-    layout.o                  layout.s(588)
+    layout.o                  layout.s(434)
 decsp7 (decsp7.o):
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
 decsp8 (decsp8.o):
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
 donelib (condes.o):
     crt0.o                    c64/crt0.s(8)
 fdtab (filedes.o):
@@ -1341,80 +1302,77 @@ freefd (filedes.o):
 gotoxy (gotoxy.o):
     cputc.o                   c64/cputc.s(10)
 inceaxy (linc.o):
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
 incsp1 (incsp1.o):
     hal_mega65.o              hal_mega65.s(85)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    main.o                    main.s(473)
-    main.o                    main.s(473)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    main.o                    main.s(232)
 incsp2 (incsp2.o):
     popptr1.o                 runtime/popptr1.s(8)
     staspidx.o                runtime/staspidx.s(8)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
 incsp4 (incsp4.o):
     hal_mega65.o              hal_mega65.s(85)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
     memory.o                  memory.s(389)
-    main.o                    main.s(473)
+    layout.o                  layout.s(434)
+    main.o                    main.s(232)
 incsp5 (incsp5.o):
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
     memory.o                  memory.s(389)
-    layout.o                  layout.s(588)
 incsp6 (incsp6.o):
     fwrite.o                  common/fwrite.s(11)
     vfprintf.o                common/vfprintf.s(9)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
 incsp7 (incsp7.o):
     memory.o                  memory.s(389)
 initlib (condes.o):
     crt0.o                    c64/crt0.s(8)
 initstdout (write.o):
 laddeq (laddeq.o):
+laddeq0sp (laddeqsp.o):
+    draw.o                    draw.s(536)
 laddeq1 (laddeq.o):
 laddeqa (laddeq.o):
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
+laddeqysp (laddeqsp.o):
 ldax0sp (ldaxsp.o):
 ldaxysp (ldaxsp.o):
     fwrite.o                  common/fwrite.s(11)
 ldeax0sp (ldeaxysp.o):
     hal_mega65.o              hal_mega65.s(85)
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
     memory.o                  memory.s(389)
 ldeaxysp (ldeaxysp.o):
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
     memory.o                  memory.s(389)
     memory.o                  memory.s(389)
     memory.o                  memory.s(389)
+    draw.o                    draw.s(536)
 lsubeq (lsubeq.o):
 lsubeq0sp (lsubeqsp.o):
 lsubeq1 (lsubeq.o):
 lsubeqa (lsubeq.o):
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
 lsubeqysp (lsubeqsp.o):
     hal_mega65.o              hal_mega65.s(85)
 mul8x16 (mul8.o):
     mul.o                     runtime/mul.s(8)
 mul8x16a (mul8.o):
     mul.o                     runtime/mul.s(8)
-mulax10 (mulax10.o):
-    main.o                    main.s(473)
 mulax5 (mulax5.o):
-    screen.o                  screen.s(1661)
-    layout.o                  layout.s(588)
-negax (negabs.o):
-    shelp.o                   runtime/shelp.s(11)
-    mod.o                     runtime/mod.s(11)
-    div.o                     runtime/div.s(11)
+    screen.o                  screen.s(1659)
+    layout.o                  layout.s(434)
 negeax (lneg.o):
     ltoa.o                    common/ltoa.s(9)
 newline (cputc.o):
@@ -1426,16 +1384,13 @@ popax (incsp2.o):
     rwcommon.o                cbm/rwcommon.s(9)
     ltoa.o                    common/ltoa.s(9)
     _printf.o                 common/_printf.s(11)
-    shelp.o                   runtime/shelp.s(11)
 popptr1 (popptr1.o):
     rwcommon.o                cbm/rwcommon.s(9)
     mul8.o                    runtime/mul8.s(9)
     mul.o                     runtime/mul.s(9)
     ltoa.o                    common/ltoa.s(9)
+    umod.o                    runtime/umod.s(8)
     udiv.o                    runtime/udiv.s(9)
-popsargsudiv16 (shelp.o):
-    mod.o                     runtime/mod.s(11)
-    div.o                     runtime/div.s(11)
 ptr1 (zeropage.o):
     write.o                   cbm/write.s(12)
     strlower.o                common/strlower.s(14)
@@ -1449,15 +1404,13 @@ ptr1 (zeropage.o):
     vfprintf.o                common/vfprintf.s(11)
     udiv.o                    runtime/udiv.s(10)
     staspidx.o                runtime/staspidx.s(9)
-    shelp.o                   runtime/shelp.s(12)
     printf.o                  common/printf.s(9)
     mulax5.o                  runtime/mulax5.s(9)
-    mulax10.o                 runtime/mulax10.s(9)
     lsubeq.o                  runtime/lsubeq.s(12)
     laddeq.o                  runtime/laddeq.s(12)
-    div.o                     runtime/div.s(12)
     screen.o                  screen.s(11)
     draw.o                    draw.s(11)
+    layout.o                  layout.s(11)
     main.o                    main.s(11)
 ptr2 (zeropage.o):
     rwcommon.o                cbm/rwcommon.s(10)
@@ -1473,83 +1426,89 @@ ptr3 (zeropage.o):
 ptr4 (zeropage.o):
     mul8.o                    runtime/mul8.s(10)
     mul.o                     runtime/mul.s(10)
+    umod.o                    runtime/umod.s(9)
     udiv.o                    runtime/udiv.s(10)
-    shelp.o                   runtime/shelp.s(12)
     linc.o                    runtime/linc.s(8)
 push0 (pushax.o):
 push0ax (lpush.o):
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    draw.o                    draw.s(400)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    draw.o                    draw.s(536)
+    draw.o                    draw.s(536)
+    layout.o                  layout.s(434)
 push1 (push1.o):
     _printf.o                 common/_printf.s(11)
     vfprintf.o                common/vfprintf.s(9)
 pusha (pusha.o):
     hal_mega65.o              hal_mega65.s(85)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
     memory.o                  memory.s(389)
-    draw.o                    draw.s(400)
-    draw.o                    draw.s(400)
-    layout.o                  layout.s(588)
-    layout.o                  layout.s(588)
-    main.o                    main.s(473)
-    main.o                    main.s(473)
-    main.o                    main.s(473)
+    draw.o                    draw.s(536)
+    draw.o                    draw.s(536)
+    layout.o                  layout.s(434)
+    layout.o                  layout.s(434)
+    main.o                    main.s(232)
+    main.o                    main.s(232)
+    main.o                    main.s(232)
 pusha0 (pushax.o):
     push1.o                   runtime/push1.s(8)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    draw.o                    draw.s(400)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    draw.o                    draw.s(536)
+    layout.o                  layout.s(434)
 pusha0sp (pusha.o):
 pushax (pushax.o):
     fwrite.o                  common/fwrite.s(11)
     callmain.o                runtime/callmain.s(11)
     _printf.o                 common/_printf.s(11)
     printf.o                  common/printf.s(8)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
     memory.o                  memory.s(389)
     memory.o                  memory.s(389)
-    layout.o                  layout.s(588)
-    layout.o                  layout.s(588)
-    main.o                    main.s(473)
-    main.o                    main.s(473)
+    draw.o                    draw.s(536)
+    layout.o                  layout.s(434)
+    layout.o                  layout.s(434)
+    main.o                    main.s(232)
+    main.o                    main.s(232)
 pushaysp (pusha.o):
 pusheax (lpush.o):
     _printf.o                 common/_printf.s(11)
     hal_mega65.o              hal_mega65.s(85)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
     memory.o                  memory.s(389)
     memory.o                  memory.s(389)
     memory.o                  memory.s(389)
     memory.o                  memory.s(389)
+    draw.o                    draw.s(536)
+    draw.o                    draw.s(536)
+    layout.o                  layout.s(434)
 pushl0 (lpush.o):
 pushw0sp (pushwsp.o):
 pushwysp (pushwsp.o):
     fwrite.o                  common/fwrite.s(11)
     vfprintf.o                common/vfprintf.s(9)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    layout.o                  layout.s(588)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
 putchar (cputc.o):
 regbank (zeropage.o):
     _printf.o                 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/asminc/zeropage.inc(14)
@@ -1557,15 +1516,19 @@ regsave (zeropage.o):
     lsave.o                   runtime/lsave.s(9)
     screen.o                  screen.s(10)
 resteax (lsave.o):
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
 rwcommon (rwcommon.o):
     write.o                   cbm/write.s(11)
 saveeax (lsave.o):
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
 shlax2 (aslax2.o):
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
+    draw.o                    draw.s(536)
+    layout.o                  layout.s(434)
 shlax4 (aslax4.o):
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
+    draw.o                    draw.s(536)
+    layout.o                  layout.s(434)
 sp (zeropage.o):
     popptr1.o                 runtime/popptr1.s(9)
     ldaxsp.o                  runtime/ldaxsp.s(8)
@@ -1587,6 +1550,7 @@ sp (zeropage.o):
     lpush.o                   runtime/lpush.s(13)
     ldeaxysp.o                runtime/ldeaxysp.s(12)
     land.o                    runtime/land.s(10)
+    laddeqsp.o                runtime/laddeqsp.s(8)
     ladd.o                    runtime/ladd.s(9)
     incsp2.o                  runtime/incsp2.s(8)
     incsp1.o                  runtime/incsp1.s(8)
@@ -1596,6 +1560,7 @@ sp (zeropage.o):
     decsp6.o                  runtime/decsp6.s(8)
     decsp5.o                  runtime/decsp5.s(8)
     decsp4.o                  runtime/decsp4.s(8)
+    decsp3.o                  runtime/decsp3.s(8)
     decsp2.o                  runtime/decsp2.s(8)
     decsp1.o                  runtime/decsp1.s(8)
     crt0.o                    /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/asminc/zeropage.inc(11)
@@ -1612,9 +1577,9 @@ sreg (zeropage.o):
     lneg.o                    runtime/lneg.s(11)
     ltoa.o                    common/ltoa.s(11)
     _printf.o                 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/asminc/zeropage.inc(11)
+    umod.o                    runtime/umod.s(9)
     udiv.o                    runtime/udiv.s(10)
     steaxsp.o                 runtime/steaxsp.s(8)
-    mod.o                     runtime/mod.s(12)
     lsubeqsp.o                runtime/lsubeqsp.s(8)
     lsubeq.o                  runtime/lsubeq.s(12)
     lsub.o                    runtime/lsub.s(12)
@@ -1624,6 +1589,7 @@ sreg (zeropage.o):
     ldec.o                    runtime/ldec.s(9)
     ldeaxysp.o                runtime/ldeaxysp.s(12)
     land.o                    runtime/land.s(10)
+    laddeqsp.o                runtime/laddeqsp.s(8)
     laddeq.o                  runtime/laddeq.s(12)
     ladd.o                    runtime/ladd.s(9)
     icmp.o                    runtime/icmp.s(9)
@@ -1633,102 +1599,103 @@ sreg (zeropage.o):
     screen.o                  screen.s(10)
     memory.o                  memory.s(10)
     draw.o                    draw.s(10)
+    layout.o                  layout.s(10)
 staspidx (staspidx.o):
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    draw.o                    draw.s(536)
 stax0sp (staxsp.o):
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
 staxysp (staxsp.o):
-    draw.o                    draw.s(400)
-    layout.o                  layout.s(588)
+    draw.o                    draw.s(536)
 steax0sp (steaxsp.o):
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    draw.o                    draw.s(400)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    draw.o                    draw.s(536)
 steaxysp (steaxsp.o):
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    draw.o                    draw.s(400)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    draw.o                    draw.s(536)
+    draw.o                    draw.s(536)
+    layout.o                  layout.s(434)
 subysp (subysp.o):
-    screen.o                  screen.s(1661)
-    draw.o                    draw.s(400)
-    main.o                    main.s(473)
+    screen.o                  screen.s(1659)
+    draw.o                    draw.s(536)
+    main.o                    main.s(232)
 tmp1 (zeropage.o):
     mul.o                     runtime/mul.s(10)
     ltoa.o                    common/ltoa.s(11)
     _printf.o                 /media/js/29a565b2-0370-40e9-bddc-690a30787715/mega65/codeEnv/cc65/asminc/zeropage.inc(13)
     staspidx.o                runtime/staspidx.s(9)
-    shelp.o                   runtime/shelp.s(12)
     or.o                      runtime/or.s(10)
-    mod.o                     runtime/mod.s(12)
     ldec.o                    runtime/ldec.s(9)
     land.o                    runtime/land.s(10)
     ladd.o                    runtime/ladd.s(9)
-    div.o                     runtime/div.s(12)
     asreax4.o                 runtime/asreax4.s(8)
     aslax4.o                  runtime/aslax4.s(8)
     aslax2.o                  runtime/aslax2.s(8)
     add.o                     runtime/add.s(12)
 tmp2 (zeropage.o):
     rwcommon.o                cbm/rwcommon.s(10)
-    shelp.o                   runtime/shelp.s(12)
-    div.o                     runtime/div.s(12)
 tmp3 (zeropage.o):
 tmp4 (zeropage.o):
 tosadd0ax (ladd.o):
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    draw.o                    draw.s(536)
+    draw.o                    draw.s(536)
+    layout.o                  layout.s(434)
 tosadda0 (add.o):
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
 tosaddax (add.o):
 tosaddeax (ladd.o):
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    draw.o                    draw.s(400)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    draw.o                    draw.s(536)
+    draw.o                    draw.s(536)
+    layout.o                  layout.s(434)
 tosand0ax (land.o):
     memory.o                  memory.s(389)
     memory.o                  memory.s(389)
     memory.o                  memory.s(389)
     memory.o                  memory.s(389)
 tosandeax (land.o):
-tosdiva0 (div.o):
-    layout.o                  layout.s(588)
-tosdivax (div.o):
 tosicmp (icmp.o):
-    draw.o                    draw.s(400)
+    draw.o                    draw.s(536)
 tosicmp0 (icmp.o):
 toslong (toslong.o):
-tosmoda0 (mod.o):
-    layout.o                  layout.s(588)
-tosmodax (mod.o):
 tosmula0 (mul8.o):
 tosmulax (mul.o):
 tosora0 (or.o):
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
 tosorax (or.o):
 tossub0ax (lsub.o):
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
+    screen.o                  screen.s(1659)
 tossubeax (lsub.o):
 tosudiva0 (udiv.o):
+    layout.o                  layout.s(434)
 tosudivax (udiv.o):
     fwrite.o                  common/fwrite.s(12)
 tosulong (toslong.o):
-    screen.o                  screen.s(1661)
+    screen.o                  screen.s(1659)
+tosumoda0 (umod.o):
+    layout.o                  layout.s(434)
+tosumodax (umod.o):
 tosumula0 (mul8.o):
 tosumulax (mul.o):
     fwrite.o                  common/fwrite.s(12)
 udiv16 (udiv.o):
-    shelp.o                   runtime/shelp.s(11)
+    umod.o                    runtime/umod.s(8)
 unittab (filedes.o):
 zerobss (zerobss.o):
     crt0.o                    c64/crt0.s(9)
