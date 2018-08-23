@@ -10,10 +10,10 @@
 	.importzp	sp, sreg, regsave, regbank
 	.importzp	tmp1, tmp2, tmp3, tmp4, ptr1, ptr2, ptr3, ptr4
 	.macpack	longbranch
+	.import		_printf
 	.import		_gotoxy
 	.import		_cgetc
 	.import		_textcolor
-	.import		_printf
 	.import		_rectangle
 	.import		_panel
 	.import		_lfill
@@ -22,32 +22,30 @@
 
 .segment	"RODATA"
 
-L0076:
-	.byte	$D3,$CD,$D3,$3A,$20,$C3,$4F,$4E,$54,$41,$43,$54,$20,$4E,$41,$4D
-	.byte	$45,$00
-L0087:
-	.byte	$C1,$44,$44,$2F,$C5,$44,$49,$54,$20,$43,$4F,$4E,$54,$41,$43,$54
+L01D7:
+	.byte	$53,$4D,$53,$3A,$20,$43,$6F,$6E,$74,$61,$63,$74,$20,$6E,$61,$6D
+	.byte	$65,$00
+L01E8:
+	.byte	$41,$64,$64,$2F,$45,$64,$69,$74,$20,$63,$6F,$6E,$74,$61,$63,$74
 	.byte	$00
-L000D:
-	.byte	$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$00
-L005E:
-	.byte	$C9,$4E,$43,$4F,$4D,$49,$4E,$47,$20,$43,$41,$4C,$4C,$00
-L001B:
-	.byte	$C3,$4F,$4E,$54,$41,$43,$54,$53,$00
-L00AE:
-	.byte	$C3,$4F,$4E,$46,$49,$52,$4D,$00
-L0096:
-	.byte	$CE,$55,$4D,$42,$45,$52,$00
-L00BF:
-	.byte	$C4,$45,$4C,$45,$54,$45,$00
-L009C:
-	.byte	$CD,$41,$49,$4C,$00
-L0090:
-	.byte	$CE,$41,$4D,$45,$00
-L006D:
-	.byte	$C5,$4E,$44,$00
-L007D:
-	.byte	$25,$44,$00
+L01BF:
+	.byte	$49,$6E,$63,$6F,$6D,$69,$6E,$67,$20,$63,$61,$6C,$6C,$00
+L01B5:
+	.byte	$43,$6F,$6E,$74,$61,$63,$74,$73,$00
+L020F:
+	.byte	$43,$6F,$6E,$66,$69,$72,$6D,$00
+L01F7:
+	.byte	$4E,$75,$6D,$62,$65,$72,$00
+L0220:
+	.byte	$44,$65,$6C,$65,$74,$65,$00
+L01FD:
+	.byte	$4D,$61,$69,$6C,$00
+L01F1:
+	.byte	$4E,$61,$6D,$65,$00
+L01CE:
+	.byte	$45,$6E,$64,$00
+L01DE:
+	.byte	$25,$64,$00
 
 ; ---------------------------------------------------------------
 ; unsigned char __near__ clearNumero (void)
@@ -59,15 +57,6 @@ L007D:
 
 .segment	"CODE"
 
-	lda     #$01
-	jsr     pusha
-	lda     #$03
-	jsr     _gotoxy
-	lda     #<(L000D)
-	ldx     #>(L000D)
-	jsr     pushax
-	ldy     #$02
-	jsr     _printf
 	ldx     #$00
 	txa
 	rts
@@ -75,57 +64,73 @@ L007D:
 .endproc
 
 ; ---------------------------------------------------------------
-; unsigned char __near__ layout (unsigned char)
+; void __near__ layout (unsigned char)
 ; ---------------------------------------------------------------
 
 .segment	"CODE"
 
 .proc	_layout: near
 
+.segment	"RODATA"
+
+L010E:
+	.byte	$31,$00
+	.res	2,$00
+	.byte	$32,$00
+	.res	2,$00
+	.byte	$33,$00
+	.res	2,$00
+	.byte	$34,$00
+	.res	2,$00
+	.byte	$35,$00
+	.res	2,$00
+	.byte	$36,$00
+	.res	2,$00
+	.byte	$37,$00
+	.res	2,$00
+	.byte	$38,$00
+	.res	2,$00
+	.byte	$39,$00
+	.res	2,$00
+	.byte	$23,$00
+	.res	2,$00
+	.byte	$30,$00
+	.res	2,$00
+	.byte	$2A,$00
+	.res	2,$00
+	.byte	$41,$64,$64,$00
+	.byte	$43,$61,$6C,$00
+	.byte	$43,$6C,$72,$00
+
 .segment	"CODE"
 
 	jsr     pusha
-	jsr     decsp3
-	ldy     #$03
-	ldx     #$00
+	ldy     #$41
+	jsr     subysp
+	ldy     #$3B
+L011D:	lda     L010E,y
+	sta     (sp),y
+	dey
+	bpl     L011D
+	ldy     #$41
 	lda     (sp),y
 	cmp     #$01
-	beq     L0015
+	beq     L0122
 	cmp     #$02
-	jeq     L0058
+	jeq     L01B9
 	cmp     #$03
-	jeq     L0070
+	jeq     L01D1
 	cmp     #$04
-	jeq     L0081
-	jmp     L00C6
-L0015:	jsr     decsp6
-	lda     #$1A
-	ldy     #$05
-	sta     (sp),y
-	lda     #$02
-	dey
-	sta     (sp),y
-	lda     #$18
-	dey
-	sta     (sp),y
-	dea
-	dey
-	sta     (sp),y
-	lda     #<(L001B)
-	sta     (sp)
-	dey
-	lda     #>(L001B)
-	sta     (sp),y
-	lda     #$0F
-	jsr     _panel
-	jsr     decsp4
+	jeq     L01E2
+	jmp     L010A
+L0122:	jsr     decsp4
 	lda     #$00
 	ldy     #$03
 	sta     (sp),y
-	lda     #$02
+	ina
 	dey
 	sta     (sp),y
-	lda     #$19
+	lda     #$15
 	dey
 	sta     (sp),y
 	lda     #$03
@@ -133,98 +138,363 @@ L0015:	jsr     decsp6
 	lda     #$06
 	jsr     _rectangle
 	lda     #$00
-	ldy     #$02
-	sta     (sp),y
-	tax
-L00C5:	lda     (sp),y
-	cmp     #$09
-	jcs     L00C6
-	jsr     pusha0
-	lda     #$03
-	jsr     tosudiva0
-	cpx     #$00
-	bne     L002C
-	cmp     #$00
-	bne     L002C
-	lda     #$05
-	bra     L00C7
-L002C:	ldy     #$02
+	ldy     #$40
+L0234:	sta     (sp),y
+	cmp     #$0F
+	jcs     L012A
 	lda     (sp),y
 	jsr     pusha0
 	lda     #$03
 	jsr     tosudiva0
 	cpx     #$00
-	bne     L0032
+	bne     L0131
+	cmp     #$00
+	bne     L0131
+	lda     #$04
+	bra     L0231
+L0131:	ldy     #$40
+	lda     (sp),y
+	jsr     pusha0
+	lda     #$03
+	jsr     tosudiva0
+	cpx     #$00
+	bne     L0137
 	cmp     #$01
-	bne     L0032
-	lda     #$0A
-	bra     L00C7
-L0032:	lda     #$0F
-L00C7:	sta     (sp)
-	ldy     #$02
+	bne     L0137
+	lda     #$09
+	bra     L0231
+L0137:	ldy     #$40
+	lda     (sp),y
+	jsr     pusha0
+	lda     #$03
+	jsr     tosudiva0
+	cpx     #$00
+	bne     L013D
+	cmp     #$02
+	bne     L013D
+	lda     #$0E
+	bra     L0231
+L013D:	ldy     #$40
+	lda     (sp),y
+	jsr     pusha0
+	lda     #$03
+	jsr     tosudiva0
+	cpx     #$00
+	bne     L0143
+	cmp     #$03
+	bne     L0143
+	lda     #$13
+	bra     L0231
+L0143:	lda     #$18
+L0231:	ldy     #$3D
+	sta     (sp),y
+	ldy     #$40
 	lda     (sp),y
 	jsr     pusha0
 	lda     #$03
 	jsr     tosumoda0
-	jsr     mulax5
-	ldy     #$01
+	jsr     mulax7
+	ldy     #$3E
 	sta     (sp),y
-	jsr     decsp4
-	ldy     #$05
+	ldy     #$40
+	ldx     #$00
+	lda     (sp),y
+	jsr     aslax2
+	sta     ptr1
+	txa
+	clc
+	adc     sp+1
+	sta     ptr1+1
+	ldy     sp
+	lda     (ptr1),y
+	cmp     #$30
+	bcc     L0152
+	ldy     #$40
+	ldx     #$00
+	lda     (sp),y
+	jsr     aslax2
+	sta     ptr1
+	txa
+	clc
+	adc     sp+1
+	sta     ptr1+1
+	ldy     sp
+	lda     (ptr1),y
+	cmp     #$3A
+	bcc     L022C
+L0152:	ldy     #$40
+	ldx     #$00
+	lda     (sp),y
+	jsr     aslax2
+	sta     ptr1
+	txa
+	clc
+	adc     sp+1
+	sta     ptr1+1
+	ldy     sp
+	lda     (ptr1),y
+	cmp     #$2A
+	beq     L022C
+	ldy     #$40
+	ldx     #$00
+	lda     (sp),y
+	jsr     aslax2
+	sta     ptr1
+	txa
+	clc
+	adc     sp+1
+	sta     ptr1+1
+	ldy     sp
+	lda     (ptr1),y
+	cmp     #$23
+	bne     L014E
+L022C:	jsr     decsp4
+	ldy     #$42
 	lda     (sp),y
 	ldy     #$03
 	sta     (sp),y
-	iny
+	ldy     #$41
 	lda     (sp),y
 	ldy     #$02
 	sta     (sp),y
-	lda     #$05
+	lda     #$07
 	dey
 	sta     (sp),y
+	lda     #$05
 	sta     (sp)
 	ina
-	jsr     _rectangle
-	ldy     #$01
+	jmp     L0228
+L014E:	ldy     #$40
 	ldx     #$00
 	lda     (sp),y
+	jsr     aslax2
+	sta     ptr1
+	txa
 	clc
-	adc     #$02
-	bcc     L0048
+	adc     sp+1
+	sta     ptr1+1
+	ldy     sp
+	lda     (ptr1),y
+	cmp     #$41
+	bne     L0161
+	jsr     decsp4
+	ldy     #$42
+	lda     (sp),y
+	ldy     #$03
+	sta     (sp),y
+	ldy     #$41
+	lda     (sp),y
+	ldy     #$02
+	sta     (sp),y
+	lda     #$07
+	dey
+	sta     (sp),y
+	lda     #$05
+	sta     (sp)
+	lda     #$07
+	bra     L0228
+L0161:	ldy     #$40
+	ldx     #$00
+	lda     (sp),y
+	jsr     aslax2
+	sta     ptr1
+	txa
+	clc
+	adc     sp+1
+	sta     ptr1+1
+	ldy     sp
+	lda     (ptr1),y
+	cmp     #$43
+	bne     L016C
+	ldy     #$40
+	ldx     #$00
+	lda     (sp),y
+	jsr     aslax2
+	clc
+	adc     sp
+	sta     ptr1
+	txa
+	adc     sp+1
+	sta     ptr1+1
+	ldy     #$01
+	lda     (ptr1),y
+	cmp     #$61
+	bne     L016C
+	jsr     decsp4
+	ldy     #$42
+	lda     (sp),y
+	ldy     #$03
+	sta     (sp),y
+	ldy     #$41
+	lda     (sp),y
+	ldy     #$02
+	sta     (sp),y
+	lda     #$07
+	dey
+	sta     (sp),y
+	lda     #$05
+	sta     (sp)
+	bra     L0228
+L016C:	jsr     decsp4
+	ldy     #$42
+	lda     (sp),y
+	ldy     #$03
+	sta     (sp),y
+	ldy     #$41
+	lda     (sp),y
+	ldy     #$02
+	sta     (sp),y
+	lda     #$07
+	dey
+	sta     (sp),y
+	lda     #$05
+	sta     (sp)
+	lda     #$02
+L0228:	jsr     _rectangle
+	lda     #$00
+	ldy     #$3F
+	jmp     L0232
+L0183:	ldy     #$40
+	ldx     #$00
+	lda     (sp),y
+	jsr     aslax2
+	sta     ptr1
+	txa
+	clc
+	adc     sp+1
+	sta     ptr1+1
+	ldy     sp
+	lda     (ptr1),y
+	cmp     #$30
+	bcc     L018D
+	ldy     #$40
+	ldx     #$00
+	lda     (sp),y
+	jsr     aslax2
+	sta     ptr1
+	txa
+	clc
+	adc     sp+1
+	sta     ptr1+1
+	ldy     sp
+	lda     (ptr1),y
+	cmp     #$3A
+	bcc     L022F
+L018D:	ldy     #$40
+	ldx     #$00
+	lda     (sp),y
+	jsr     aslax2
+	sta     ptr1
+	txa
+	clc
+	adc     sp+1
+	sta     ptr1+1
+	ldy     sp
+	lda     (ptr1),y
+	cmp     #$2A
+	beq     L022F
+	ldy     #$40
+	ldx     #$00
+	lda     (sp),y
+	jsr     aslax2
+	sta     ptr1
+	txa
+	clc
+	adc     sp+1
+	sta     ptr1+1
+	ldy     sp
+	lda     (ptr1),y
+	cmp     #$23
+	bne     L0230
+L022F:	lda     #$02
+	bra     L0233
+L0230:	lda     #$01
+L0233:	ldy     #$3C
+	sta     (sp),y
+	ldx     #$00
+	ldy     #$3F
+	lda     (sp),y
+	clc
+	dey
+	adc     (sp),y
+	bcc     L0223
 	inx
-L0048:	sta     ptr1
+L0223:	sta     ptr1
+	stx     ptr1+1
+	ldy     #$3C
+	lda     (sp),y
+	clc
+	adc     ptr1
+	ldx     ptr1+1
+	bcc     L0224
+	inx
+L0224:	ina
+	bne     L019F
+	inx
+L019F:	sta     ptr1
 	txa
 	clc
 	adc     #$F4
 	sta     ptr1+1
 	ldx     #$00
-	lda     (sp)
+	iny
+	lda     (sp),y
 	clc
 	adc     #$02
-	bcc     L004A
+	bcc     L01A1
 	inx
-L004A:	jsr     shlax4
+L01A1:	jsr     shlax4
 	jsr     shlax2
 	clc
 	adc     ptr1
-	sta     ptr1
+	pha
 	txa
 	adc     ptr1+1
-	sta     ptr1+1
-	iny
-	lda     (sp),y
-	ina
-	clc
-	adc     #$30
-	sta     (ptr1)
-	jsr     decsp5
-	ldy     #$06
+	tax
+	pla
+	jsr     pushax
+	ldy     #$42
 	ldx     #$00
 	lda     (sp),y
+	jsr     aslax2
 	clc
 	adc     #$02
-	bcc     L0052
+	bcc     L01A4
 	inx
-L0052:	jsr     push0ax
+	clc
+L01A4:	adc     sp
+	sta     ptr1
+	txa
+	adc     sp+1
+	sta     ptr1+1
+	dey
+	lda     (sp),y
+	tay
+	lda     (ptr1),y
+	ldy     #$00
+	jsr     staspidx
+	jsr     decsp5
+	ldx     #$00
+	ldy     #$44
+	lda     (sp),y
+	clc
+	dey
+	adc     (sp),y
+	bcc     L0225
+	inx
+L0225:	sta     ptr1
+	stx     ptr1+1
+	ldy     #$41
+	lda     (sp),y
+	clc
+	adc     ptr1
+	ldx     ptr1+1
+	bcc     L0226
+	inx
+L0226:	ina
+	bne     L01AA
+	inx
+L01AA:	jsr     push0ax
 	ldx     #$00
 	lda     #$F8
 	sta     sreg
@@ -233,14 +503,14 @@ L0052:	jsr     push0ax
 	txa
 	jsr     tosaddeax
 	jsr     pusheax
-	ldy     #$09
+	ldy     #$46
 	ldx     #$00
 	lda     (sp),y
 	clc
 	adc     #$02
-	bcc     L0054
+	bcc     L01AC
 	inx
-L0054:	jsr     shlax4
+L01AC:	jsr     shlax4
 	jsr     shlax2
 	jsr     tosadd0ax
 	ldy     #$01
@@ -249,29 +519,67 @@ L0054:	jsr     shlax4
 	sta     (sp)
 	ldx     #$00
 	jsr     _lfill
-	ldy     #$02
-	ldx     #$00
+	ldy     #$3F
 	lda     (sp),y
 	ina
-	sta     (sp),y
-	jmp     L00C5
-L0058:	jsr     decsp6
+L0232:	sta     (sp),y
+	iny
+	ldx     #$00
+	lda     (sp),y
+	jsr     aslax2
+	clc
+	adc     sp
+	sta     ptr1
 	txa
+	adc     sp+1
+	sta     ptr1+1
+	dey
+	lda     (sp),y
+	tay
+	lda     (ptr1),y
+	jne     L0183
+	ldy     #$40
+	lda     (sp),y
+	ina
+	jmp     L0234
+L012A:	jsr     decsp6
+	lda     #$16
 	ldy     #$05
 	sta     (sp),y
-	lda     #$02
+	lda     #$01
+	dey
+	sta     (sp),y
+	lda     #$1C
+	dey
+	sta     (sp),y
+	lda     #$18
+	dey
+	sta     (sp),y
+	lda     #<(L01B5)
+	sta     (sp)
+	dey
+	lda     #>(L01B5)
+	sta     (sp),y
+	lda     #$0F
+	jsr     _panel
+	jmp     L010A
+L01B9:	jsr     decsp6
+	lda     #$00
+	ldy     #$05
+	sta     (sp),y
+	ina
 	dey
 	sta     (sp),y
 	lda     #$32
 	dey
 	sta     (sp),y
-	lda     #$17
+	lda     #$18
 	dey
 	sta     (sp),y
-	lda     #<(L005E)
+	lda     #<(L01BF)
 	sta     (sp)
 	dey
-	lda     #>(L005E)
+	lda     #>(L01BF)
 	sta     (sp),y
 	lda     #$0F
 	jsr     _panel
@@ -295,56 +603,56 @@ L0058:	jsr     decsp6
 	jsr     _gotoxy
 	lda     #$02
 	jsr     _textcolor
-	lda     #<(L006D)
-	ldx     #>(L006D)
-	jmp     L00CA
-L0070:	jsr     decsp6
-	txa
+	lda     #<(L01CE)
+	ldx     #>(L01CE)
+	jmp     L0237
+L01D1:	jsr     decsp6
+	lda     #$00
 	ldy     #$05
 	sta     (sp),y
-	lda     #$02
+	ina
 	dey
 	sta     (sp),y
 	lda     #$32
 	dey
 	sta     (sp),y
-	lda     #$17
+	lda     #$18
 	dey
 	sta     (sp),y
-	lda     #<(L0076)
+	lda     #<(L01D7)
 	sta     (sp)
 	dey
-	lda     #>(L0076)
+	lda     #>(L01D7)
 	sta     (sp),y
 	lda     #$0F
 	jsr     _panel
 	lda     #$0A
 	jsr     pusha
 	jsr     _gotoxy
-	lda     #<(L007D)
-	ldx     #>(L007D)
+	lda     #<(L01DE)
+	ldx     #>(L01DE)
 	jsr     pushax
 	jsr     _cgetc
 	jsr     pushax
 	ldy     #$04
-	jmp     L00C8
-L0081:	jsr     decsp6
-	txa
+	jmp     L0235
+L01E2:	jsr     decsp6
+	lda     #$00
 	ldy     #$05
 	sta     (sp),y
-	lda     #$02
+	ina
 	dey
 	sta     (sp),y
 	lda     #$32
 	dey
 	sta     (sp),y
-	lda     #$17
+	lda     #$18
 	dey
 	sta     (sp),y
-	lda     #<(L0087)
+	lda     #<(L01E8)
 	sta     (sp)
 	dey
-	lda     #>(L0087)
+	lda     #>(L01E8)
 	sta     (sp),y
 	lda     #$0F
 	jsr     _panel
@@ -352,28 +660,28 @@ L0081:	jsr     decsp6
 	jsr     _textcolor
 	lda     #$02
 	jsr     pusha
-	lda     #$06
+	lda     #$05
 	jsr     _gotoxy
-	lda     #<(L0090)
-	ldx     #>(L0090)
+	lda     #<(L01F1)
+	ldx     #>(L01F1)
 	jsr     pushax
 	ldy     #$02
 	jsr     _printf
 	lda     #$02
 	jsr     pusha
-	lda     #$0A
+	lda     #$09
 	jsr     _gotoxy
-	lda     #<(L0096)
-	ldx     #>(L0096)
+	lda     #<(L01F7)
+	ldx     #>(L01F7)
 	jsr     pushax
 	ldy     #$02
 	jsr     _printf
 	lda     #$02
 	jsr     pusha
-	lda     #$0E
+	lda     #$0D
 	jsr     _gotoxy
-	lda     #<(L009C)
-	ldx     #>(L009C)
+	lda     #<(L01FD)
+	ldx     #>(L01FD)
 	jsr     pushax
 	ldy     #$02
 	jsr     _printf
@@ -396,8 +704,8 @@ L0081:	jsr     decsp6
 	jsr     _gotoxy
 	lda     #$05
 	jsr     _textcolor
-	lda     #<(L00AE)
-	ldx     #>(L00AE)
+	lda     #<(L020F)
+	ldx     #>(L020F)
 	jsr     pushax
 	ldy     #$02
 	jsr     _printf
@@ -421,14 +729,13 @@ L0081:	jsr     decsp6
 	jsr     _gotoxy
 	lda     #$02
 	jsr     _textcolor
-	lda     #<(L00BF)
-	ldx     #>(L00BF)
-L00CA:	jsr     pushax
+	lda     #<(L0220)
+	ldx     #>(L0220)
+L0237:	jsr     pushax
 	ldy     #$02
-L00C8:	jsr     _printf
-	ldx     #$00
-L00C6:	txa
-	jmp     incsp4
+L0235:	jsr     _printf
+L010A:	ldy     #$42
+	jmp     addysp
 
 .endproc
 

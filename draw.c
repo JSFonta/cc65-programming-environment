@@ -1,7 +1,7 @@
-#include <conio.h>
 #include "include.h"
 #include "screen.h"
 #include "memory.h"
+#include "ascii.h"
 
 /**
  *  @brief          draw a full rectangle which erase all char under its position
@@ -82,7 +82,9 @@ void rectangle(const unsigned char x, const unsigned char y,
  *  @param  height  size of the rectangle, from y to y+height; height > 1
  *  @param  title   title at the top center, too long title will be cut
  */
-void panel(unsigned char x, unsigned char y, unsigned char width, unsigned char height, char title[MAX_LENGTH_TITLE], unsigned char color)
+void panel(unsigned char x, unsigned char y, unsigned char width,
+           unsigned char height, char title[MAX_LENGTH_TITLE], 
+           unsigned char color)
 {
     unsigned char titleLenght = 0;
     unsigned char i;
@@ -105,18 +107,27 @@ void panel(unsigned char x, unsigned char y, unsigned char width, unsigned char 
     {
         titleLenght++;
     }
-    firstCharPosition = x+(width-titleLenght+2)/2;
+    firstCharPosition = x+(width-titleLenght+1)/2;
     i=0;
 
     // Set text colour
-    lfill(COLOUR_RAM_ADDRESS+x+y*64, COLOR_WHITE, titleLenght);
+    lfill(COLOUR_RAM_ADDRESS+firstCharPosition+(y+1)*64, COLOR_WHITE, titleLenght);
 
-    while(i<width-2 && i<titleLenght)
+    // Write the title
+    for(i=0; i<titleLenght; i++)
     {
-        POKE(SCREEN_ADDRESS+10+x+i+(y+1)*64, title[i]);
-        i++;
+        POKE(SCREEN_ADDRESS+i+firstCharPosition+(y+1)*64, *(title+i));
     }
 
     // Draw a line under the title
+    lfill(SCREEN_ADDRESS+(y+2)*64+x+1, HORIZONTAL, width-2);
+    POKE(SCREEN_ADDRESS+(y+2)*64+x, SEPARATOR_LEFT);
+    POKE(SCREEN_ADDRESS+(y+2)*64+x+width-1, SEPARATOR_RIGHT);
+
+    // Set the color of the line
+    lfill(COLOUR_RAM_ADDRESS+(y+2)*64+x, color, width);
+
+
+    return;
 
 }

@@ -1,14 +1,11 @@
-#include <conio.h>
 #include "draw.h"
 #include "screen.h"
 #include "memory.h"
+#include "ascii.h"
 
 unsigned char clearNumero(void)
 {
-    gotoxy(1,3);
-
-    printf("              ");
-
+    
     return 0;
 }
 
@@ -23,27 +20,95 @@ unsigned char clearNumero(void)
  *                  4 = add contact
  *  @return         code which indicate the state : -1 if error, 0 or higher if it is ok
  */
-unsigned char layout(unsigned char screen)
+void layout(unsigned char screen)
 {
 
     // Loop var
-    unsigned char i;
+    unsigned char i, j;
 
     // Coordinate var
-    unsigned char numberx, numbery;
+    unsigned char numberx, numbery, offsetx;
+
+    char toDisplay[15][4] = {"1", "2", "3",
+                             "4", "5", "6",
+                             "7", "8", "9",
+                             "#", "0", "*",
+                             "Add", "Cal", "Clr"};
 
     switch(screen)
     {
         case 1: // Main screen
 
-            // Display contacts section into the right column
-            panel(SCREEN_WIDTH-RIGHT_COLUMN_WIDTH, HEADER_HEIGHT, RIGHT_COLUMN_WIDTH, SCREEN_HEIGHT-HEADER_HEIGHT, "Contacts", COLOR_GRAY3);
-
             // Display number composition
             rectangle(0, HEADER_HEIGHT, LEFT_COLUMN_WIDTH, 3, COLOR_BLUE);
 
-            // Display numbers
-            for(i=0; i<9; i++)
+            // Display keyboard
+            for(i=0; i<15; i++)
+            {
+                if(i/3 == 0)
+                {
+                    numbery = 4;
+                }
+                else if(i/3 == 1)
+                {
+                    numbery = 9;
+                }
+                else if(i/3 == 2)
+                {
+                    numbery = 14;
+                }
+                else if(i/3 == 3)
+                {
+                    numbery = 19;
+                }
+                else
+                {
+                    numbery = 24;
+                }
+
+                numberx = (i%3)*7;
+
+                // Draw rectangle
+                if(toDisplay[i][0] >= '0' && toDisplay[i][0] <= '9' || toDisplay[i][0] == '*' || toDisplay[i][0] == '#')
+                {
+                    rectangle(numberx, numbery, 7, 5, COLOR_BLUE);
+                }
+                else if(toDisplay[i][0] == 'A')
+                {
+                    rectangle(numberx, numbery, 7, 5, COLOR_YELLOW);
+                }
+                else if(toDisplay[i][0] == 'C' && toDisplay[i][1] == 'a')
+                {
+                    rectangle(numberx, numbery, 7, 5, COLOR_GREEN);
+                }
+                else
+                {
+                    rectangle(numberx, numbery, 7, 5, COLOR_RED);
+                }
+
+                // display text
+                j = 0;
+                while(toDisplay[i][j] != '\0')
+                {
+                    // Center
+                    if(toDisplay[i][0] >= '0' && toDisplay[i][0] <= '9' || toDisplay[i][0] == '*' || toDisplay[i][0] == '#')
+                    {
+                        offsetx = 2;
+                    }
+                    else
+                    {
+                        offsetx = 1;
+                    }
+                    POKE(SCREEN_ADDRESS+(numberx+j+offsetx+1)+64*(numbery+2), toDisplay[i][j]);
+                    lfill(COLOUR_RAM_ADDRESS+(numberx+j+offsetx+1)+64*(numbery+2), COLOR_WHITE, 1);
+                    
+                    j++;
+                }
+
+            }
+
+            // Display keyboard
+            /*for(i=0; i<9; i++)
             {
                 if(i/3 == 0)
                 {
@@ -61,9 +126,9 @@ unsigned char layout(unsigned char screen)
                 numberx = (i%3)*5;
 
                 rectangle(numberx, numbery, 5, 5, COLOR_BLUE);
-                POKE(SCREEN_ADDRESS+(numberx+2)+64*(numbery+2), i+1+48);
+                POKE(SCREEN_ADDRESS+(numberx+2)+64*(numbery+2), i+49);
                 lfill(COLOUR_RAM_ADDRESS+(numberx+2)+64*(numbery+2), COLOR_WHITE, 1);
-            }
+            }*/
             /*
             // Display 0, #, *
             rectangle(15, 5, 5, 5, COLOR_BLUE);
@@ -80,7 +145,7 @@ unsigned char layout(unsigned char screen)
             gotoxy(17,17);
             textcolor(COLOR_WHITE);
             printf("0");
-
+            
             // Display function button and + : Call, +, Erase, Add contact
             rectangle(0, 20, 5, 5, COLOR_GREEN);
             gotoxy(1,22);
@@ -102,6 +167,11 @@ unsigned char layout(unsigned char screen)
             textcolor(COLOR_WHITE);
             printf("Add");
             */
+
+            // Display contacts section into the right column
+            panel(SCREEN_WIDTH-RIGHT_COLUMN_WIDTH, HEADER_HEIGHT, RIGHT_COLUMN_WIDTH, SCREEN_HEIGHT-HEADER_HEIGHT, "Contacts", COLOR_GRAY3);
+
+
             break;
 
         case 2: // Call
@@ -156,5 +226,5 @@ unsigned char layout(unsigned char screen)
 
     }
 
-    return 0;
+    return;
 }

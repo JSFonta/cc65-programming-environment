@@ -14,8 +14,6 @@
 	.import		_printf
 	.import		_mega65_fast
 	.import		_setup_screen
-	.import		_write_line
-	.import		_clrscr
 	.import		_layout
 	.export		_setupSerial
 	.export		_write_modem
@@ -32,8 +30,6 @@ _modem_line_len:
 
 .segment	"RODATA"
 
-L016A:
-	.byte	$48,$65,$6C,$6C,$6F,$20,$77,$6F,$72,$6C,$64,$21,$00
 L0127:
 	.byte	$25,$73,$0A,$00
 
@@ -75,7 +71,7 @@ _modem_line:
 	jsr     pusha
 	jsr     decsp1
 	lda     #$00
-L0178:	sta     (sp)
+L0173:	sta     (sp)
 	ldy     #$01
 	cmp     (sp),y
 	jeq     incsp4
@@ -91,7 +87,7 @@ L0178:	sta     (sp)
 	sta     $D0E0
 	lda     (sp)
 	ina
-	bra     L0178
+	bra     L0173
 
 .endproc
 
@@ -131,16 +127,16 @@ L0178:	sta     (sp)
 	lda     (sp)
 	beq     L013B
 	cmp     #$0D
-	beq     L0179
+	beq     L0174
 	cmp     #$0A
-	bne     L017A
-L0179:	ldy     _modem_line_len
+	bne     L0175
+L0174:	ldy     _modem_line_len
 	lda     #$00
 	sta     _modem_line,y
 	jsr     _process_modem_line
 	stz     _modem_line_len
 	jmp     incsp1
-L017A:	lda     _modem_line_len
+L0175:	lda     _modem_line_len
 	cmp     #$FE
 	bcs     L013B
 	inc     _modem_line_len
@@ -218,15 +214,9 @@ L0155:	lda     L0150,y
 	lda     #$53
 	sta     $D02F
 	jsr     _setupSerial
-	lda     #<(L016A)
-	ldx     #>(L016A)
-	jsr     pushax
-	lda     #$00
-	jsr     _write_line
-	jsr     _clrscr
 	lda     #$01
 	jsr     _layout
-L017B:	bra     L017B
+L0176:	bra     L0176
 
 .endproc
 

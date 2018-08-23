@@ -104,8 +104,6 @@ int main(int argc,char **argv)
 
     // Configure serial
     setupSerial();
-
-    write_line("Hello world!", 0);
     
     /*
     while(1) {
@@ -139,8 +137,7 @@ int main(int argc,char **argv)
         sleep(10);
     }*/
 
-    // Clear all the screen
-    clrscr();
+    
 
     layout(1);
 
