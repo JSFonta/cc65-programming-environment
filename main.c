@@ -71,7 +71,7 @@ int main(int argc,char **argv)
 { 
   
   // Loop variable
-    unsigned char i, j; 
+    unsigned char i, j, layoutIndex; 
 
     // Buffer for keyboard input
     char inputBuffer[100];
@@ -138,11 +138,212 @@ int main(int argc,char **argv)
     }*/
 
     
-
-    layout(1);
+    // Home
+    layoutIndex = 1;
+    layout(layoutIndex);
 
     while(1)
     {
+        // Home
+        if(layoutIndex == 1)
+        {
+
+            // Display the stdin buffer content
+            i=0;
+            while(inputBuffer[i] != '\0')
+            {
+                POKE(SCREEN_ADDRESS+64*(HEADER_HEIGHT+1)+2+i, inputBuffer[i]);
+                i++;
+            }
+
+            // Something to read from input ?
+            while(kbhit() != 0)
+            {
+                // Read the character into the stdin
+                currentCharacter = cgetc();
+
+                // Clear the inputBuffer
+                if(currentCharacter == 'e' || currentCharacter == 'E')
+                {
+                    i=0;
+                    while(inputBuffer[i] != '\0')
+                    {
+                        // Replace by white space
+                        POKE(SCREEN_ADDRESS+64*2+2+i, ' ');
+                        i++;
+                    }
+
+                    // Re initialize the buffer index
+                    indexBuffer = 0;
+                    inputBuffer[indexBuffer] = '\0';
+                }
+
+                // Call
+                else if(currentCharacter == 'c' || currentCharacter == 'C')
+                {
+                    // Change the layout
+                    layoutIndex = 2;
+                    layout(layoutIndex);
+                }
+
+                // Add contact
+                else if(currentCharacter == 'a' || currentCharacter == 'A')
+                {
+                    // Change the layout
+                    layoutIndex = 4;
+                    layout(layoutIndex);
+                }
+
+                // SMS
+                else if(currentCharacter == 's' || currentCharacter == 'S')
+                {
+                    // Change the layout
+                    layoutIndex = 3;
+                    layout(layoutIndex);
+                }
+
+                // Escape -> go back main menu
+                else if(currentCharacter == 3)
+                {
+                    // Change the layout
+                    layout(1);
+                }
+
+                // Numero typing
+                else
+                {
+                    // No more than 14 numeros
+                    if(indexBuffer < 14)
+                    {
+                        // Be sure it is a number
+                        if(currentCharacter == '0' || currentCharacter == '1' || currentCharacter == '2' || currentCharacter == '3' || currentCharacter == '4' || currentCharacter == '5' || currentCharacter == '6' || currentCharacter == '7' || currentCharacter == '8' || currentCharacter == '9' || currentCharacter == '#' || currentCharacter == '*' || currentCharacter == '+')
+                        {
+                            inputBuffer[indexBuffer] = currentCharacter;
+                            inputBuffer[indexBuffer+1] = '\0';
+                            indexBuffer++;
+                        }
+                    }
+                }
+            }
+
+        }
+        else if(layoutIndex == 2)
+        {
+            // Call
+
+            displayText("Call with ", (HEADER_HEIGHT+4)*64+2, COLOR_WHITE);
+            displayText(indexBuffer ? inputBuffer : "nobody :( Make some friends :)", (HEADER_HEIGHT+4)*64+12, COLOR_WHITE);
+
+            // Something to read from input ?
+            while(kbhit() != 0)
+            {
+
+                // Read the character into the stdin
+                currentCharacter = cgetc();
+
+                // Escape -> go back main menu
+                if(currentCharacter == 3)
+                {
+                    // Change the layout
+                    layoutIndex = 1;
+                    layout(layoutIndex);
+                }
+            }
+
+        }
+        else if(layoutIndex == 3)
+        {
+            // SMS
+
+            displayText("28/08 10:06 | Jean-Sebastien :", (HEADER_HEIGHT+7)*64+SCREEN_WIDTH-32, COLOR_RED);
+            displayText("Hey, welcome on this marvelous screen !", (HEADER_HEIGHT+8)*64+SCREEN_WIDTH-40, COLOR_GRAY3);
+
+            displayText("You | 28/08 10:15", (HEADER_HEIGHT+4)*64+3, COLOR_BLUE);
+            displayText("Thanks man ! Nice example :-)", (HEADER_HEIGHT+5)*64+2, COLOR_GRAY3);
+
+            // Display the stdin buffer content
+            displayText(inputBuffer, (SCREEN_HEIGHT-3)*SCREEN_COLS+3, COLOR_WHITE);
+
+            // Something to read from input ?
+            while(kbhit() != 0)
+            {
+
+                // Read the character into the stdin
+                currentCharacter = cgetc();
+
+                // Escape -> go back main menu
+                if(currentCharacter == 3)
+                {
+                    // Change the layout
+                    layoutIndex = 1;
+                    layout(layoutIndex);
+                }
+
+                // Clear the inputBuffer
+                else if(currentCharacter == 'e' || currentCharacter == 'E')
+                {
+                    i=0;
+                    while(inputBuffer[i] != '\0')
+                    {
+                        // Replace by white space
+                        POKE(SCREEN_ADDRESS+(SCREEN_HEIGHT-3)*SCREEN_COLS+3+i, ' ');
+                        i++;
+                    }
+
+                    // Re initialize the buffer index
+                    indexBuffer = 0;
+                    inputBuffer[indexBuffer] = '\0';
+                }
+
+                // Send the text
+                else if(currentCharacter == 's' || currentCharacter == 'S')
+                {
+                    i=0;
+                    while(inputBuffer[i] != '\0')
+                    {
+                        // Replace by white space
+                        POKE(SCREEN_ADDRESS+(SCREEN_HEIGHT-3)*SCREEN_COLS+3+i, ' ');
+                        i++;
+                    }
+
+                    // Re initialize the buffer index
+                    indexBuffer = 0;
+                    inputBuffer[indexBuffer] = '\0';
+                }
+
+                // Text typing
+                else
+                {
+                    // No more than 255 chars
+                    if(indexBuffer < 255)
+                    {
+                        inputBuffer[indexBuffer] = currentCharacter;
+                        inputBuffer[indexBuffer+1] = '\0';
+                        indexBuffer++;
+                    }
+                }
+            }
+        }
+
+        else if(layoutIndex == 4)
+        {
+            // Something to read from input ?
+            while(kbhit() != 0)
+            {
+
+                // Read the character into the stdin
+                currentCharacter = cgetc();
+
+                // Escape -> go back main menu
+                if(currentCharacter == 3)
+                {
+                    // Change the layout
+                    layoutIndex = 1;
+                    layout(layoutIndex);
+                }
+            }
+        }
+
         // Header
 
         // Display data

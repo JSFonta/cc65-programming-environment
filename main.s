@@ -14,7 +14,10 @@
 	.import		_printf
 	.import		_mega65_fast
 	.import		_setup_screen
+	.import		_kbhit
+	.import		_cgetc
 	.import		_layout
+	.import		_displayText
 	.export		_setupSerial
 	.export		_write_modem
 	.export		_modem_line
@@ -30,6 +33,24 @@ _modem_line_len:
 
 .segment	"RODATA"
 
+L01FD:
+	.byte	$48,$65,$79,$2C,$20,$77,$65,$6C,$63,$6F,$6D,$65,$20,$6F,$6E,$20
+	.byte	$74,$68,$69,$73,$20,$6D,$61,$72,$76,$65,$6C,$6F,$75,$73,$20,$73
+	.byte	$63,$72,$65,$65,$6E,$20,$21,$00
+L01E0:
+	.byte	$6E,$6F,$62,$6F,$64,$79,$20,$3A,$28,$20,$4D,$61,$6B,$65,$20,$73
+	.byte	$6F,$6D,$65,$20,$66,$72,$69,$65,$6E,$64,$73,$20,$3A,$29,$00
+L01F7:
+	.byte	$32,$38,$2F,$30,$38,$20,$31,$30,$3A,$30,$36,$20,$7C,$20,$4A,$65
+	.byte	$61,$6E,$2D,$53,$65,$62,$61,$73,$74,$69,$65,$6E,$20,$3A,$00
+L0209:
+	.byte	$54,$68,$61,$6E,$6B,$73,$20,$6D,$61,$6E,$20,$21,$20,$4E,$69,$63
+	.byte	$65,$20,$65,$78,$61,$6D,$70,$6C,$65,$20,$3A,$2D,$29,$00
+L0203:
+	.byte	$59,$6F,$75,$20,$7C,$20,$32,$38,$2F,$30,$38,$20,$31,$30,$3A,$31
+	.byte	$35,$00
+L01D7:
+	.byte	$43,$61,$6C,$6C,$20,$77,$69,$74,$68,$20,$00
 L0127:
 	.byte	$25,$73,$0A,$00
 
@@ -71,7 +92,7 @@ _modem_line:
 	jsr     pusha
 	jsr     decsp1
 	lda     #$00
-L0173:	sta     (sp)
+L0277:	sta     (sp)
 	ldy     #$01
 	cmp     (sp),y
 	jeq     incsp4
@@ -87,7 +108,7 @@ L0173:	sta     (sp)
 	sta     $D0E0
 	lda     (sp)
 	ina
-	bra     L0173
+	bra     L0277
 
 .endproc
 
@@ -127,16 +148,16 @@ L0173:	sta     (sp)
 	lda     (sp)
 	beq     L013B
 	cmp     #$0D
-	beq     L0174
+	beq     L0278
 	cmp     #$0A
-	bne     L0175
-L0174:	ldy     _modem_line_len
+	bne     L0279
+L0278:	ldy     _modem_line_len
 	lda     #$00
 	sta     _modem_line,y
 	jsr     _process_modem_line
 	stz     _modem_line_len
 	jmp     incsp1
-L0175:	lda     _modem_line_len
+L0279:	lda     _modem_line_len
 	cmp     #$FE
 	bcs     L013B
 	inc     _modem_line_len
@@ -184,7 +205,7 @@ L0150:
 
 .segment	"CODE"
 
-	ldy     #$66
+	ldy     #$67
 	jsr     subysp
 	lda     #$00
 	jsr     pusha
@@ -215,8 +236,569 @@ L0155:	lda     L0150,y
 	sta     $D02F
 	jsr     _setupSerial
 	lda     #$01
+	ldy     #$E9
+	sta     (sp),y
 	jsr     _layout
-L0176:	bra     L0176
+L016D:	ldy     #$E9
+L027B:	lda     (sp),y
+	cmp     #$01
+	jne     L028D
+	dea
+	ldy     #$EB
+	bra     L029D
+L0175:	ldy     #$EB
+	lda     (sp),y
+	clc
+	adc     #$82
+	pha
+	lda     #$00
+	adc     #$F4
+	tax
+	pla
+	jsr     pushax
+	lda     sp
+	ldx     sp+1
+	clc
+	adc     #$87
+	bcc     L0183
+	inx
+L0183:	ldy     #$ED
+	clc
+	adc     (sp),y
+	bcc     L0184
+	inx
+L0184:	sta     ptr1
+	stx     ptr1+1
+	ldy     #$00
+	lda     (ptr1)
+	jsr     staspidx
+	ldy     #$EB
+	lda     (sp),y
+	ina
+L029D:	sta     (sp),y
+	lda     sp
+	ldx     sp+1
+	clc
+	adc     #$85
+	bcc     L02A1
+	inx
+	clc
+L02A1:	adc     (sp),y
+	bcc     L017B
+	inx
+L017B:	sta     ptr1
+	stx     ptr1+1
+	lda     (ptr1)
+	bne     L0175
+	jmp     L01C5
+L0186:	jsr     _cgetc
+	ldy     #$83
+	sta     (sp),y
+	cmp     #$65
+	beq     L027D
+	lda     (sp),y
+	cmp     #$45
+	bne     L0281
+L027D:	lda     #$00
+	ldy     #$EB
+	bra     L029E
+L0191:	ldy     #$EB
+	lda     (sp),y
+	clc
+	adc     #$82
+	sta     ptr1
+	lda     #$00
+	adc     #$F4
+	sta     ptr1+1
+	lda     #$20
+	sta     (ptr1)
+	ldy     #$EB
+	lda     (sp),y
+	ina
+L029E:	sta     (sp),y
+	lda     sp
+	ldx     sp+1
+	clc
+	adc     #$85
+	bcc     L02A2
+	inx
+	clc
+L02A2:	adc     (sp),y
+	bcc     L0197
+	inx
+L0197:	sta     ptr1
+	stx     ptr1+1
+	lda     (ptr1)
+	bne     L0191
+	ldy     #$84
+	sta     (sp),y
+	lda     sp
+	ldx     sp+1
+	clc
+	adc     #$85
+	bcc     L027F
+	inx
+L027F:	sta     ptr1
+	stx     ptr1+1
+	lda     (sp),y
+	tay
+	lda     #$00
+	sta     (ptr1),y
+	jmp     L01C5
+L0281:	lda     (sp),y
+	cmp     #$63
+	beq     L0282
+	cmp     #$43
+	bne     L0284
+L0282:	lda     #$02
+	ldy     #$E9
+	sta     (sp),y
+	jsr     _layout
+	jmp     L01C5
+L0284:	lda     (sp),y
+	cmp     #$61
+	beq     L0285
+	cmp     #$41
+	bne     L0287
+L0285:	lda     #$04
+	ldy     #$E9
+	sta     (sp),y
+	jsr     _layout
+	jmp     L01C5
+L0287:	lda     (sp),y
+	cmp     #$73
+	beq     L0288
+	cmp     #$53
+	bne     L028A
+L0288:	lda     #$03
+	ldy     #$E9
+	sta     (sp),y
+	jsr     _layout
+	jmp     L01C5
+L028A:	lda     (sp),y
+	cmp     #$03
+	bne     L01BE
+	lda     #$01
+	jsr     _layout
+	bra     L01C5
+L01BE:	iny
+	lda     (sp),y
+	cmp     #$0E
+	bcs     L01C5
+	dey
+	lda     (sp),y
+	cmp     #$30
+	beq     L028B
+	cmp     #$31
+	beq     L028B
+	cmp     #$32
+	beq     L028B
+	cmp     #$33
+	beq     L028B
+	cmp     #$34
+	beq     L028B
+	cmp     #$35
+	beq     L028B
+	cmp     #$36
+	beq     L028B
+	cmp     #$37
+	beq     L028B
+	cmp     #$38
+	beq     L028B
+	cmp     #$39
+	beq     L028B
+	cmp     #$23
+	beq     L028B
+	cmp     #$2A
+	beq     L028B
+	cmp     #$2B
+	bne     L01C5
+L028B:	lda     sp
+	ldx     sp+1
+	clc
+	adc     #$85
+	bcc     L01CA
+	inx
+L01CA:	sta     ptr1
+	stx     ptr1+1
+	lda     (sp),y
+	pha
+	iny
+	lda     (sp),y
+	tay
+	pla
+	sta     (ptr1),y
+	ldy     #$84
+	ldx     #$00
+	lda     (sp),y
+	ina
+	bne     L01CF
+	inx
+L01CF:	clc
+	adc     #$85
+	bcc     L01D0
+	inx
+	clc
+L01D0:	adc     sp
+	sta     ptr1
+	txa
+	adc     sp+1
+	sta     ptr1+1
+	lda     #$00
+	sta     (ptr1)
+	ldy     #$84
+	lda     (sp),y
+	ina
+	sta     (sp),y
+L01C5:	jsr     _kbhit
+	cmp     #$00
+	jne     L0186
+	jmp     L016D
+L028D:	lda     (sp),y
+	cmp     #$02
+	bne     L028F
+	jsr     decsp6
+	lda     #<(L01D7)
+	ldy     #$04
+	sta     (sp),y
+	iny
+	lda     #>(L01D7)
+	sta     (sp),y
+	lda     #$42
+	sta     (sp)
+	lda     #$01
+	tay
+	sta     (sp),y
+	dea
+	iny
+	sta     (sp),y
+	iny
+	sta     (sp),y
+	ina
+	jsr     _displayText
+	jsr     decsp6
+	ldy     #$8A
+	lda     (sp),y
+	beq     L01DE
+	lda     sp
+	ldx     sp+1
+	clc
+	adc     #$8B
+	bcc     L01E2
+	inx
+	bra     L01E2
+L01DE:	lda     #<(L01E0)
+	ldx     #>(L01E0)
+L01E2:	ldy     #$04
+	sta     (sp),y
+	iny
+	txa
+	sta     (sp),y
+	lda     #$4C
+	sta     (sp)
+	lda     #$01
+	tay
+	sta     (sp),y
+	dea
+	iny
+	sta     (sp),y
+	iny
+	sta     (sp),y
+	ina
+	jsr     _displayText
+	bra     L01ED
+L01E7:	jsr     _cgetc
+	ldy     #$83
+	sta     (sp),y
+	cmp     #$03
+	bne     L01ED
+	lda     #$01
+	ldy     #$E9
+	sta     (sp),y
+	jsr     _layout
+L01ED:	jsr     _kbhit
+	cmp     #$00
+	bne     L01E7
+	jmp     L016D
+L028F:	lda     (sp),y
+	cmp     #$03
+	jne     L029C
+	jsr     decsp6
+	lda     #<(L01F7)
+	ldy     #$04
+	sta     (sp),y
+	iny
+	lda     #>(L01F7)
+	sta     (sp),y
+	lda     #$12
+	sta     (sp)
+	lda     #$02
+	ldy     #$01
+	sta     (sp),y
+	lda     #$00
+	iny
+	sta     (sp),y
+	iny
+	sta     (sp),y
+	lda     #$02
+	jsr     _displayText
+	jsr     decsp6
+	lda     #<(L01FD)
+	ldy     #$04
+	sta     (sp),y
+	iny
+	lda     #>(L01FD)
+	sta     (sp),y
+	lda     #$4A
+	sta     (sp)
+	lda     #$02
+	ldy     #$01
+	sta     (sp),y
+	lda     #$00
+	iny
+	sta     (sp),y
+	iny
+	sta     (sp),y
+	lda     #$0F
+	jsr     _displayText
+	jsr     decsp6
+	lda     #<(L0203)
+	ldy     #$04
+	sta     (sp),y
+	iny
+	lda     #>(L0203)
+	sta     (sp),y
+	lda     #$43
+	sta     (sp)
+	lda     #$01
+	tay
+	sta     (sp),y
+	dea
+	iny
+	sta     (sp),y
+	iny
+	sta     (sp),y
+	lda     #$06
+	jsr     _displayText
+	jsr     decsp6
+	lda     #<(L0209)
+	ldy     #$04
+	sta     (sp),y
+	iny
+	lda     #>(L0209)
+	sta     (sp),y
+	lda     #$82
+	sta     (sp)
+	lda     #$01
+	tay
+	sta     (sp),y
+	dea
+	iny
+	sta     (sp),y
+	iny
+	sta     (sp),y
+	lda     #$0F
+	jsr     _displayText
+	jsr     decsp6
+	lda     sp
+	ldx     sp+1
+	clc
+	adc     #$8B
+	bcc     L0210
+	inx
+L0210:	ldy     #$04
+	sta     (sp),y
+	iny
+	txa
+	sta     (sp),y
+	lda     #$C3
+	sta     (sp)
+	lda     #$06
+	ldy     #$01
+	sta     (sp),y
+	lda     #$00
+	iny
+	sta     (sp),y
+	iny
+	sta     (sp),y
+	ina
+	jsr     _displayText
+	jmp     L0257
+L0214:	jsr     _cgetc
+	ldy     #$83
+	sta     (sp),y
+	cmp     #$03
+	bne     L0291
+	lda     #$01
+	ldy     #$E9
+	sta     (sp),y
+	jsr     _layout
+	jmp     L0257
+L0291:	lda     (sp),y
+	cmp     #$65
+	beq     L0292
+	cmp     #$45
+	bne     L0296
+L0292:	lda     #$00
+	ldy     #$EB
+	bra     L029F
+L0226:	ldy     #$EB
+	lda     (sp),y
+	clc
+	adc     #$C3
+	sta     ptr1
+	lda     #$00
+	adc     #$FA
+	sta     ptr1+1
+	lda     #$20
+	sta     (ptr1)
+	ldy     #$EB
+	lda     (sp),y
+	ina
+L029F:	sta     (sp),y
+	lda     sp
+	ldx     sp+1
+	clc
+	adc     #$85
+	bcc     L02A3
+	inx
+	clc
+L02A3:	adc     (sp),y
+	bcc     L022C
+	inx
+L022C:	sta     ptr1
+	stx     ptr1+1
+	lda     (ptr1)
+	bne     L0226
+	ldy     #$84
+	sta     (sp),y
+	lda     sp
+	ldx     sp+1
+	clc
+	adc     #$85
+	bcc     L0294
+	inx
+L0294:	sta     ptr1
+	stx     ptr1+1
+	lda     (sp),y
+	tay
+	lda     #$00
+	sta     (ptr1),y
+	jmp     L0257
+L0296:	lda     (sp),y
+	cmp     #$73
+	beq     L0297
+	cmp     #$53
+	bne     L023C
+L0297:	lda     #$00
+	ldy     #$EB
+	bra     L02A0
+L0241:	ldy     #$EB
+	lda     (sp),y
+	clc
+	adc     #$C3
+	sta     ptr1
+	lda     #$00
+	adc     #$FA
+	sta     ptr1+1
+	lda     #$20
+	sta     (ptr1)
+	ldy     #$EB
+	lda     (sp),y
+	ina
+L02A0:	sta     (sp),y
+	lda     sp
+	ldx     sp+1
+	clc
+	adc     #$85
+	bcc     L02A4
+	inx
+	clc
+L02A4:	adc     (sp),y
+	bcc     L0247
+	inx
+L0247:	sta     ptr1
+	stx     ptr1+1
+	lda     (ptr1)
+	bne     L0241
+	ldy     #$84
+	sta     (sp),y
+	lda     sp
+	ldx     sp+1
+	clc
+	adc     #$85
+	bcc     L0299
+	inx
+L0299:	sta     ptr1
+	stx     ptr1+1
+	lda     (sp),y
+	tay
+	lda     #$00
+	sta     (ptr1),y
+	bra     L0257
+L023C:	iny
+	lda     (sp),y
+	cmp     #$FF
+	bcs     L0257
+	lda     sp
+	ldx     sp+1
+	clc
+	adc     #$85
+	bcc     L029A
+	inx
+L029A:	sta     ptr1
+	stx     ptr1+1
+	dey
+	lda     (sp),y
+	pha
+	iny
+	lda     (sp),y
+	tay
+	pla
+	sta     (ptr1),y
+	ldy     #$84
+	ldx     #$00
+	lda     (sp),y
+	ina
+	bne     L0260
+	inx
+L0260:	clc
+	adc     #$85
+	bcc     L0261
+	inx
+	clc
+L0261:	adc     sp
+	sta     ptr1
+	txa
+	adc     sp+1
+	sta     ptr1+1
+	lda     #$00
+	sta     (ptr1)
+	ldy     #$84
+	lda     (sp),y
+	ina
+	sta     (sp),y
+L0257:	jsr     _kbhit
+	cmp     #$00
+	jne     L0214
+	jmp     L016D
+L029C:	lda     (sp),y
+	cmp     #$04
+	jne     L027B
+	bra     L026D
+L0267:	jsr     _cgetc
+	ldy     #$83
+	sta     (sp),y
+	cmp     #$03
+	bne     L026D
+	lda     #$01
+	ldy     #$E9
+	sta     (sp),y
+	jsr     _layout
+L026D:	jsr     _kbhit
+	cmp     #$00
+	bne     L0267
+	jmp     L016D
 
 .endproc
 

@@ -40,7 +40,7 @@
 
 /* Input keyboard */
 
-#define SCREEN_HEIGHT           25
+#define SCREEN_HEIGHT           30
 #define SCREEN_WIDTH            50
 
 #define HEADER_HEIGHT           1
