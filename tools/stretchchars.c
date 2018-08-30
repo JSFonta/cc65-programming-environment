@@ -43,6 +43,9 @@ int main(int argc,char **argv)
     }
   }
 
+  // XXX - A hack to set char FD to the right shape for the left edge of the buttons
+  for(int i=0;i<8;i++) buffer[0xfd*8+i]=0xfe;
+  
   FILE *out=fopen(argv[2],"w");
   fwrite(buffer,bytes,1,out);
   fclose(out);

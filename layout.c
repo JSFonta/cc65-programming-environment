@@ -42,16 +42,16 @@ void displayText(char * text, unsigned long startPosition, unsigned char color)
  */
 unsigned char pressed_button=4;
 unsigned char keypad_colours_1[]={
-  0x22,0x22,0x22,0x22,
-  0x00,0x22,0x22,0x22,0x22,
-  0x00,0x22,0x22,0x22,0x22,
-  0x00,0x27,0x27,0x27,0x27
+  0x22,0x22,0x22,0x22,0x22,
+  0x22,0x22,0x22,0x22,0x22,
+  0x22,0x22,0x22,0x22,0x22,
+  0x27,0x27,0x27,0x27,0x27
 };
 unsigned char keypad_colours_2[]={
-  0x25,0x25,0x25,0x25,
-  0x00,0x22,0x22,0x22,0x22,
-  0x00,0x27,0x27,0x27,0x27,
-  0x00,0x27,0x27,0x27,0x27
+  0x25,0x25,0x25,0x25,0x25,
+  0x22,0x22,0x22,0x22,0x22,
+  0x27,0x27,0x27,0x27,0x27,
+  0x27,0x27,0x27,0x27,0x27
 };
 void display_dialpad(void) {
   unsigned char i,j;
@@ -59,22 +59,22 @@ void display_dialpad(void) {
   unpack(packed_dialpad,SCREEN_ADDRESS+((HEADER_HEIGHT+2+1)*64),64);
   
   // Colour and reverse the keypad buttons
-  row_addr=COLOUR_RAM_ADDRESS+((HEADER_HEIGHT+2)*64)+1;
+  row_addr=COLOUR_RAM_ADDRESS+((HEADER_HEIGHT+2)*64);
   for(i=0;i<16;i++) {
-    if (i&3) lcopy(keypad_colours_1,row_addr,19);
+    if (i&3) lcopy(keypad_colours_1,row_addr,20);
     row_addr+=64;
   }
   for(i=0;i<4;i++) {
-    if (i&3) lcopy(keypad_colours_2,row_addr,19);
+    if (i&3) lcopy(keypad_colours_2,row_addr,20);
     row_addr+=64;
   }
 
   // XXX - Change colour of the button currently being pressed
-  row_addr=COLOUR_RAM_ADDRESS+((HEADER_HEIGHT+2+1)*64)+1;
+  row_addr=COLOUR_RAM_ADDRESS+((HEADER_HEIGHT+2+1)*64);
   row_addr+=(pressed_button&3)*5;
   row_addr+=(pressed_button/4)*(4*64);
   for(i=0;i<3;i++) {
-    lfill(row_addr,0x26,4);
+    lfill(row_addr,0x26,5);
     row_addr+=64;
   }
   

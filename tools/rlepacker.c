@@ -37,9 +37,9 @@ int emit_byte(unsigned char c)
 int emit_rle(void)
 {
   if (!last_count) return 0;
-  if (last_char>=0xf0) {
-    // Forced to use RLE for characters 0xf0 - 0xff
-    fprintf(stderr,"Characters 0xf0 - 0xff cannot be encoded.\n");
+  if (last_char>=0xf0&&last_char<=0xf8) {
+    // Forced to use RLE for characters 0xf0 - 0xf7
+    fprintf(stderr,"Characters 0xf0 - 0xf7 cannot be encoded.\n");
     exit(-3);
   } else {
     if (last_count>1) {
@@ -97,8 +97,14 @@ int emit_rle(void)
 int pack_char(unsigned char c)
 {
   input_len++;
+
+  // Special characters
+  if (c=='|') c=0xfd;
+  if (c=='~') c=0xff;
+  if (c=='/') c=0xfe;
+  
   if (c==last_char) {
-    if (last_count==16) {
+    if (last_count==8) {
       emit_rle();
       last_count=1;
       last_char=c;
@@ -166,7 +172,7 @@ int main(int argc,char **argv)
 	  input_len,encoded_len);
   for(int i=0;i<256;i++) {
     if (special_indexes[i]) {
-      fprintf(stderr,"  Big symbol '%c' begins at character 0x%02x (%d)\n",i,special_indexes[i],special_indexes[i]);
+      fprintf(stderr,"  Big symbol '%c' (%02x) begins at character 0x%02x (%d)\n",i,i,special_indexes[i],special_indexes[i]);
     }
   }
   

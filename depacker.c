@@ -8,7 +8,7 @@ void unpack(unsigned char *in,long addr,unsigned char line_len)
   unsigned char line_offset=0,count,c;
   while(*in) {
     POKE(0x8000+b,*in);
-    if ((*in)>=0xf0) {
+    if (((*in)>=0xf0)&&((*in)<0xf8)) {
       // Run of 1 -- 16 characters
       count=(*in)-0xEF;
       POKE(0x8000+b,count);
