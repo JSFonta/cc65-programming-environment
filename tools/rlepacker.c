@@ -139,7 +139,7 @@ int main(int argc,char **argv)
   
   FILE *f=fopen(argv[1],"r");
 
-  printf("unsigned char packed[]={\n");
+  printf("unsigned char packed_dialpad[]={\n");
   
   line[0]=0; fgets(line,1024,f);
   while(line[0]) {

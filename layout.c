@@ -2,6 +2,7 @@
 #include "screen.h"
 #include "memory.h"
 #include "ascii.h"
+#include "rlepacker.h"
 
 void clearScreen(void)
 {
@@ -71,69 +72,7 @@ void layout(unsigned char screen)
             rectangle(0, HEADER_HEIGHT, LEFT_COLUMN_WIDTH, 3, COLOR_BLUE);
 
             // Display keyboard
-            for(i=0; i<15; i++)
-            {
-                if(i/3 == 0)
-                {
-                    numbery = 4;
-                }
-                else if(i/3 == 1)
-                {
-                    numbery = 9;
-                }
-                else if(i/3 == 2)
-                {
-                    numbery = 14;
-                }
-                else if(i/3 == 3)
-                {
-                    numbery = 19;
-                }
-                else
-                {
-                    numbery = 24;
-                }
-
-                numberx = (i%3)*7;
-
-                // Draw rectangle
-                if(toDisplay[i][0] >= '0' && toDisplay[i][0] <= '9' || toDisplay[i][0] == '*' || toDisplay[i][0] == '#')
-                {
-                    rectangle(numberx, numbery, 7, 5, COLOR_BLUE+32);
-                }
-                else if(toDisplay[i][0] == 'A')
-                {
-                    rectangle(numberx, numbery, 7, 5, COLOR_YELLOW);
-                }
-                else if(toDisplay[i][0] == 'C' && toDisplay[i][1] == 'a')
-                {
-                    rectangle(numberx, numbery, 7, 5, COLOR_GREEN);
-                }
-                else
-                {
-                    rectangle(numberx, numbery, 7, 5, COLOR_RED);
-                }
-
-                // display text
-                j = 0;
-                while(toDisplay[i][j] != '\0')
-                {
-                    // Center
-                    if(toDisplay[i][0] >= '0' && toDisplay[i][0] <= '9' || toDisplay[i][0] == '*' || toDisplay[i][0] == '#')
-                    {
-                        offsetx = 2;
-                    }
-                    else
-                    {
-                        offsetx = 1;
-                    }
-                    POKE(SCREEN_ADDRESS+(numberx+j+offsetx+1)+64*(numbery+2), toDisplay[i][j]);
-                    lfill(COLOUR_RAM_ADDRESS+(numberx+j+offsetx+1)+64*(numbery+2), COLOR_WHITE+32, 1);
-                    
-                    j++;
-                }
-
-            }
+	    unpack(packed_dialpad,SCREEN_ADDRESS+(4*64)+1,64);
 
             // Display contacts section into the right column
             panel(SCREEN_WIDTH-RIGHT_COLUMN_WIDTH, HEADER_HEIGHT, RIGHT_COLUMN_WIDTH, SCREEN_HEIGHT-HEADER_HEIGHT-1, "Contacts", COLOR_GRAY3);

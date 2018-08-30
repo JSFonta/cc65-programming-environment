@@ -12,6 +12,7 @@ M65IDESOURCES=	main.c \
 		memory.c \
 		screen.c \
 		depacker.c \
+		packed_dialpad.c \
 		hal_mega65.c
 
 ASSFILES=	main.s \
@@ -20,6 +21,7 @@ ASSFILES=	main.s \
 		memory.s \
 		screen.s \
 		depacker.s \
+		packed_dialpad.s \
 		hal_mega65.s \
 		charset.s
 
@@ -71,6 +73,9 @@ tools/raw2bin:	tools/raw2bin.c
 
 tools/rlepacker:	tools/rlepacker.c
 	$(CC) -o tools/rlepacker tools/rlepacker.c
+
+packed_dialpad.c:	tools/rlepacker dialpad.txt
+	tools/rlepacker dialpad.txt > packed_dialpad.c
 
 example.prg:	$(ASSFILES) $(DATAFILES) $(CL65)
 	$(CL65) $(COPTS) $(LOPTS) -vm -m example.map -o example.prg $(ASSFILES)
