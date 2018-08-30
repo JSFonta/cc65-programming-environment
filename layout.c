@@ -33,16 +33,14 @@ void displayText(char * text, unsigned long startPosition, unsigned char color)
 }
 
 /**
- *  @brief          This function write on the screen the full layout of the app
- *  @author         Jean-Sebastien FONTA
- *  @date           14/08/2018
- *  @param  screen  the number of the screen to draw :
- *                  1 = main menu
- *                  2 = call
- *                  3 = sms
- *                  4 = add contact
- *  @return         code which indicate the state : -1 if error, 0 or higher if it is ok
+ *  @brief          Draw the dialpad on the screen
+ *  @author         Paul Gardner-Stephen
+ *  @date           30 AUG 2018
+ *  @param          pressed_button indicates which button, if any, should be
+ *                  displayed as though currently pressed.
+ *  @return         None
  */
+unsigned char pressed_button=4;
 unsigned char keypad_colours_1[]={
   0x22,0x22,0x22,0x22,
   0x00,0x22,0x22,0x22,0x22,
@@ -55,22 +53,54 @@ unsigned char keypad_colours_2[]={
   0x00,0x27,0x27,0x27,0x27,
   0x00,0x27,0x27,0x27,0x27
 };
+void display_dialpad(void) {
+  unsigned char i,j;
+  unsigned long row_addr;
+  unpack(packed_dialpad,SCREEN_ADDRESS+((HEADER_HEIGHT+2+1)*64),64);
+  
+  // Colour and reverse the keypad buttons
+  row_addr=COLOUR_RAM_ADDRESS+((HEADER_HEIGHT+2)*64)+1;
+  for(i=0;i<16;i++) {
+    if (i&3) lcopy(keypad_colours_1,row_addr,19);
+    row_addr+=64;
+  }
+  for(i=0;i<4;i++) {
+    if (i&3) lcopy(keypad_colours_2,row_addr,19);
+    row_addr+=64;
+  }
+
+  // XXX - Change colour of the button currently being pressed
+  row_addr=COLOUR_RAM_ADDRESS+((HEADER_HEIGHT+2+1)*64)+1;
+  row_addr+=(pressed_button&3)*5;
+  row_addr+=(pressed_button/4)*(4*64);
+  for(i=0;i<3;i++) {
+    lfill(row_addr,0x26,4);
+    row_addr+=64;
+  }
+  
+}
+
+
+/**
+ *  @brief          This function write on the screen the full layout of the app
+ *  @author         Jean-Sebastien FONTA
+ *  @date           14/08/2018
+ *  @param  screen  the number of the screen to draw :
+ *                  1 = main menu
+ *                  2 = call
+ *                  3 = sms
+ *                  4 = add contact
+ *  @return         code which indicate the state : -1 if error, 0 or higher if it is ok
+ */
 
 void layout(unsigned char screen)
 {
-
-    // Loop var
-    unsigned char i, j;
-
     // Incoming call (0) or outgoing call (1)
     unsigned char callType = 0;
 
     // Coordinate var
     unsigned char numberx, numbery, offsetx;
 
-    // Address when writing to screen
-    unsigned long row_addr;
-    
     // Clear the display
     clearScreen();
 
@@ -82,19 +112,8 @@ void layout(unsigned char screen)
             rectangle(0, HEADER_HEIGHT, LEFT_COLUMN_WIDTH, 3, COLOR_BLUE);
 
             // Display keypad
-	    unpack(packed_dialpad,SCREEN_ADDRESS+(4*64),64);
-
-	    // Colour and reverse the keypad buttons
-	    row_addr=COLOUR_RAM_ADDRESS+(3*64)+1;
-	    for(i=0;i<16;i++) {
-	      if (i&3) lcopy(keypad_colours_1,row_addr,19);
-	      row_addr+=64;
-	    }
-	    for(i=0;i<4;i++) {
-	      if (i&3) lcopy(keypad_colours_2,row_addr,19);
-	      row_addr+=64;
-	    }
-
+	    display_dialpad();
+	    
             // Display contacts section into the right column
             panel(SCREEN_WIDTH-RIGHT_COLUMN_WIDTH, HEADER_HEIGHT, RIGHT_COLUMN_WIDTH, SCREEN_HEIGHT-HEADER_HEIGHT-1, "Contacts", COLOR_GRAY3);
 
