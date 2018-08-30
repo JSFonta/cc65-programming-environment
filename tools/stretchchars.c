@@ -29,7 +29,6 @@ int main(int argc,char **argv)
 	  buffer[addr]=0;
 	  addr--;
 	  buffer[addr]=0;
-	  fprintf(stderr,"Clearing $%x\n",addr);
 	}
       for(int x=0;x<8;x++)
 	for(int y=0;y<7;y++) {

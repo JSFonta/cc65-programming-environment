@@ -50,7 +50,9 @@ ascii8x8.bin: font.png tools/pngprepare tools/raw2bin tools/stretchchars Makefil
 	# Convert PNG font to bin format
 	tools/pngprepare charrom font.png temp.bin
 	# Make expanded versions of select characters
-	tools/stretchchars temp.bin ascii8x8.bin 31:88 32:8c 33:90 34:94 35:98 36:9C 37:A0 38:A4 39:A8 30:AC
+	tools/stretchchars temp.bin ascii8x8.bin \
+		31:88 32:8c 33:90 34:94 35:98 36:9C 37:A0 38:A4 39:A8 30:AC \
+		23:BF 2A:C3 2B:DB 2D:D7 3D:DF 41:B0 42:B7 43:BB 44:C7
 
 asciih:	asciih.c
 	$(CC) -o asciih asciih.c
