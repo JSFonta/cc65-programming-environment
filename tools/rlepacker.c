@@ -17,7 +17,8 @@ int input_len=0;
 
 int bytes_on_line=0;
 
-int next_special_char=0x80;
+// 128 - 135 are used for other things, so we start at 136
+int next_special_char=136;
 
 int special_indexes[256];
 int special_offsets[256];
@@ -112,6 +113,29 @@ int main(int argc,char **argv)
   }
 
   for(int i=0;i<256;i++) special_indexes[i]=0;
+
+  // Offsets of various symbols from J-S's font:
+  special_indexes['1']=136;
+  special_offsets['1']=136;
+  special_indexes['2']=140;
+  special_offsets['2']=140;
+  special_indexes['3']=144;
+  special_offsets['3']=144;
+  special_indexes['4']=148;
+  special_offsets['4']=148;
+  special_indexes['5']=152;
+  special_offsets['5']=152;
+  special_indexes['6']=156;
+  special_offsets['6']=156;
+  special_indexes['7']=160;
+  special_offsets['7']=160;
+  special_indexes['8']=164;
+  special_offsets['8']=164;
+  special_indexes['9']=168;
+  special_offsets['9']=168;
+  special_indexes['0']=172;
+  special_offsets['0']=172;
+  next_special_char=176;
   
   FILE *f=fopen(argv[1],"r");
 
@@ -132,7 +156,7 @@ int main(int argc,char **argv)
 	  input_len,encoded_len);
   for(int i=0;i<256;i++) {
     if (special_indexes[i]) {
-      fprintf(stderr,"  Big symbol '%c' begins at character 0x%02x\n",i,special_indexes[i]);
+      fprintf(stderr,"  Big symbol '%c' begins at character 0x%02x (%d)\n",i,special_indexes[i],special_indexes[i]);
     }
   }
   
