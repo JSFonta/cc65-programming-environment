@@ -11,6 +11,7 @@ M65IDESOURCES=	main.c \
 		draw.c \
 		memory.c \
 		screen.c \
+		depacker.c \
 		hal_mega65.c
 
 ASSFILES=	main.s \
@@ -18,6 +19,7 @@ ASSFILES=	main.s \
 		draw.s \
 		memory.s \
 		screen.s \
+		depacker.s \
 		hal_mega65.s \
 		charset.s
 
@@ -66,6 +68,9 @@ tools/pngprepare:	tools/pngprepare.c
 
 tools/raw2bin:	tools/raw2bin.c
 	$(CC) -I/usr/local/include -L/usr/local/lib -o tools/raw2bin tools/raw2bin.c -lpng
+
+tools/rlepacker:	tools/rlepacker.c
+	$(CC) -o tools/rlepacker tools/rlepacker.c
 
 example.prg:	$(ASSFILES) $(DATAFILES) $(CL65)
 	$(CL65) $(COPTS) $(LOPTS) -vm -m example.map -o example.prg $(ASSFILES)
