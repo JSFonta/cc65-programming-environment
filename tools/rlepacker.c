@@ -69,10 +69,20 @@ int emit_rle(void)
 	  }
 	}
 	// Output the characters
-	while(last_count) {
-	  emit_byte(special_offsets[last_char]++);
-	  last_count--;
+	// Here is a bit tricky, because the font is arranged by row, but
+	// we are arranging by column
+	int first=special_offsets[last_char];
+	int skip=2;
+	switch (last_count) {
+	case 3: skip=1; break;
+	case 4: skip=3; break;
 	}
+	while(last_count) {
+	  emit_byte(first);
+	  last_count--;
+	  first+=skip;
+	}
+	special_offsets[last_char]++;
 	
       }
     } else {
