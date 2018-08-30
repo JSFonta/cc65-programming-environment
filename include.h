@@ -43,6 +43,6 @@
 #define SCREEN_HEIGHT           30
 #define SCREEN_WIDTH            50
 
-#define HEADER_HEIGHT           1
+#define HEADER_HEIGHT           7
 #define LEFT_COLUMN_WIDTH       21
 #define RIGHT_COLUMN_WIDTH      28
