@@ -25,14 +25,18 @@ int main(int argc,char **argv)
     if (sscanf(argv[i],"%x:%x",&from,&to)==2) {
       for(int x=0;x<8;x++)
 	for(int y=0;y<8;y++) {
-	  buffer[to+y*2+1+(x>>2)*16]=0;
+	  int addr=(to*8)+y*2+1+(x>>2)*16;
+	  buffer[addr]=0;
+	  addr--;
+	  buffer[addr]=0;
+	  fprintf(stderr,"Clearing $%x\n",addr);
 	}
       for(int x=0;x<8;x++)
-	for(int y=0;y<8;y++) {
-	  buffer[to+y*2+0+(x>>2)*16]|=( (buffer[from+y]&(1<<x))?1:0 ) << ( (x&3) << 1) ;
-	  buffer[to+y*2+0+(x>>2)*16]|=( (buffer[from+y]&(1<<x))?1:0 ) << ( 1+ ( (x&3) << 1) );
-	  buffer[to+y*2+1+(x>>2)*16]|=( (buffer[from+y]&(1<<x))?1:0 ) << ( (x&3) << 1) ;
-	  buffer[to+y*2+1+(x>>2)*16]|=( (buffer[from+y]&(1<<x))?1:0 ) << ( 1+ ( (x&3) << 1) );
+	for(int y=0;y<7;y++) {
+	  buffer[1+(to*8)+y*2+0+16-(x>>2)*16]|=( (buffer[(from*8)+y]&(1<<x))?1:0 ) << ( (x&3) << 1) ;
+	  buffer[1+(to*8)+y*2+0+16-(x>>2)*16]|=( (buffer[(from*8)+y]&(1<<x))?1:0 ) << ( 1+ ( (x&3) << 1) );
+	  buffer[1+(to*8)+y*2+1+16-(x>>2)*16]|=( (buffer[(from*8)+y]&(1<<x))?1:0 ) << ( (x&3) << 1) ;
+	  buffer[1+(to*8)+y*2+1+16-(x>>2)*16]|=( (buffer[(from*8)+y]&(1<<x))?1:0 ) << ( 1+ ( (x&3) << 1) );
 	}
       
     } else {
