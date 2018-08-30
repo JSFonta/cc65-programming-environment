@@ -394,7 +394,7 @@ L026C:	jsr     decsp4
 	sta     (sp),y
 	lda     #$05
 	sta     (sp)
-	ina
+	lda     #$26
 	jmp     L0268
 L0173:	ldy     #$41
 	ldx     #$00
@@ -647,9 +647,10 @@ L01D1:	jsr     shlax4
 	jsr     tosadd0ax
 	ldy     #$01
 	jsr     steaxysp
-	lda     #$01
+	lda     #$21
 	sta     (sp)
 	ldx     #$00
+	lda     #$01
 	jsr     _lfill
 	ldy     #$40
 	lda     (sp),y

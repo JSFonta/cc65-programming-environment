@@ -85,6 +85,8 @@ int main(int argc,char **argv)
     char data[4][10] = {"YES OPTUS", "09:26:30", "4G+", "Low"};
 
     // Define some contacts
+    unsigned char nbContacts = 5;
+    unsigned char currentContact = 0;
     char contacts[5][18] = {"Paul", "Js", "Secret", "Lorem Ipsum", "Flinders"};
 
     #ifdef __CC65__
@@ -115,28 +117,6 @@ int main(int argc,char **argv)
         POKE(53280,(PEEK(53280)+1)&15);
     }
     */
-
-    /*while(1)
-    {
-        int i;
-        int offset=4;
-        int addr = SCREEN_ADDRESS+64*3;
-        for(i=128;i<136;i++)
-        {
-            POKE(addr, i);
-            if(i==49||i==99||i==149)
-            {
-                addr=SCREEN_ADDRESS+64*offset;
-                offset++;
-            }
-            else
-            {
-                addr++;
-            }
-        }
-        sleep(10);
-    }*/
-
     
     // Home
     layoutIndex = 1;
@@ -163,7 +143,7 @@ int main(int argc,char **argv)
                 currentCharacter = cgetc();
 
                 // Clear the inputBuffer
-                if(currentCharacter == 'e' || currentCharacter == 'E')
+                if(currentCharacter == 20) // One by one better
                 {
                     i=0;
                     while(inputBuffer[i] != '\0')
@@ -176,6 +156,38 @@ int main(int argc,char **argv)
                     // Re initialize the buffer index
                     indexBuffer = 0;
                     inputBuffer[indexBuffer] = '\0';
+                }
+                
+                // Next or previous contact
+                if(currentCharacter == ',' || currentCharacter == '.')
+                {
+                    // Previous (above)
+                    if(currentCharacter == ',')
+                    {
+                        // Go to the previous contact or go back to the last one
+                        if(currentContact == 0)
+                        {
+                            currentContact = nbContacts-1;
+                        }
+                        else
+                        {
+                            currentContact--;
+                        }
+                    }
+
+                    // Next (below)
+                    else
+                    {
+                        // Go to the next contact or go back to the first one
+                        if(currentContact == nbContacts-1)
+                        {
+                            currentContact = 0;
+                        }
+                        else
+                        {
+                            currentContact++;
+                        }
+                    }
                 }
 
                 // Call
@@ -194,8 +206,8 @@ int main(int argc,char **argv)
                     layout(layoutIndex);
                 }
 
-                // SMS
-                else if(currentCharacter == 's' || currentCharacter == 'S')
+                // SMS to a contact
+                else if(currentCharacter == '/')
                 {
                     // Change the layout
                     layoutIndex = 3;
@@ -224,6 +236,13 @@ int main(int argc,char **argv)
                         }
                     }
                 }
+            }
+
+            // display contacts
+            for(i=0; i<nbContacts; i++)
+            {
+                // Display all contact, the first is "selected"
+                displayText(contacts[i], SCREEN_COLS*(HEADER_HEIGHT+4+i)+LEFT_COLUMN_WIDTH+3, i==currentContact?COLOR_YELLOW:COLOR_WHITE);
             }
 
         }

@@ -1,0 +1,1 @@
+make && sudo ./../run_prg ../mega65-core example.prg

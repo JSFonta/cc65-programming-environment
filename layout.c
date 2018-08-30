@@ -99,7 +99,7 @@ void layout(unsigned char screen)
                 // Draw rectangle
                 if(toDisplay[i][0] >= '0' && toDisplay[i][0] <= '9' || toDisplay[i][0] == '*' || toDisplay[i][0] == '#')
                 {
-                    rectangle(numberx, numbery, 7, 5, COLOR_BLUE);
+                    rectangle(numberx, numbery, 7, 5, COLOR_BLUE+32);
                 }
                 else if(toDisplay[i][0] == 'A')
                 {
@@ -128,7 +128,7 @@ void layout(unsigned char screen)
                         offsetx = 1;
                     }
                     POKE(SCREEN_ADDRESS+(numberx+j+offsetx+1)+64*(numbery+2), toDisplay[i][j]);
-                    lfill(COLOUR_RAM_ADDRESS+(numberx+j+offsetx+1)+64*(numbery+2), COLOR_WHITE, 1);
+                    lfill(COLOUR_RAM_ADDRESS+(numberx+j+offsetx+1)+64*(numbery+2), COLOR_WHITE+32, 1);
                     
                     j++;
                 }
