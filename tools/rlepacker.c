@@ -17,6 +17,11 @@ int input_len=0;
 
 int bytes_on_line=0;
 
+int next_special_char=0x80;
+
+int special_indexes[256];
+int special_offsets[256];
+
 int emit_byte(unsigned char c)
 {
   encoded_len++;
@@ -33,13 +38,42 @@ int emit_rle(void)
   if (!last_count) return 0;
   if (last_char>=0xf0) {
     // Forced to use RLE for characters 0xf0 - 0xff
-    emit_byte(0xf0+last_count-1);
-    emit_byte(last_char);
+    fprintf(stderr,"Characters 0xf0 - 0xff cannot be encoded.\n");
+    exit(-3);
   } else {
     if (last_count>1) {
       // Run of characters
-      emit_byte(0xf0+last_count-1);
-      emit_byte(last_char);
+      // If it is space, we RLE code it.
+      // If it is something else, then it is a place-holder for
+      // a large glyph
+      if (last_char==0x0a) {
+	while(last_count--) {
+	  emit_byte(0x0a);
+	}
+      }
+      else if (last_char==0x20) {
+	emit_byte(0xf0+last_count-1);
+      } else {
+	if (special_indexes[last_char]) {
+	  // We already have byte range allocated
+	} else {
+	  special_indexes[last_char]=next_special_char;
+	  special_offsets[last_char]=next_special_char;
+	  if (last_count==2) next_special_char+=4; // 2x2 for big digits
+	  if (last_count==3) next_special_char+=3; // 3x1 for voice mail button
+	  if (last_count==4) next_special_char+=12; // 4x3 for CALL button
+	  if (next_special_char>0xf0) {
+	    fprintf(stderr,"Too many special characters required.\n");
+	    exit(-3);
+	  }
+	}
+	// Output the characters
+	while(last_count) {
+	  emit_byte(special_offsets[last_char]++);
+	  last_count--;
+	}
+	
+      }
     } else {
       // Singleton
       emit_byte(last_char);      
@@ -76,6 +110,8 @@ int main(int argc,char **argv)
     fprintf(stderr,"usage: rlepacker <input file>\n");
     exit(-3);
   }
+
+  for(int i=0;i<256;i++) special_indexes[i]=0;
   
   FILE *f=fopen(argv[1],"r");
 
@@ -94,6 +130,11 @@ int main(int argc,char **argv)
   
   fprintf(stderr,"Input file of %d bytes packed to %d bytes\n",
 	  input_len,encoded_len);
-
+  for(int i=0;i<256;i++) {
+    if (special_indexes[i]) {
+      fprintf(stderr,"  Big symbol '%c' begins at character 0x%02x\n",i,special_indexes[i]);
+    }
+  }
+  
   return 0;
 }
