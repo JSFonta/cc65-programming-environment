@@ -46,19 +46,11 @@ $(CC65):
 	git submodule update
 	(cd cc65 && make -j 8)
 
-ascii8x8.bin: ascii00-7f.png tools/pngprepare tools/raw2bin
+ascii8x8.bin: font.png tools/pngprepare tools/raw2bin tools/stretchchars
 	# Convert PNG font to bin format
-	tools/pngprepare charrom ascii00-7f.png temp.bin
-	# Get the first 128 chars from our PNG derived character set
-	#dd if=temp.bin bs=1024 count=1 of=00-7f.bin
-	# Get the first 128+x chars from our PNG derived character set
-	dd if=temp.bin bs=2048 count=1 of=00-7f.bin
-	# Convert the codepage 437 from raw to bin format
-	#tools/raw2bin 8x8.raw 8x8.bin
-	# get the 2nd half of the chars from the codepage 437 file
-	#dd if=8x8.bin of=80-ff.bin bs=1024 skip=1
-	# Glue the first 128 chars from our PNG to the last 128 chars from the codepage 437 font
-	cat 00-7f.bin 80-ff.bin > ascii8x8.bin
+	tools/pngprepare charrom font.png temp.bin
+	# Make expanded versions of select characters
+	tools/stretchchars temp.bin ascii8x8.bin 31:84 32:88 33:8c 41:90
 
 asciih:	asciih.c
 	$(CC) -o asciih asciih.c
@@ -73,6 +65,9 @@ tools/raw2bin:	tools/raw2bin.c
 
 tools/rlepacker:	tools/rlepacker.c
 	$(CC) -o tools/rlepacker tools/rlepacker.c
+
+tools/stretchchars:	tools/stretchchars.c
+	$(CC) -o tools/stretchchars tools/stretchchars.c
 
 packed_dialpad.c:	tools/rlepacker dialpad.txt
 	tools/rlepacker dialpad.txt > packed_dialpad.c

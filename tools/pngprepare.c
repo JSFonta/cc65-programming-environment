@@ -216,6 +216,7 @@ void process_file(int mode, char *outputfilename)
       fprintf(outfile,"%c",byte);
       bytes++;
     }
+
     // Fill in any missing bytes
     if (bytes<2048) {
 
