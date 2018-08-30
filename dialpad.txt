@@ -1,0 +1,19 @@
+  11   22   33   AA
+  11   22   33   AA
+ ^^^  ABC  DEF  M+
+
+  44   55   66   BB
+  44   55   66   BB
+ GHI  JKL  MNO  MR
+
+  77   88   99   CC
+  77   88   99   CC
+ PQRS TUV  WXYZ MC
+
+  ##   00   **   DD
+  ##   00   **   DD
+ .    ~    /    RND
+
+ ZZZZ  ++   --   ==
+ ZZZZ  ++   --   ==
+ ZZZZ E    F    $
