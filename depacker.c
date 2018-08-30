@@ -30,7 +30,5 @@ void unpack(unsigned char *in,long addr,unsigned char line_len)
     b++;
   }
 
-  while(1) POKE(0xd020U,PEEK(0xd012U));
-  
   return;
 }

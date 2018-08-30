@@ -43,6 +43,19 @@ void displayText(char * text, unsigned long startPosition, unsigned char color)
  *                  4 = add contact
  *  @return         code which indicate the state : -1 if error, 0 or higher if it is ok
  */
+unsigned char keypad_colours_1[]={
+  0x22,0x22,0x22,0x22,
+  0x00,0x22,0x22,0x22,0x22,
+  0x00,0x22,0x22,0x22,0x22,
+  0x00,0x27,0x27,0x27,0x27
+};
+unsigned char keypad_colours_2[]={
+  0x25,0x25,0x25,0x25,
+  0x00,0x22,0x22,0x22,0x22,
+  0x00,0x27,0x27,0x27,0x27,
+  0x00,0x27,0x27,0x27,0x27
+};
+
 void layout(unsigned char screen)
 {
 
@@ -55,12 +68,9 @@ void layout(unsigned char screen)
     // Coordinate var
     unsigned char numberx, numbery, offsetx;
 
-    char toDisplay[15][4] = {"1", "2", "3",
-                             "4", "5", "6",
-                             "7", "8", "9",
-                             "#", "0", "*",
-                             "Add", "Cal", "Clr"};
-
+    // Address when writing to screen
+    unsigned long row_addr;
+    
     // Clear the display
     clearScreen();
 
@@ -71,8 +81,19 @@ void layout(unsigned char screen)
             // Display number composition
             rectangle(0, HEADER_HEIGHT, LEFT_COLUMN_WIDTH, 3, COLOR_BLUE);
 
-            // Display keyboard
-	    unpack(packed_dialpad,SCREEN_ADDRESS+(4*64)+1,64);
+            // Display keypad
+	    unpack(packed_dialpad,SCREEN_ADDRESS+(4*64),64);
+
+	    // Colour and reverse the keypad buttons
+	    row_addr=COLOUR_RAM_ADDRESS+(3*64)+1;
+	    for(i=0;i<16;i++) {
+	      if (i&3) lcopy(keypad_colours_1,row_addr,19);
+	      row_addr+=64;
+	    }
+	    for(i=0;i<4;i++) {
+	      if (i&3) lcopy(keypad_colours_2,row_addr,19);
+	      row_addr+=64;
+	    }
 
             // Display contacts section into the right column
             panel(SCREEN_WIDTH-RIGHT_COLUMN_WIDTH, HEADER_HEIGHT, RIGHT_COLUMN_WIDTH, SCREEN_HEIGHT-HEADER_HEIGHT-1, "Contacts", COLOR_GRAY3);
