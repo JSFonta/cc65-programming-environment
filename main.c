@@ -127,13 +127,14 @@ int main(int argc,char **argv)
         // Home
         if(layoutIndex == 1)
         {
-
             // Display the stdin buffer content
-            i=0;
-            while(inputBuffer[i] != '\0')
+            displayText(inputBuffer, 64*(HEADER_HEIGHT+1)+2, COLOR_WHITE);
+
+            // display contacts
+            for(i=0; i<nbContacts; i++)
             {
-                POKE(SCREEN_ADDRESS+64*(HEADER_HEIGHT+1)+2+i, inputBuffer[i]);
-                i++;
+                // Display all contact, the first is "selected"
+                displayText(contacts[i], SCREEN_COLS*(HEADER_HEIGHT+4+i)+LEFT_COLUMN_WIDTH+3, i==currentContact?COLOR_YELLOW:COLOR_WHITE);
             }
 
             // Something to read from input ?
@@ -143,15 +144,32 @@ int main(int argc,char **argv)
                 currentCharacter = cgetc();
 
                 // Clear the inputBuffer
-                if(currentCharacter == 20) // One by one better
+                // Backspace <=> 1 by 1
+                if(currentCharacter == 20)
                 {
-                    i=0;
-                    while(inputBuffer[i] != '\0')
+                    // Only 1 thing into the buffer or nothing
+                    if(indexBuffer == 0)
                     {
-                        // Replace by white space
-                        POKE(SCREEN_ADDRESS+64*2+2+i, ' ');
-                        i++;
+                        inputBuffer[indexBuffer] = '\0';
                     }
+                    // Usual case
+                    else if(indexBuffer > 0)
+                    {
+                        inputBuffer[indexBuffer-1] = '\0';
+                        indexBuffer--;
+                    }
+
+                    // Clear last character
+                    displayText("              ", 64*(HEADER_HEIGHT+1)+2, COLOR_BLACK);
+                }
+
+                // Clear the inputBuffer
+                // Erase <=> clear all
+                else if(currentCharacter == 'e' || currentCharacter == 'E')
+                {
+                    
+                    // Clear input field
+                    displayText("              ", 64*(HEADER_HEIGHT+1)+2, COLOR_BLACK);
 
                     // Re initialize the buffer index
                     indexBuffer = 0;
@@ -159,7 +177,7 @@ int main(int argc,char **argv)
                 }
                 
                 // Next or previous contact
-                if(currentCharacter == ',' || currentCharacter == '.')
+                else if(currentCharacter == ',' || currentCharacter == '.')
                 {
                     // Previous (above)
                     if(currentCharacter == ',')
@@ -236,13 +254,6 @@ int main(int argc,char **argv)
                         }
                     }
                 }
-            }
-
-            // display contacts
-            for(i=0; i<nbContacts; i++)
-            {
-                // Display all contact, the first is "selected"
-                displayText(contacts[i], SCREEN_COLS*(HEADER_HEIGHT+4+i)+LEFT_COLUMN_WIDTH+3, i==currentContact?COLOR_YELLOW:COLOR_WHITE);
             }
 
         }
