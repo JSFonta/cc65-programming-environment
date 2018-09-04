@@ -3,6 +3,8 @@
 #include "memory.h"
 #include "ascii.h"
 #include "rlepacker.h"
+#include "depacker.h"
+#include "packed_dialpad.h"
 
 void clearScreen(void)
 {
