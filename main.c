@@ -42,7 +42,7 @@ int setupSerial()
 
     void process_modem_line(void) 
     {
-        printf("%s\n",modem_line);
+        displayText(modem_line, 64*(HEADER_HEIGHT+3)+2, COLOR_WHITE);
         return;
     }
 
@@ -82,7 +82,7 @@ int main(int argc,char **argv)
     unsigned char flagEos = 0;
 
     // Define some variable which will need to be provided by the modem
-    char data[4][10] = {"YES OPTUS", "09:26:30", "4G+", "Low"};
+    char dataHeader[51] = "YES OPTUS Sig Noti 00:00:00 Noti TELSTRA   SIG";
 
     // Define some contacts
     unsigned char nbContacts = 5;
@@ -108,15 +108,17 @@ int main(int argc,char **argv)
     setupSerial();
     
     /*
+    displayText("Modem :", 64*(HEADER_HEIGHT+1)+2, COLOR_WHITE);
+
     while(1) {
         poll_modem();
         if (kbhit()) { 
             unsigned char c=cgetc();
             if (c) write_modem(&c,1);
         }
-        POKE(53280,(PEEK(53280)+1)&15);
     }
     */
+    
     
     // Home
     layoutIndex = 1;
@@ -124,6 +126,60 @@ int main(int argc,char **argv)
 
     while(1)
     {
+
+        // Header on every layout
+        // Check first sim network name on 7 char + separator
+        for(i=0; i<7; i++)
+        {
+            dataHeader[i] = 'A';
+        }
+        dataHeader[i] = ' ';
+
+        // Check first sim quality network on 4 char + separator
+        for(i=8; i<8+4; i++)
+        {
+            dataHeader[i] = 's';
+        }
+        dataHeader[i] = ' ';
+
+        // Display notification & gps of the first sim on 6 char + separator
+        for(i=13; i<13+6; i++)
+        {
+            dataHeader[i] = 'n';
+        }
+        dataHeader[i] = ' ';
+
+        // Display time on 8 char + separator
+        for(i=20; i<20+9; i++)
+        {
+            dataHeader[i] = '0';
+        }
+        dataHeader[i] = ' ';
+
+        // Display notification & gps of the second sim on 6 char + separator
+        for(i=30; i<30+6; i++)
+        {
+            dataHeader[i] = 'n';
+        }
+        dataHeader[i] = ' ';
+
+        // Check second sim network name on 7 char + separator
+        for(i=37; i<37+7; i++)
+        {
+            dataHeader[i] = 'A';
+        }
+        dataHeader[i] = ' ';
+
+        // Check second sim quality network on 4 char + separator
+        for(i=45; i<45+4; i++)
+        {
+            dataHeader[i] = 's';
+        }
+        dataHeader[i] = ' ';
+
+        displayText(dataHeader, 0, COLOR_WHITE);
+
+
         // Home
         if(layoutIndex == 1)
         {
@@ -373,97 +429,6 @@ int main(int argc,char **argv)
                 }
             }
         }
-
-        // Header
-
-        // Display data
-        /*gotoxy(0, 0);
-        for(i = 0; i < MAX_NUMBER_PARAM_HEADER; i++)
-        {
-            for(j = 0; j < MAX_LENGTH_PARAM_HEADER; j++)
-            {
-                // End of this data ?
-                if(data[i][j] == '\0')
-                {
-                    flagEos = 1;
-                }
-
-                // Complete with text or white space
-                if(flagEos == 1)
-                {
-                    cputc(' ');
-                }
-                else
-                {
-                    cputc(data[i][j]);
-                }
-            }
-
-            // Reset the flag Eos
-            flagEos = 0;
-        }
-
-        // Something to read from the keyboard ?
-        while(kbhit() != 0)
-        {
-            // Read the character into the stdin
-            currentCharacter = cgetc();
-
-            // Clear the inputBuffer
-            if(currentCharacter == 'e' || currentCharacter == 'E')
-            {
-                indexBuffer = 0;
-                inputBuffer[indexBuffer] = '\0';
-                clearNumero();
-            }
-
-            // Call
-            else if(currentCharacter == 'c' || currentCharacter == 'C')
-            {
-                // Change the layout
-                layout(2);
-                
-                // Display data
-            }
-
-            // Add contact
-            else if(currentCharacter == 'a' || currentCharacter == 'A')
-            {
-                // Change the layout
-                layout(3);
-            }
-
-            // Escape -> go back main menu
-            else if(currentCharacter == 3)
-            {
-                // Change the layout
-                clrscr();
-                layout(1);
-            }
-
-            // Numero typing
-            else
-            {
-                // No more than 14 numeros
-                if(indexBuffer < 14)
-                {
-                    // Be sure it is a number
-                    if(currentCharacter == '0' || currentCharacter == '1' || currentCharacter == '2' || currentCharacter == '3' || currentCharacter == '4' || currentCharacter == '5' || currentCharacter == '6' || currentCharacter == '7' || currentCharacter == '8' || currentCharacter == '9' || currentCharacter == '#' || currentCharacter == '*' || currentCharacter == '+')
-                    {
-                        inputBuffer[indexBuffer] = currentCharacter;
-                        inputBuffer[indexBuffer+1] = '\0';
-                        indexBuffer++;
-                    }
-                }
-            }
-            
-        }
-        
-        // Display what was typed
-        gotoxy(1, 3);
-        textcolor(COLOR_WHITE);
-        printf("%s", inputBuffer);
-        */
 
     }
     return;
