@@ -121,7 +121,6 @@ int main(int argc,char **argv)
     }
     */
     
-    
     // Home
     layoutIndex = 1;
     layout(layoutIndex);
@@ -199,7 +198,6 @@ int main(int argc,char **argv)
 
         displayText(dataHeaderFirstLine, 0, COLOR_WHITE);
         displayText(dataHeaderSecondLine, SCREEN_COLS, COLOR_WHITE);
-
 
         // Home
         if(layoutIndex == 1)

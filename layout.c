@@ -30,6 +30,9 @@ void displayText(char * text, unsigned long startPosition, unsigned char color)
         // Text
         POKE(SCREEN_ADDRESS+startPosition+i, text[i]);
         i++;
+
+        // Avoid wrong memory writing
+        if(startPosition+i > SCREEN_COLS*SCREEN_ROWS) return;
     }
 
     return;
@@ -83,6 +86,20 @@ void display_dialpad(void) {
   
 }
 
+/**
+ * @brief       display some buttons on the 3 and 4 lines to have a fast access to sms, call or else
+ * @author      Jean-Séabstien FONTA
+ * @date        27/09/2018
+ */ 
+void shortcuts(void)
+{
+    rectangle(0, 2, 7, 5, COLOR_GRAY1);
+    displayText("SMS", SCREEN_COLS*4+2, COLOR_WHITE);
+
+    rectangle(8, 2, 7, 5, COLOR_GRAY1);
+    displayText("ADD", SCREEN_COLS*4+10, COLOR_WHITE);
+}
+
 
 /**
  *  @brief          This function write on the screen the full layout of the app
@@ -107,6 +124,9 @@ void layout(unsigned char screen)
     // Clear the display
     clearScreen();
 
+    // Display all buttons
+    shortcuts();
+
     switch(screen)
     {
         case 1: // Main screen
@@ -115,7 +135,7 @@ void layout(unsigned char screen)
             rectangle(0, HEADER_HEIGHT, LEFT_COLUMN_WIDTH, 3, COLOR_BLUE);
 
             // Display keypad
-	    display_dialpad();
+	        display_dialpad();
 	    
             // Display contacts section into the right column
             panel(SCREEN_WIDTH-RIGHT_COLUMN_WIDTH, HEADER_HEIGHT, RIGHT_COLUMN_WIDTH, SCREEN_HEIGHT-HEADER_HEIGHT-1, "Contacts", COLOR_GRAY3);
