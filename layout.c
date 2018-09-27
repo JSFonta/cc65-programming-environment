@@ -13,6 +13,7 @@ void clearScreen(void)
     for(i=0; i<SCREEN_COLS*SCREEN_ROWS; i++)
     {
         POKE(SCREEN_ADDRESS+i, ' ');
+        lfill(COLOUR_RAM_ADDRESS+i, COLOR_BLACK, 1);
     }
     return;
 }
