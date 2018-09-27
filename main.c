@@ -19,6 +19,8 @@
 #include "layout.h"
 #include "include.h"
 
+char dataHeaderSecondLine[51] = "                                                  ";
+
 int setupSerial()
 {
     // Setup 115200 bit rate
@@ -82,7 +84,7 @@ int main(int argc,char **argv)
     unsigned char flagEos = 0;
 
     // Define some variable which will need to be provided by the modem
-    char dataHeader[51] = "YES OPTUS Sig Noti 00:00:00 Noti TELSTRA   SIG";
+    char dataHeaderFirstLine[51] = "                                                  ";
 
     // Define some contacts
     unsigned char nbContacts = 5;
@@ -131,53 +133,72 @@ int main(int argc,char **argv)
         // Check first sim network name on 7 char + separator
         for(i=0; i<7; i++)
         {
-            dataHeader[i] = 'A';
+            dataHeaderFirstLine[i] = 'A';
         }
-        dataHeader[i] = ' ';
+        dataHeaderFirstLine[i] = ' ';
 
         // Check first sim quality network on 4 char + separator
         for(i=8; i<8+4; i++)
         {
-            dataHeader[i] = 's';
+            dataHeaderFirstLine[i] = 's';
         }
-        dataHeader[i] = ' ';
+        dataHeaderFirstLine[i] = ' ';
 
         // Display notification & gps of the first sim on 6 char + separator
         for(i=13; i<13+6; i++)
         {
-            dataHeader[i] = 'n';
+            dataHeaderFirstLine[i] = 'n';
         }
-        dataHeader[i] = ' ';
+        dataHeaderFirstLine[i] = ' ';
 
         // Display time on 8 char + separator
         for(i=20; i<20+9; i++)
         {
-            dataHeader[i] = '0';
+            dataHeaderFirstLine[i] = '0';
         }
-        dataHeader[i] = ' ';
+        dataHeaderFirstLine[i] = ' ';
 
         // Display notification & gps of the second sim on 6 char + separator
         for(i=30; i<30+6; i++)
         {
-            dataHeader[i] = 'n';
+            dataHeaderFirstLine[i] = 'n';
         }
-        dataHeader[i] = ' ';
+        dataHeaderFirstLine[i] = ' ';
 
         // Check second sim network name on 7 char + separator
         for(i=37; i<37+7; i++)
         {
-            dataHeader[i] = 'A';
+            dataHeaderFirstLine[i] = 'A';
         }
-        dataHeader[i] = ' ';
+        dataHeaderFirstLine[i] = ' ';
 
         // Check second sim quality network on 4 char + separator
         for(i=45; i<45+4; i++)
         {
-            dataHeader[i] = 's';
+            dataHeaderFirstLine[i] = 's';
         }
-        dataHeader[i] = ' ';
+        dataHeaderFirstLine[i] = ' ';
 
-        displayText(dataHeader, 0, COLOR_WHITE);
+        // Second line first sim type of network on 4 char
+        for(i=8; i<8+4; i++)
+        {
+            dataHeaderSecondLine[i] = 't';
+        }
+
+        // Second line battery level on 8 char
+        for(i=20; i<20+9; i++)
+        {
+            dataHeaderSecondLine[i] = 'B';
+        }
+
+        // Second line first sim type of network on 4 char
+        for(i=45; i<45+4; i++)
+        {
+            dataHeaderSecondLine[i] = 't';
+        }
+
+        displayText(dataHeaderFirstLine, 0, COLOR_WHITE);
+        displayText(dataHeaderSecondLine, SCREEN_COLS, COLOR_WHITE);
 
 
         // Home
