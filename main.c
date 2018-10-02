@@ -1,13 +1,3 @@
-/*
-  A simple example program using CC65 and some simple routines to
-  use an 80 column ASCII screen on the MEGA65.
-
-  If you follow some restrictions, it is also possible to make such
-  programs compile and run natively on your development system for
-  testing.
- 
-*/
-
 #include <stdio.h>
 #include <string.h>
 
@@ -20,8 +10,9 @@
 #include "include.h"
 
 char dataHeaderSecondLine[51] = "                                                  ";
+int cpt = 0;
 
-int setupSerial()
+int setupSerial(void)
 {
     // Setup 115200 bit rate
     POKE(0xd0e6, 0xb2);
@@ -30,39 +21,35 @@ int setupSerial()
     return 0;
 }   
 
+#define MAX_MODEM_LINE_LEN (255-1)
+unsigned char modem_line[MAX_MODEM_LINE_LEN+1];
+unsigned char modem_line_len=0;
 
-    void write_modem(const unsigned char *s,const unsigned char len)
-    {
-        unsigned char i;
-        for(i=0;i!=len;i++) POKE(0xd0e0,s[i]);
-        return;
-    }
+void write_modem(const unsigned char *s)
+{
+    unsigned char i;
+    for(i=0;s[i];i++) POKE(0xd0e0,s[i]);
+    displayText("Command : ", 64*5, COLOR_BLUE);
+    displayText(modem_line, 64*5+10, COLOR_WHITE);
+    return;
+}
 
-    #define MAX_MODEM_LINE_LEN (255-1)
-    unsigned char modem_line[MAX_MODEM_LINE_LEN+1];
-    unsigned char modem_line_len=0;
-
-    void process_modem_line(void) 
-    {
-        displayText(modem_line, 64*(HEADER_HEIGHT+3)+2, COLOR_WHITE);
-        return;
-    }
-
-    void poll_modem(void)
-    {
-        unsigned char c=PEEK(0xd0e0);
-        if (!c) return;
-        if (c=='\r'||c=='\n') {
-            // End of line
-            modem_line[modem_line_len]=0;
-            process_modem_line();
-            modem_line_len=0;
-        } else {
-            if (modem_line_len<MAX_MODEM_LINE_LEN) {
-                modem_line[modem_line_len++]=c;
-            }
+void poll_modem(void)
+{
+    unsigned char c=PEEK(0xd0e0);
+    if (!c) return;
+    if (c=='\r'||c=='\n'||c=='9') {
+        // End of line
+        modem_line[modem_line_len]=0;
+        modem_line_len=0;
+        displayText("Answer : ", 64*7, COLOR_BLUE);
+        displayText(modem_line, 64*7+10, COLOR_WHITE);
+    } else {
+        if (modem_line_len<MAX_MODEM_LINE_LEN) {
+            modem_line[modem_line_len++]=c;
         }
     }
+}
 
 
 #ifdef __CC65__
@@ -91,6 +78,8 @@ int main(int argc,char **argv)
     unsigned char currentContact = 0;
     char contacts[5][18] = {"Paul", "Js", "Secret", "Lorem Ipsum", "Flinders"};
 
+    unsigned char test;
+
     #ifdef __CC65__
       mega65_fast();
       setup_screen();
@@ -108,18 +97,23 @@ int main(int argc,char **argv)
 
     // Configure serial
     setupSerial();
-    
-    /*
-    displayText("Modem :", 64*(HEADER_HEIGHT+1)+2, COLOR_WHITE);
+
+    // Configure modem :
+    // SMS in text mode
+    //CMGF
+
+    // Pull the sms 19
+    write_modem("AT+CMGR=19\r", 11);
 
     while(1) {
         poll_modem();
         if (kbhit()) { 
             unsigned char c=cgetc();
-            if (c) write_modem(&c,1);
+            if (c) write_modem(&c, 1);
+            //write_modem("AT\n", 3);
         }
     }
-    */
+    
     
     // Home
     layoutIndex = 1;
