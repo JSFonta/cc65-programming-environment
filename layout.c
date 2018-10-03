@@ -20,16 +20,24 @@ void clearScreen(void)
 
 void displayText(char * text, unsigned long startPosition, unsigned char color)
 {
+    // Index into the string
     unsigned short i=0;
+
+    // Position to avoid to write outer of the screen
+    unsigned short pos=0;
 
     while(text[i] != '\0' && i < 1000)
     {
+        if(i==39) pos=64;
+        if(i==78) pos=128;
+
         // Color
-        lfill(COLOUR_RAM_ADDRESS+startPosition+i, color, 1);
+        lfill(COLOUR_RAM_ADDRESS+startPosition+pos, color, 1);
 
         // Text
-        POKE(SCREEN_ADDRESS+startPosition+i, text[i]);
+        POKE(SCREEN_ADDRESS+startPosition+pos, text[i]);
         i++;
+        pos++;
 
         // Avoid wrong memory writing
         if(startPosition+i > SCREEN_COLS*SCREEN_ROWS) return;

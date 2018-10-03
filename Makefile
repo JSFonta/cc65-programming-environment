@@ -7,6 +7,7 @@ LOPTS=
 FILES=		example.prg 
 
 M65IDESOURCES=	main.c \
+		utilities.c \
 		layout.c \
 		draw.c \
 		memory.c \
@@ -16,6 +17,7 @@ M65IDESOURCES=	main.c \
 		hal_mega65.c
 
 ASSFILES=	main.s \
+		utilities.s \
 		layout.s \
 		draw.s \
 		memory.s \
@@ -26,6 +28,7 @@ ASSFILES=	main.s \
 		charset.s
 
 HEADERS=	Makefile \
+		utilities.h \
 		include.h \
 		layout.h \
 		draw.h \

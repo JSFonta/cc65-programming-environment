@@ -8,49 +8,11 @@
 #include "draw.h"
 #include "layout.h"
 #include "include.h"
+#include "utilities.h"
 
-char dataHeaderSecondLine[51] = "                                                  ";
-int cpt = 0;
-
-int setupSerial(void)
-{
-    // Setup 115200 bit rate
-    POKE(0xd0e6, 0xb2);
-    POKE(0xd0e7, 0x01);
-        
-    return 0;
-}   
-
-#define MAX_MODEM_LINE_LEN (255-1)
-unsigned char modem_line[MAX_MODEM_LINE_LEN+1];
-unsigned char modem_line_len=0;
-
-void write_modem(const unsigned char *s)
-{
-    unsigned char i;
-    for(i=0;s[i];i++) POKE(0xd0e0,s[i]);
-    displayText("Command : ", 64*5, COLOR_BLUE);
-    displayText(modem_line, 64*5+10, COLOR_WHITE);
-    return;
-}
-
-void poll_modem(void)
-{
-    unsigned char c=PEEK(0xd0e0);
-    if (!c) return;
-    if (c=='\r'||c=='\n'||c=='9') {
-        // End of line
-        modem_line[modem_line_len]=0;
-        modem_line_len=0;
-        displayText("Answer : ", 64*7, COLOR_BLUE);
-        displayText(modem_line, 64*7+10, COLOR_WHITE);
-    } else {
-        if (modem_line_len<MAX_MODEM_LINE_LEN) {
-            modem_line[modem_line_len++]=c;
-        }
-    }
-}
-
+int cpt;
+char dataHeaderFirstLine[51] = "                                                   ";
+char dataHeaderSecondLine[51] = "                                                   ";
 
 #ifdef __CC65__
 void main(void)
@@ -59,7 +21,7 @@ int main(int argc,char **argv)
 #endif
 { 
   
-  // Loop variable
+    // Loop variable
     unsigned char i, j, layoutIndex; 
 
     // Buffer for keyboard input
@@ -69,9 +31,6 @@ int main(int argc,char **argv)
 
     // Flag EOS
     unsigned char flagEos = 0;
-
-    // Define some variable which will need to be provided by the modem
-    char dataHeaderFirstLine[51] = "                                                  ";
 
     // Define some contacts
     unsigned char nbContacts = 5;
@@ -103,15 +62,21 @@ int main(int argc,char **argv)
     //CMGF
 
     // Pull the sms 19
-    write_modem("AT+CMGR=19\r", 11);
+    //write_modem("AT+CMGR=19\r");
+
+    // Network name
+    //write_modem("AT+QSPN\r");
+
+    // Network quality
+    //write_modem("AT+CSQ\r");
+
+    // Time
+    //write_modem("AT+CTZU=1\r");
+    write_modem("AT+CCLK?\r");
 
     while(1) {
+        parser();
         poll_modem();
-        if (kbhit()) { 
-            unsigned char c=cgetc();
-            if (c) write_modem(&c, 1);
-            //write_modem("AT\n", 3);
-        }
     }
     
     
