@@ -11,16 +11,17 @@ unsigned char modem_line[MAX_MODEM_LINE_LEN+1];
 unsigned char modem_line_len=0;
 unsigned char parsedData[5][64];
 int cpt=0;
-unsigned char i;
+unsigned char i, k;
+unsigned char at[3][15] = {"AT+QSPN\r", "AT+CCLK?\r", "AT+CSQ\r"};
+unsigned char j = 0;
 
 void write_modem(const unsigned char *s)
 {
     for(i=0;s[i];i++) 
     {
         POKE(0xd0e0,s[i]);
-        POKE(SCREEN_ADDRESS+64*5+10+i, s[i]);
     }
-    displayText("Command : ", 64*5, COLOR_BLUE);
+    //displayText("Command : ", 64*5, COLOR_BLUE);
     
     return;
 }
@@ -33,14 +34,32 @@ void poll_modem(void)
         // End of line
         modem_line[modem_line_len]=0;
         modem_line_len=0;
-        displayText("Answer : ", 64*7, COLOR_BLUE);
-        displayText(modem_line, 64*7+10, COLOR_WHITE+cpt);
-        cpt++;
-        if(cpt>5) cpt=0;
+        //displayText("Answer : ", 64*7, COLOR_BLUE);
+        //displayText(modem_line, 64*7+10, COLOR_WHITE);
+        parser();
     } else {
         if (modem_line_len<MAX_MODEM_LINE_LEN) {
             modem_line[modem_line_len++]=c;
         }
+    }
+}
+
+void modemCom(void)
+{
+    // Avoid to ask to many times the modem
+    cpt++;
+    if(cpt == 100)
+    {
+        write_modem(at[j]);
+        j++;
+        if(j > 2) j = 0;
+        cpt = 0;
+    }
+    poll_modem();
+    //displayText(modem_line, 64*19, COLOUR_CYAN);
+    if(modem_line[0] == 'O' && modem_line[1] == 'K')
+    {
+        updateHeader();
     }
 }
 
@@ -68,17 +87,17 @@ void parser(void)
     if(modem_line[0] == '+')
     {
         // Parse network quality
-        if(modem_line[1] == 'C' && modem_line[2] == 'C' && modem_line[3] == 'L' && modem_line[4] == 'K'&&  modem_line[5] == ':')
+        if(modem_line[1] == 'C' && modem_line[2] == 'S' && modem_line[3] == 'Q' && modem_line[4] == ':')
         {
-            for(i=8;(modem_line[i]!='"' && i<50);i++)
+            for(i=6;(modem_line[i]!=',' && i<10);i++)
             {
-                parsedData[0][i-8] = modem_line[i];
-                parsedData[3][i-8] = modem_line[i];
+                parsedData[0][i-6] = modem_line[i];
+                parsedData[3][i-6] = modem_line[i];
             }
         }
 
         // Parse network name
-        if(modem_line[1] == 'C' && modem_line[2] == 'C' && modem_line[3] == 'L' && modem_line[4] == 'K'&&  modem_line[5] == ':')
+        if(modem_line[1] == 'Q' && modem_line[2] == 'S' && modem_line[3] == 'P' && modem_line[4] == 'N'&&  modem_line[5] == ':')
         {
             for(i=8;(modem_line[i]!='"' && i<50);i++)
             {
@@ -95,17 +114,110 @@ void parser(void)
                 parsedData[2][i-8] = modem_line[i];
             }
         }
+        /*displayText("Parsed : ", 64*9, COLOR_RED);
+        displayText(parsedData[0], 64*9+10, COLOR_WHITE);
+        displayText("Parsed : ", 64*10, COLOR_RED);
+        displayText(parsedData[1], 64*10+10, COLOR_WHITE);
+        displayText("Parsed : ", 64*11, COLOR_RED);
+        displayText(parsedData[2], 64*11+10, COLOR_WHITE);*/
     }
-    displayText("Parsed : ", 64*9, COLOR_BLUE);
-    displayText(parsedData[0], 64*9+10, COLOR_WHITE);
 }
 
 void updateHeader(void)
 {
-    write_modem("AT+CSQ\r");
-    parser();
-    poll_modem();
-    write_modem("AT+CCLK?\r");
-    parser();
-    poll_modem();
+    /*displayText("Parsed : ", 64*15, COLOR_BLUE);
+    displayText(parsedData[0], 64*15+10, COLOR_WHITE);
+    displayText("Parsed : ", 64*16, COLOR_BLUE);
+    displayText(parsedData[1], 64*16+10, COLOR_WHITE);
+    displayText("Parsed : ", 64*17, COLOR_BLUE);
+    displayText(parsedData[2], 64*17+10, COLOR_WHITE);*/
+    // Header on every layout
+    // Check first sim network name on 7 char + separator
+    for(i=0; i<7; i++)
+    {
+        dataHeaderFirstLine[i] = parsedData[1][i];
+    }
+    dataHeaderFirstLine[i] = ' ';
+
+    // Check first sim quality network on 4 char + separator
+    for(i=8; i<8+4; i++)
+    {
+        if(parsedData[0][0] >= '1' && parsedData[0][0] >= '9'
+        && parsedData[0][1] >= '1' && parsedData[0][1] >= '9'
+        && parsedData[0][2] >= '1' && parsedData[0][2] >= '9')
+        {
+            dataHeaderFirstLine[i] = 'g';
+        }
+        else
+        {
+            dataHeaderFirstLine[i] = 'b';
+        }
+    }
+    dataHeaderFirstLine[i] = ' ';
+
+    // Display notification & gps of the first sim on 6 char + separator
+    for(i=13; i<13+6; i++)
+    {
+        dataHeaderFirstLine[i] = 'n';
+    }
+    dataHeaderFirstLine[i] = ' ';
+
+    // Display time on 8 char + separator
+    for(i=20; i<20+8; i++)
+    {
+        dataHeaderFirstLine[i] = parsedData[2][i-20];
+    }
+    dataHeaderFirstLine[i] = ' ';
+
+    // Display notification & gps of the second sim on 6 char + separator
+    for(i=30; i<30+6; i++)
+    {
+        dataHeaderFirstLine[i] = 'n';
+    }
+    dataHeaderFirstLine[i] = ' ';
+
+    // Check second sim network name on 7 char + separator
+    for(i=37; i<37+7; i++)
+    {
+        dataHeaderFirstLine[i] = parsedData[1][i-37];
+    }
+    dataHeaderFirstLine[i] = ' ';
+
+    // Check second sim quality network on 4 char + separator
+    for(i=45; i<45+4; i++)
+    {
+        if(parsedData[0][0] >= '1' && parsedData[0][0] >= '9'
+        && parsedData[0][1] >= '1' && parsedData[0][1] >= '9'
+        && parsedData[0][2] >= '1' && parsedData[0][2] >= '9')
+        {
+            dataHeaderFirstLine[i] = 'g';
+        }
+        else
+        {
+            dataHeaderFirstLine[i] = 'b';
+        }
+    }
+    dataHeaderFirstLine[i] = ' ';
+
+    // Second line first sim type of network on 4 char
+    for(i=8; i<8+4; i++)
+    {
+        dataHeaderSecondLine[i] = 't';
+    }
+
+    // Second line battery level on 8 char
+    for(i=20; i<20+9; i++)
+    {
+        dataHeaderSecondLine[i] = 'B';
+    }
+
+    // Second line first sim type of network on 4 char
+    for(i=45; i<45+4; i++)
+    {
+        dataHeaderSecondLine[i] = 't';
+    }
+    dataHeaderFirstLine[50] = '\0';
+    dataHeaderSecondLine[50] = '\0';
+    displayText(dataHeaderFirstLine, 0, COLOR_WHITE);
+    displayText(dataHeaderSecondLine, SCREEN_COLS, COLOR_WHITE);
 }

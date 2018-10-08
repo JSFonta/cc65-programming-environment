@@ -28,8 +28,6 @@ void displayText(char * text, unsigned long startPosition, unsigned char color)
 
     while(text[i] != '\0' && i < 1000)
     {
-        if(i==39) pos=64;
-        if(i==78) pos=128;
 
         // Color
         lfill(COLOUR_RAM_ADDRESS+startPosition+pos, color, 1);

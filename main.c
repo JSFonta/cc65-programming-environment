@@ -11,8 +11,6 @@
 #include "utilities.h"
 
 int cpt;
-char dataHeaderFirstLine[51] = "                                                   ";
-char dataHeaderSecondLine[51] = "                                                   ";
 
 #ifdef __CC65__
 void main(void)
@@ -36,8 +34,6 @@ int main(int argc,char **argv)
     unsigned char nbContacts = 5;
     unsigned char currentContact = 0;
     char contacts[5][18] = {"Paul", "Js", "Secret", "Lorem Ipsum", "Flinders"};
-
-    unsigned char test;
 
     #ifdef __CC65__
       mega65_fast();
@@ -72,12 +68,28 @@ int main(int argc,char **argv)
 
     // Time
     //write_modem("AT+CTZU=1\r");
-    write_modem("AT+CCLK?\r");
 
-    while(1) {
-        parser();
-        poll_modem();
-    }
+    
+
+    /*sleep(1);
+
+    write_modem("AT+CSQ\r");
+    parser();
+    poll_modem();
+
+    sleep(1);
+
+    write_modem("AT+QSPN\r");
+    parser();
+    poll_modem();
+
+    sleep(1);*/
+    //write_modem("AT+CCLK?\r");
+    //write_modem("AT+CSQ\r");
+    
+
+    write_modem("AT");
+    modemCom();
     
     
     // Home
@@ -86,77 +98,6 @@ int main(int argc,char **argv)
 
     while(1)
     {
-
-        // Header on every layout
-        // Check first sim network name on 7 char + separator
-        for(i=0; i<7; i++)
-        {
-            dataHeaderFirstLine[i] = 'A';
-        }
-        dataHeaderFirstLine[i] = ' ';
-
-        // Check first sim quality network on 4 char + separator
-        for(i=8; i<8+4; i++)
-        {
-            dataHeaderFirstLine[i] = 's';
-        }
-        dataHeaderFirstLine[i] = ' ';
-
-        // Display notification & gps of the first sim on 6 char + separator
-        for(i=13; i<13+6; i++)
-        {
-            dataHeaderFirstLine[i] = 'n';
-        }
-        dataHeaderFirstLine[i] = ' ';
-
-        // Display time on 8 char + separator
-        for(i=20; i<20+9; i++)
-        {
-            dataHeaderFirstLine[i] = '0';
-        }
-        dataHeaderFirstLine[i] = ' ';
-
-        // Display notification & gps of the second sim on 6 char + separator
-        for(i=30; i<30+6; i++)
-        {
-            dataHeaderFirstLine[i] = 'n';
-        }
-        dataHeaderFirstLine[i] = ' ';
-
-        // Check second sim network name on 7 char + separator
-        for(i=37; i<37+7; i++)
-        {
-            dataHeaderFirstLine[i] = 'A';
-        }
-        dataHeaderFirstLine[i] = ' ';
-
-        // Check second sim quality network on 4 char + separator
-        for(i=45; i<45+4; i++)
-        {
-            dataHeaderFirstLine[i] = 's';
-        }
-        dataHeaderFirstLine[i] = ' ';
-
-        // Second line first sim type of network on 4 char
-        for(i=8; i<8+4; i++)
-        {
-            dataHeaderSecondLine[i] = 't';
-        }
-
-        // Second line battery level on 8 char
-        for(i=20; i<20+9; i++)
-        {
-            dataHeaderSecondLine[i] = 'B';
-        }
-
-        // Second line first sim type of network on 4 char
-        for(i=45; i<45+4; i++)
-        {
-            dataHeaderSecondLine[i] = 't';
-        }
-
-        displayText(dataHeaderFirstLine, 0, COLOR_WHITE);
-        displayText(dataHeaderSecondLine, SCREEN_COLS, COLOR_WHITE);
 
         // Home
         if(layoutIndex == 1)
@@ -407,6 +348,8 @@ int main(int argc,char **argv)
                 }
             }
         }
+
+        modemCom();
 
     }
     return;
