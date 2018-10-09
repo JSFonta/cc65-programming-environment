@@ -4,6 +4,7 @@
 #include "ascii.h"
 #include "rlepacker.h"
 #include "depacker.h"
+#include "utilities.h"
 #include "packed_dialpad.h"
 
 void clearScreen(void)
@@ -52,7 +53,7 @@ void displayText(char * text, unsigned long startPosition, unsigned char color)
  *                  displayed as though currently pressed.
  *  @return         None
  */
-unsigned char pressed_button=4;
+extern unsigned char pressed_button=4;
 unsigned char keypad_colours_1[]={
   0x22,0x22,0x22,0x22,0x22,
   0x22,0x22,0x22,0x22,0x22,
@@ -66,29 +67,55 @@ unsigned char keypad_colours_2[]={
   0x27,0x27,0x27,0x27,0x27
 };
 void display_dialpad(void) {
-  unsigned char i,j;
-  unsigned long row_addr;
-  unpack(packed_dialpad,SCREEN_ADDRESS+((HEADER_HEIGHT+2+1)*64),64);
-  
-  // Colour and reverse the keypad buttons
-  row_addr=COLOUR_RAM_ADDRESS+((HEADER_HEIGHT+2)*64);
-  for(i=0;i<16;i++) {
+    unsigned char i,j;
+    unsigned long row_addr;
+    unpack(packed_dialpad,SCREEN_ADDRESS+((HEADER_HEIGHT+2+1)*64),64);
+
+    // Colour and reverse the keypad buttons
+    row_addr=COLOUR_RAM_ADDRESS+((HEADER_HEIGHT+2)*64);
+    for(i=0;i<16;i++) {
     if (i&3) lcopy(keypad_colours_1,row_addr,20);
     row_addr+=64;
-  }
-  for(i=0;i<4;i++) {
+    }
+    for(i=0;i<4;i++) {
     if (i&3) lcopy(keypad_colours_2,row_addr,20);
     row_addr+=64;
-  }
+    }
 
-  // XXX - Change colour of the button currently being pressed
-  row_addr=COLOUR_RAM_ADDRESS+((HEADER_HEIGHT+2+1)*64);
-  row_addr+=(pressed_button&3)*5;
-  row_addr+=(pressed_button/4)*(4*64);
-  for(i=0;i<3;i++) {
+    // XXX - Change colour of the button currently being pressed
+    row_addr=COLOUR_RAM_ADDRESS+((HEADER_HEIGHT+2+1)*64);
+    row_addr+=(pressed_button&3)*5;
+    row_addr+=(pressed_button/4)*(4*64);
+    for(i=0;i<3;i++) {
     lfill(row_addr,0x26,5);
     row_addr+=64;
-  }
+    }
+
+    // Add Interaction for each key
+    addInteraction(0, 10, 0+5, 10+4, '1');
+    addInteraction(5, 10, 5+5, 10+4, '2');
+    addInteraction(10, 10, 10+5, 10+4, '3');
+    addInteraction(15, 10, 15+5, 10+4, 'A');
+
+    addInteraction(0, 14, 0+5, 14+4, '4');
+    addInteraction(5, 14, 5+5, 14+4, '5');
+    addInteraction(10, 14, 10+5, 14+4, '6');
+    addInteraction(15, 14, 15+5, 14+4, 'B');
+
+    addInteraction(0, 18, 0+5, 18+4, '7');
+    addInteraction(5, 18, 5+5, 18+4, '8');
+    addInteraction(10, 18, 10+5, 18+4, '9');
+    addInteraction(15, 18, 15+5, 18+4, 'C');
+
+    addInteraction(0, 22, 0+5, 22+4, '#');
+    addInteraction(5, 22, 5+5, 22+4, '0');
+    addInteraction(10, 22, 10+5, 22+4, '*');
+    addInteraction(15, 22, 15+5, 22+4, 'D');
+
+    addInteraction(0, 26, 0+5, 26+4, '?');
+    addInteraction(5, 26, 5+5, 26+4, '-');
+    addInteraction(10, 26, 10+5, 26+4, '+');
+    addInteraction(15, 26, 15+5, 26+4, '=');
   
 }
 
@@ -100,9 +127,11 @@ void display_dialpad(void) {
 void shortcuts(void)
 {
     rectangle(0, 2, 7, 5, COLOR_GRAY1);
+    addInteraction(0, 2, 0+7, 2+5, 'S');
     displayText("SMS", SCREEN_COLS*4+2, COLOR_WHITE);
 
     rectangle(8, 2, 7, 5, COLOR_GRAY1);
+    addInteraction(8, 2, 8+7, 2+5, 'A');
     displayText("ADD", SCREEN_COLS*4+10, COLOR_WHITE);
 }
 

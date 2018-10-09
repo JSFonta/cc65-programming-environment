@@ -10,15 +10,14 @@
 #include "include.h"
 #include "utilities.h"
 
-int cpt;
-
 #ifdef __CC65__
 void main(void)
 #else
 int main(int argc,char **argv)
 #endif
-{ 
-  
+{
+    int cpt;
+    char s[10]; // Nombre maximal de chiffres + 1
     // Loop variable
     unsigned char i, j, layoutIndex; 
 
@@ -40,7 +39,7 @@ int main(int argc,char **argv)
       setup_screen();
 
       // Background black
-      POKE(0xd021, COLOR_BLACK);
+      POKE(0xd021, COLOUR_BLACK);
     #endif 
 
     // CPU high speed 
@@ -53,41 +52,27 @@ int main(int argc,char **argv)
     // Configure serial
     setupSerial();
 
-    // Configure modem :
-    // SMS in text mode
-    //CMGF
+    /*while(1)
+    {
+        unsigned char low=PEEK(0xd6b9);
+        unsigned char high=PEEK(0xD6BB)&3;
+        unsigned char y,x=(low>>4)+(high<<4)+2;
+        low=PEEK(0xd6ba);
+        high=PEEK(0xd6bb)>>4;
+        y=(low>>4)+(high<<4)-4;
+        if (x>=0&&y>=0) {
+        lpoke(SCREEN_ADDRESS+x+(y<<6),0x40);
 
-    // Pull the sms 19
-    //write_modem("AT+CMGR=19\r");
+        displayText("x: ", (HEADER_HEIGHT+1)*64, COLOR_BLUE);
+        displayText(s, (HEADER_HEIGHT+1)*64+3, COLOR_WHITE);
+        lpoke(SCREEN_ADDRESS+x+(y<<6),0x20);
+        }
+    }*/
 
-    // Network name
-    //write_modem("AT+QSPN\r");
+    /*GS $D6B9 - Touch pad touch #1 X LSB
+GS $D6BA - Touch pad touch #1 Y LSB*/
 
-    // Network quality
-    //write_modem("AT+CSQ\r");
-
-    // Time
-    //write_modem("AT+CTZU=1\r");
-
-    
-
-    /*sleep(1);
-
-    write_modem("AT+CSQ\r");
-    parser();
-    poll_modem();
-
-    sleep(1);
-
-    write_modem("AT+QSPN\r");
-    parser();
-    poll_modem();
-
-    sleep(1);*/
-    //write_modem("AT+CCLK?\r");
-    //write_modem("AT+CSQ\r");
-    
-
+    // Init modem
     write_modem("AT");
     modemCom();
     
@@ -350,6 +335,8 @@ int main(int argc,char **argv)
         }
 
         modemCom();
+
+        listener();
 
     }
     return;

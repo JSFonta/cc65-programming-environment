@@ -6,6 +6,7 @@
 #include "draw.h"
 #include "layout.h"
 #include "include.h"
+#include <stdlib.h>
 
 unsigned char modem_line[MAX_MODEM_LINE_LEN+1];
 unsigned char modem_line_len=0;
@@ -14,6 +15,107 @@ int cpt=0;
 unsigned char i, k;
 unsigned char at[3][15] = {"AT+QSPN\r", "AT+CCLK?\r", "AT+CSQ\r"};
 unsigned char j = 0;
+
+struct coordinate {
+   unsigned char x;
+   unsigned char y;
+};
+
+struct area {
+   struct coordinate topleft;
+   struct coordinate bottomright;
+   unsigned char key;
+};
+
+struct coordinate lastPosition;
+struct area interaction[NB_MAX_INTERACTION];
+unsigned char nbInteraction = 0;
+
+void addInteraction(unsigned char startx, unsigned char starty, unsigned char endx, unsigned char endy,
+unsigned char keySimulated)
+{
+    struct area new;
+    new.topleft.x = startx;
+    new.topleft.y = starty;
+    new.bottomright.x = endx;
+    new.bottomright.y = endy;
+    new.key = keySimulated;
+    if(nbInteraction < NB_MAX_INTERACTION)
+    {
+        interaction[nbInteraction] = new;
+        nbInteraction++;
+    }
+}
+
+void listener(void)
+{
+    unsigned char i;
+    unsigned char newPressedButton;
+    unsigned char text[2];
+    unsigned char low=PEEK(0xd6b9);
+    unsigned char high=PEEK(0xD6BB)&3;
+    unsigned char y,x=(low>>4)+(high<<4)+2;
+    low=PEEK(0xd6ba);
+    high=PEEK(0xd6bb)>>4;
+    y=(low>>4)+(high<<4)-4;
+
+    if(x == lastPosition.x && y == lastPosition.y) return;
+
+    // Listen to every button position
+    for(i=0; i<nbInteraction; i++)
+    {
+        if (x > interaction[i].topleft.x && x < interaction[i].bottomright.x
+        && y > interaction[i].topleft.y && y < interaction[i].bottomright.y)
+        {
+            displayText("Key : ", (HEADER_HEIGHT+1)*64, COLOR_BLUE);
+            text[0] = interaction[i].key;
+            text[1] = '\0';
+            displayText(text, (HEADER_HEIGHT+1)*64+5, COLOR_RED);
+            
+            // Change the color of the last pressed number on dialpad
+            if((interaction[i].key >= '0' && interaction[i].key <= '9') 
+            || (interaction[i].key >= 'A' && interaction[i].key <= 'D')
+            || interaction[i].key == '#' || interaction[i].key == '*' 
+            || interaction[i].key == '-' || interaction[i].key == '+'
+            || interaction[i].key == '=')
+            {
+
+                if(interaction[i].key >= '1' && interaction[i].key <= '3')
+                {
+                    newPressedButton = interaction[i].key-49;
+                }
+                else if(interaction[i].key == 'A') newPressedButton = 3;
+                else if(interaction[i].key >= '4' && interaction[i].key <= '6')
+                {
+                    newPressedButton = interaction[i].key-48;
+                }
+                else if(interaction[i].key == 'B') newPressedButton = 7;
+                else if(interaction[i].key >= '7' && interaction[i].key <= '9')
+                {
+                    newPressedButton = interaction[i].key-47;
+                }
+                else if(interaction[i].key == 'C') newPressedButton = 11;
+                else if(interaction[i].key == '#') newPressedButton = 12;
+                else if(interaction[i].key == '0') newPressedButton = 13;
+                else if(interaction[i].key == '*') newPressedButton = 14;
+                else if(interaction[i].key == 'D') newPressedButton = 15;
+                else if(interaction[i].key == '?') newPressedButton = 16;
+                else if(interaction[i].key == '-') newPressedButton = 17;
+                else if(interaction[i].key == '+') newPressedButton = 18;
+                else if(interaction[i].key == '=') newPressedButton = 19;
+                // check if its a new action or not (-48 <=> convert from ascii to int)
+                if(pressed_button != newPressedButton)
+                {
+                    pressed_button = newPressedButton;
+                    display_dialpad();
+                }
+            } 
+        }
+    }
+
+    lastPosition.x = x;
+    lastPosition.y = y;
+}
 
 void write_modem(const unsigned char *s)
 {
