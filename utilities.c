@@ -27,9 +27,9 @@ struct area {
    unsigned char key;
 };
 
-struct coordinate lastPosition;
 struct area interaction[NB_MAX_INTERACTION];
 unsigned char nbInteraction = 0;
+unsigned char isTouching;
 
 void addInteraction(unsigned char startx, unsigned char starty, unsigned char endx, unsigned char endy,
 unsigned char keySimulated)
@@ -47,9 +47,11 @@ unsigned char keySimulated)
     }
 }
 
-void listener(void)
+unsigned char listener(void)
 {
+    int cpt;
     unsigned char i;
+    unsigned char rising;
     unsigned char newPressedButton;
     unsigned char text[2];
     unsigned char low=PEEK(0xd6b9);
@@ -59,7 +61,12 @@ void listener(void)
     high=PEEK(0xd6bb)>>4;
     y=(low>>4)+(high<<4)-4;
 
-    if(x == lastPosition.x && y == lastPosition.y) return;
+    // Detect if user touch the screen or not
+    
+    if (isTouching&&(!(PEEK(0xd6b0)&1))) rising=1; else rising=0;
+    isTouching = PEEK(0xD6B0)&1;
+
+    if(!isTouching && !rising) return '\0';
 
     // Listen to every button position
     for(i=0; i<nbInteraction; i++)
@@ -67,10 +74,6 @@ void listener(void)
         if (x > interaction[i].topleft.x && x < interaction[i].bottomright.x
         && y > interaction[i].topleft.y && y < interaction[i].bottomright.y)
         {
-            displayText("Key : ", (HEADER_HEIGHT+1)*64, COLOR_BLUE);
-            text[0] = interaction[i].key;
-            text[1] = '\0';
-            displayText(text, (HEADER_HEIGHT+1)*64+5, COLOR_RED);
             
             // Change the color of the last pressed number on dialpad
             if((interaction[i].key >= '0' && interaction[i].key <= '9') 
@@ -99,22 +102,25 @@ void listener(void)
                 else if(interaction[i].key == '0') newPressedButton = 13;
                 else if(interaction[i].key == '*') newPressedButton = 14;
                 else if(interaction[i].key == 'D') newPressedButton = 15;
-                else if(interaction[i].key == '?') newPressedButton = 16;
+                else if(interaction[i].key == 'c') newPressedButton = 16;
                 else if(interaction[i].key == '-') newPressedButton = 17;
                 else if(interaction[i].key == '+') newPressedButton = 18;
                 else if(interaction[i].key == '=') newPressedButton = 19;
-                // check if its a new action or not (-48 <=> convert from ascii to int)
+
                 if(pressed_button != newPressedButton)
                 {
                     pressed_button = newPressedButton;
                     display_dialpad();
                 }
             } 
+
+            if(rising)
+            {
+                return interaction[i].key;
+            }
+
         }
     }
-
-    lastPosition.x = x;
-    lastPosition.y = y;
 }
 
 void write_modem(const unsigned char *s)

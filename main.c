@@ -10,6 +10,7 @@
 #include "include.h"
 #include "utilities.h"
 
+
 #ifdef __CC65__
 void main(void)
 #else
@@ -21,13 +22,13 @@ int main(int argc,char **argv)
     // Loop variable
     unsigned char i, j, layoutIndex; 
 
-    // Buffer for keyboard input
     char inputBuffer[100];
     unsigned char indexBuffer = 0;
-    char currentCharacter;
+    unsigned char currentCharacter;
 
     // Flag EOS
     unsigned char flagEos = 0;
+    unsigned char text[2];
 
     // Define some contacts
     unsigned char nbContacts = 5;
@@ -83,7 +84,6 @@ GS $D6BA - Touch pad touch #1 Y LSB*/
 
     while(1)
     {
-
         // Home
         if(layoutIndex == 1)
         {
@@ -97,121 +97,129 @@ GS $D6BA - Touch pad touch #1 Y LSB*/
                 displayText(contacts[i], SCREEN_COLS*(HEADER_HEIGHT+4+i)+LEFT_COLUMN_WIDTH+3, i==currentContact?COLOR_YELLOW:COLOR_WHITE);
             }
 
-            // Something to read from input ?
-            while(kbhit() != 0)
+            // Read the character into the stdin
+            if(kbhit() != 0)
             {
-                // Read the character into the stdin
                 currentCharacter = cgetc();
+            }
+            else
+            {
+                currentCharacter = listener();
+            }
 
-                // Clear the inputBuffer
-                // Backspace <=> 1 by 1
-                if(currentCharacter == 20)
+            text[0] = currentCharacter;
+            text[1] = '\0';
+            displayText(text, 64*7+32, COLOR_GRAY1);
+
+            // Clear the inputBuffer
+            // Backspace <=> 1 by 1
+            if(currentCharacter == 20)
+            {
+                // Only 1 thing into the buffer or nothing
+                if(indexBuffer == 0)
                 {
-                    // Only 1 thing into the buffer or nothing
-                    if(indexBuffer == 0)
-                    {
-                        inputBuffer[indexBuffer] = '\0';
-                    }
-                    // Usual case
-                    else if(indexBuffer > 0)
-                    {
-                        inputBuffer[indexBuffer-1] = '\0';
-                        indexBuffer--;
-                    }
-
-                    // Clear last character
-                    displayText("              ", 64*(HEADER_HEIGHT+1)+2, COLOR_BLACK);
-                }
-
-                // Clear the inputBuffer
-                // Erase <=> clear all
-                else if(currentCharacter == 'e' || currentCharacter == 'E')
-                {
-                    
-                    // Clear input field
-                    displayText("              ", 64*(HEADER_HEIGHT+1)+2, COLOR_BLACK);
-
-                    // Re initialize the buffer index
-                    indexBuffer = 0;
                     inputBuffer[indexBuffer] = '\0';
                 }
-                
-                // Next or previous contact
-                else if(currentCharacter == ',' || currentCharacter == '.')
+                // Usual case
+                else if(indexBuffer > 0)
                 {
-                    // Previous (above)
-                    if(currentCharacter == ',')
-                    {
-                        // Go to the previous contact or go back to the last one
-                        if(currentContact == 0)
-                        {
-                            currentContact = nbContacts-1;
-                        }
-                        else
-                        {
-                            currentContact--;
-                        }
-                    }
+                    inputBuffer[indexBuffer-1] = '\0';
+                    indexBuffer--;
+                }
 
-                    // Next (below)
+                // Clear last character
+                displayText("              ", 64*(HEADER_HEIGHT+1)+2, COLOR_BLACK);
+            }
+
+            // Clear the inputBuffer
+            // Erase <=> clear all
+            else if(currentCharacter == 'e' || currentCharacter == 'E')
+            {
+                
+                // Clear input field
+                displayText("              ", 64*(HEADER_HEIGHT+1)+2, COLOR_BLACK);
+
+                // Re initialize the buffer index
+                indexBuffer = 0;
+                inputBuffer[indexBuffer] = '\0';
+            }
+            
+            // Next or previous contact
+            else if(currentCharacter == ',' || currentCharacter == '.')
+            {
+                // Previous (above)
+                if(currentCharacter == ',')
+                {
+                    // Go to the previous contact or go back to the last one
+                    if(currentContact == 0)
+                    {
+                        currentContact = nbContacts-1;
+                    }
                     else
                     {
-                        // Go to the next contact or go back to the first one
-                        if(currentContact == nbContacts-1)
-                        {
-                            currentContact = 0;
-                        }
-                        else
-                        {
-                            currentContact++;
-                        }
+                        currentContact--;
                     }
                 }
 
-                // Call
-                else if(currentCharacter == 'c' || currentCharacter == 'C')
-                {
-                    // Change the layout
-                    layoutIndex = 2;
-                    layout(layoutIndex);
-                }
-
-                // Add contact
-                else if(currentCharacter == 'a' || currentCharacter == 'A')
-                {
-                    // Change the layout
-                    layoutIndex = 4;
-                    layout(layoutIndex);
-                }
-
-                // SMS to a contact
-                else if(currentCharacter == '/')
-                {
-                    // Change the layout
-                    layoutIndex = 3;
-                    layout(layoutIndex);
-                }
-
-                // Escape -> go back main menu
-                else if(currentCharacter == 3)
-                {
-                    // Change the layout
-                    layout(1);
-                }
-
-                // Numero typing
+                // Next (below)
                 else
                 {
-                    // No more than 14 numeros
-                    if(indexBuffer < 14)
+                    // Go to the next contact or go back to the first one
+                    if(currentContact == nbContacts-1)
                     {
-                        // Be sure it is a number
-                        if(currentCharacter == '0' || currentCharacter == '1' || currentCharacter == '2' || currentCharacter == '3' || currentCharacter == '4' || currentCharacter == '5' || currentCharacter == '6' || currentCharacter == '7' || currentCharacter == '8' || currentCharacter == '9' || currentCharacter == '#' || currentCharacter == '*' || currentCharacter == '+')
-                        {
-                            inputBuffer[indexBuffer] = currentCharacter;
-                            inputBuffer[indexBuffer+1] = '\0';
-                            indexBuffer++;
-                        }
+                        currentContact = 0;
+                    }
+                    else
+                    {
+                        currentContact++;
+                    }
+                }
+            }
+
+            // Call
+            else if(currentCharacter == 'c' || currentCharacter == 'C')
+            {
+                // Change the layout
+                layoutIndex = 2;
+                layout(layoutIndex);
+            }
+
+            // Add contact
+            else if(currentCharacter == 'a' || currentCharacter == 'A')
+            {
+                // Change the layout
+                layoutIndex = 4;
+                layout(layoutIndex);
+            }
+
+            // SMS to a contact
+            else if(currentCharacter == '/')
+            {
+                // Change the layout
+                layoutIndex = 3;
+                layout(layoutIndex);
+            }
+
+            // Escape -> go back main menu
+            else if(currentCharacter == 3)
+            {
+                // Change the layout
+                layout(1);
+            }
+
+            // Numero typing
+            else
+            {
+                // No more than 14 numeros
+                if(indexBuffer < 14)
+                {
+                    // Be sure it is a number
+                    if(currentCharacter == '0' || currentCharacter == '1' || currentCharacter == '2' || currentCharacter == '3' || currentCharacter == '4' || currentCharacter == '5' || currentCharacter == '6' || currentCharacter == '7' || currentCharacter == '8' || currentCharacter == '9' || currentCharacter == '#' || currentCharacter == '*' || currentCharacter == '+')
+                    {
+                        inputBuffer[indexBuffer] = currentCharacter;
+                        inputBuffer[indexBuffer+1] = '\0';
+                        indexBuffer++;
+                        currentCharacter = '\0';
                     }
                 }
             }
@@ -335,8 +343,6 @@ GS $D6BA - Touch pad touch #1 Y LSB*/
         }
 
         modemCom();
-
-        listener();
 
     }
     return;

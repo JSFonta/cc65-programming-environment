@@ -6,8 +6,8 @@ LOPTS=
 
 FILES=		example.prg 
 
-M65IDESOURCES=	main.c \
-		utilities.c \
+M65IDESOURCES=	utilities.c \
+		main.c \
 		layout.c \
 		draw.c \
 		memory.c \
@@ -16,8 +16,8 @@ M65IDESOURCES=	main.c \
 		packed_dialpad.c \
 		hal_mega65.c
 
-ASSFILES=	main.s \
-		utilities.s \
+ASSFILES=	utilities.s \
+		main.s \
 		layout.s \
 		draw.s \
 		memory.s \

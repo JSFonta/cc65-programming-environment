@@ -17,4 +17,4 @@ void parser(void);
 void modemCom(void);
 void addInteraction(unsigned char startx, unsigned char starty, unsigned char endx, unsigned char endy,
 unsigned char keySimulated);
-void listener(void);
+unsigned char listener(void);
