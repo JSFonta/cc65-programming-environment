@@ -18,3 +18,4 @@ void modemCom(void);
 void addInteraction(unsigned char startx, unsigned char starty, unsigned char endx, unsigned char endy,
 unsigned char keySimulated);
 unsigned char listener(void);
+void clearInteraction(void);

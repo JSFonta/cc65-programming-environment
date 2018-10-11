@@ -107,10 +107,6 @@ GS $D6BA - Touch pad touch #1 Y LSB*/
                 currentCharacter = listener();
             }
 
-            text[0] = currentCharacter;
-            text[1] = '\0';
-            displayText(text, 64*7+32, COLOR_GRAY1);
-
             // Clear the inputBuffer
             // Backspace <=> 1 by 1
             if(currentCharacter == 20)
@@ -128,7 +124,7 @@ GS $D6BA - Touch pad touch #1 Y LSB*/
                 }
 
                 // Clear last character
-                displayText("              ", 64*(HEADER_HEIGHT+1)+2, COLOR_BLACK);
+                displayText("               ", 64*(HEADER_HEIGHT+1)+2, COLOR_BLACK);
             }
 
             // Clear the inputBuffer
@@ -137,7 +133,7 @@ GS $D6BA - Touch pad touch #1 Y LSB*/
             {
                 
                 // Clear input field
-                displayText("              ", 64*(HEADER_HEIGHT+1)+2, COLOR_BLACK);
+                displayText("               ", 64*(HEADER_HEIGHT+1)+2, COLOR_BLACK);
 
                 // Re initialize the buffer index
                 indexBuffer = 0;
@@ -232,20 +228,22 @@ GS $D6BA - Touch pad touch #1 Y LSB*/
             displayText("Call with ", (HEADER_HEIGHT+4)*64+2, COLOR_WHITE);
             displayText(indexBuffer ? inputBuffer : "nobody :( Make some friends :)", (HEADER_HEIGHT+4)*64+12, COLOR_WHITE);
 
-            // Something to read from input ?
-            while(kbhit() != 0)
+            // Read the character into the stdin
+            if(kbhit() != 0)
             {
-
-                // Read the character into the stdin
                 currentCharacter = cgetc();
+            }
+            else
+            {
+                currentCharacter = listener();
+            }
 
-                // Escape -> go back main menu
-                if(currentCharacter == 3)
-                {
-                    // Change the layout
-                    layoutIndex = 1;
-                    layout(layoutIndex);
-                }
+            // Escape -> go back main menu
+            if(currentCharacter == 3)
+            {
+                // Change the layout
+                layoutIndex = 1;
+                layout(layoutIndex);
             }
 
         }
@@ -262,83 +260,90 @@ GS $D6BA - Touch pad touch #1 Y LSB*/
             // Display the stdin buffer content
             displayText(inputBuffer, (SCREEN_HEIGHT-3)*SCREEN_COLS+3, COLOR_WHITE);
 
-            // Something to read from input ?
-            while(kbhit() != 0)
+            // Read the character into the stdin
+            if(kbhit() != 0)
             {
-
-                // Read the character into the stdin
                 currentCharacter = cgetc();
+            }
+            else
+            {
+                currentCharacter = listener();
+            }
 
-                // Escape -> go back main menu
-                if(currentCharacter == 3)
+            // Escape -> go back main menu
+            if(currentCharacter == 3)
+            {
+                // Clear the buffer and then change the layout
+                inputBuffer[0] = '\0';
+                indexBuffer=0;
+                layoutIndex = 1;
+                layout(layoutIndex);
+            }
+
+            // Clear the inputBuffer
+            else if(currentCharacter == 'e' || currentCharacter == 'E')
+            {
+                i=0;
+                while(inputBuffer[i] != '\0')
                 {
-                    // Change the layout
-                    layoutIndex = 1;
-                    layout(layoutIndex);
+                    // Replace by white space
+                    POKE(SCREEN_ADDRESS+(SCREEN_HEIGHT-3)*SCREEN_COLS+3+i, ' ');
+                    i++;
                 }
 
-                // Clear the inputBuffer
-                else if(currentCharacter == 'e' || currentCharacter == 'E')
-                {
-                    i=0;
-                    while(inputBuffer[i] != '\0')
-                    {
-                        // Replace by white space
-                        POKE(SCREEN_ADDRESS+(SCREEN_HEIGHT-3)*SCREEN_COLS+3+i, ' ');
-                        i++;
-                    }
+                // Re initialize the buffer index
+                indexBuffer = 0;
+                inputBuffer[indexBuffer] = '\0';
+            }
 
-                    // Re initialize the buffer index
-                    indexBuffer = 0;
-                    inputBuffer[indexBuffer] = '\0';
+            // Send the text
+            else if(currentCharacter == 's' || currentCharacter == 'S')
+            {
+                i=0;
+                while(inputBuffer[i] != '\0')
+                {
+                    // Replace by white space
+                    POKE(SCREEN_ADDRESS+(SCREEN_HEIGHT-3)*SCREEN_COLS+3+i, ' ');
+                    i++;
                 }
 
-                // Send the text
-                else if(currentCharacter == 's' || currentCharacter == 'S')
-                {
-                    i=0;
-                    while(inputBuffer[i] != '\0')
-                    {
-                        // Replace by white space
-                        POKE(SCREEN_ADDRESS+(SCREEN_HEIGHT-3)*SCREEN_COLS+3+i, ' ');
-                        i++;
-                    }
+                // Re initialize the buffer index
+                indexBuffer = 0;
+                inputBuffer[indexBuffer] = '\0';
+            }
 
-                    // Re initialize the buffer index
-                    indexBuffer = 0;
-                    inputBuffer[indexBuffer] = '\0';
-                }
-
-                // Text typing
-                else
+            // Text typing
+            else
+            {
+                // No more than 40 chars
+                if(indexBuffer < 40 && currentCharacter != '\0')
                 {
-                    // No more than 255 chars
-                    if(indexBuffer < 255)
-                    {
-                        inputBuffer[indexBuffer] = currentCharacter;
-                        inputBuffer[indexBuffer+1] = '\0';
-                        indexBuffer++;
-                    }
+                    inputBuffer[indexBuffer] = currentCharacter;
+                    inputBuffer[indexBuffer+1] = '\0';
+                    indexBuffer++;
                 }
             }
         }
 
+        // Add contact
         else if(layoutIndex == 4)
         {
-            // Something to read from input ?
-            while(kbhit() != 0)
+            // Read the character into the stdin
+            if(kbhit() != 0)
             {
-
-                // Read the character into the stdin
                 currentCharacter = cgetc();
+            }
+            else
+            {
+                currentCharacter = listener();
+            }
 
-                // Escape -> go back main menu
-                if(currentCharacter == 3)
-                {
-                    // Change the layout
-                    layoutIndex = 1;
-                    layout(layoutIndex);
-                }
+            // Escape -> go back main menu
+            if(currentCharacter == 3)
+            {
+                // Change the layout
+                layoutIndex = 1;
+                layout(layoutIndex);
             }
         }
 

@@ -120,23 +120,27 @@ void display_dialpad(void) {
 }
 
 /**
- * @brief       display some buttons on the 3 and 4 lines to have a fast access to sms, call or else
+ * @brief       display some buttons to have a fast access to sms, call or else, or any button
  * @author      Jean-Séabstien FONTA
  * @date        27/09/2018
  */ 
-void shortcuts(void)
+void buttons(unsigned char layout)
 {
     rectangle(0, 2, 8, 5, COLOR_GRAY1);
     addInteraction(0, 2, 0+7, 2+5, 3);
     displayText("HOME", SCREEN_COLS*4+2, COLOR_WHITE);
 
-    rectangle(9, 2, 7, 5, COLOR_GRAY1);
-    addInteraction(0, 2, 0+7, 2+5, '/');
-    displayText("SMS", SCREEN_COLS*4+11, COLOR_WHITE);
+    if(layout == 1)
+    {
+        rectangle(9, 2, 7, 5, COLOR_GRAY1);
+        addInteraction(9, 2, 9+7, 5+5, '/');
+        displayText("SMS", SCREEN_COLS*4+11, COLOR_WHITE);
 
-    rectangle(17, 2, 7, 5, COLOR_GRAY1);
-    addInteraction(8, 2, 8+7, 2+5, 'a');
-    displayText("ADD", SCREEN_COLS*4+19, COLOR_WHITE);
+        rectangle(17, 2, 7, 5, COLOR_GRAY1);
+        addInteraction(17, 2, 17+7, 2+5, 'a');
+        displayText("ADD", SCREEN_COLS*4+19, COLOR_WHITE);
+
+    }
 }
 
 
@@ -163,8 +167,11 @@ void layout(unsigned char screen)
     // Clear the display
     clearScreen();
 
+    // Remove all interactions
+    clearInteraction();
+
     // Display all buttons
-    shortcuts();
+    buttons(screen);
 
     switch(screen)
     {
@@ -172,6 +179,11 @@ void layout(unsigned char screen)
 
             // Display number composition
             rectangle(0, HEADER_HEIGHT, LEFT_COLUMN_WIDTH, 3, COLOR_BLUE);
+
+            // Display "CLR" char
+            displayText("CLR", 64*(HEADER_HEIGHT+1)+17, COLOR_BLUE);
+            // Clear button
+            addInteraction(16, 7, 16+5, 7+4, 20);
 
             // Display keypad
 	        display_dialpad();
@@ -193,6 +205,8 @@ void layout(unsigned char screen)
             rectangle(10, SCREEN_HEIGHT-8, SCREEN_WIDTH-20, 5, COLOR_RED);
             // Text into the end button
             displayText("End", 64*(SCREEN_HEIGHT-6)+SCREEN_WIDTH-26, COLOR_WHITE);
+            // Interaction
+            addInteraction(10, SCREEN_HEIGHT-8, 10+SCREEN_WIDTH-20, SCREEN_HEIGHT-8+5, 3);
 
             break;
 

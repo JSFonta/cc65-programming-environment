@@ -47,6 +47,11 @@ unsigned char keySimulated)
     }
 }
 
+void clearInteraction(void)
+{
+    nbInteraction = 0;
+}
+
 unsigned char listener(void)
 {
     int cpt;
@@ -156,7 +161,7 @@ void modemCom(void)
 {
     // Avoid to ask to many times the modem
     cpt++;
-    if(cpt == 100)
+    if(cpt >= 100)
     {
         write_modem(at[j]);
         j++;
@@ -164,7 +169,6 @@ void modemCom(void)
         cpt = 0;
     }
     poll_modem();
-    //displayText(modem_line, 64*19, COLOUR_CYAN);
     if(modem_line[0] == 'O' && modem_line[1] == 'K')
     {
         updateHeader();
@@ -222,23 +226,11 @@ void parser(void)
                 parsedData[2][i-8] = modem_line[i];
             }
         }
-        /*displayText("Parsed : ", 64*9, COLOR_RED);
-        displayText(parsedData[0], 64*9+10, COLOR_WHITE);
-        displayText("Parsed : ", 64*10, COLOR_RED);
-        displayText(parsedData[1], 64*10+10, COLOR_WHITE);
-        displayText("Parsed : ", 64*11, COLOR_RED);
-        displayText(parsedData[2], 64*11+10, COLOR_WHITE);*/
     }
 }
 
 void updateHeader(void)
 {
-    /*displayText("Parsed : ", 64*15, COLOR_BLUE);
-    displayText(parsedData[0], 64*15+10, COLOR_WHITE);
-    displayText("Parsed : ", 64*16, COLOR_BLUE);
-    displayText(parsedData[1], 64*16+10, COLOR_WHITE);
-    displayText("Parsed : ", 64*17, COLOR_BLUE);
-    displayText(parsedData[2], 64*17+10, COLOR_WHITE);*/
     // Header on every layout
     // Check first sim network name on 7 char + separator
     for(i=0; i<7; i++)
