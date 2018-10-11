@@ -126,13 +126,17 @@ void display_dialpad(void) {
  */ 
 void shortcuts(void)
 {
-    rectangle(0, 2, 7, 5, COLOR_GRAY1);
-    addInteraction(0, 2, 0+7, 2+5, '/');
-    displayText("SMS", SCREEN_COLS*4+2, COLOR_WHITE);
+    rectangle(0, 2, 8, 5, COLOR_GRAY1);
+    addInteraction(0, 2, 0+7, 2+5, 3);
+    displayText("HOME", SCREEN_COLS*4+2, COLOR_WHITE);
 
-    rectangle(8, 2, 7, 5, COLOR_GRAY1);
+    rectangle(9, 2, 7, 5, COLOR_GRAY1);
+    addInteraction(0, 2, 0+7, 2+5, '/');
+    displayText("SMS", SCREEN_COLS*4+11, COLOR_WHITE);
+
+    rectangle(17, 2, 7, 5, COLOR_GRAY1);
     addInteraction(8, 2, 8+7, 2+5, 'a');
-    displayText("ADD", SCREEN_COLS*4+10, COLOR_WHITE);
+    displayText("ADD", SCREEN_COLS*4+19, COLOR_WHITE);
 }
 
 
